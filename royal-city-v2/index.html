@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal City V2 Spine</title>
+  <style>
+    :root {
+      --bg: #0c1117;
+      --card: #101723;
+      --muted: #7f8b99;
+      --text: #e7edf3;
+      --accent: #4cc3ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 0% 0%, #132030, #0c1117 55%);
+      color: var(--text);
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    header { grid-column: 1 / -1; }
+    header h1 { margin: 0 0 4px; letter-spacing: 0.04em; }
+    header p { margin: 0; color: var(--muted); }
+    section {
+      background: var(--card);
+      border: 1px solid #1e2837;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    h2 { margin: 0 0 12px; color: var(--muted); letter-spacing: 0.06em; font-size: 14px; text-transform: uppercase; }
+    form { display: grid; gap: 8px; }
+    .inputs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+    input[type="number"], select {
+      background: #0b141f;
+      border: 1px solid #1f2a38;
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: var(--text);
+    }
+    select { cursor: pointer; }
+    input[type="checkbox"] { transform: scale(1.1); }
+    button {
+      background: linear-gradient(120deg, #3da0ff, #60d5ff);
+      color: #08101a;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      position: relative;
+    }
+    .cell {
+      aspect-ratio: 1;
+      background: #0b141f;
+      border: 1px solid #1c2533;
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: outline 0.12s ease, opacity 0.12s ease;
+    }
+    .cell.road-top { border-top: 3px solid var(--accent); }
+    .cell.road-bottom { border-bottom: 3px solid var(--accent); }
+    .cell.road-left { border-left: 3px solid var(--accent); }
+    .cell.road-right { border-right: 3px solid var(--accent); }
+    .cell.dev-eligible { outline: 2px solid rgba(96,213,255,0.7); }
+    .cell.dev-offroad { opacity: 0.35; }
+    .cell.res { background: rgba(255, 146, 122, 0.12); border-color: rgba(255,146,122,0.4); }
+    .cell.com { background: rgba(255, 211, 94, 0.12); border-color: rgba(255,211,94,0.4); }
+    .cell.civ { background: rgba(115, 190, 255, 0.12); border-color: rgba(115,190,255,0.4); }
+    .cell.inf { background: rgba(136, 255, 207, 0.12); border-color: rgba(136,255,207,0.4); }
+    .cell.active { box-shadow: inset 0 0 0 2px rgba(96,213,255,0.4); }
+    .cell.inactive { opacity: 0.55; }
+    pre {
+      margin: 0;
+      background: #0b131f;
+      border: 1px solid #1f2a38;
+      border-radius: 10px;
+      padding: 12px;
+      color: #c5d4e2;
+      max-height: 260px;
+      overflow: auto;
+      font-size: 12px;
+    }
+    .stat-line { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
+    .stat-line strong { color: var(--text); }
+    @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Royal City V2 – Spine</h1>
+      <p>State → Input → Resolve → Report</p>
+    </header>
+
+    <section>
+      <h2>Board</h2>
+      <div id="board" class="board"></div>
+    </section>
+
+    <section>
+      <h2>Players & Roles</h2>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <label style="margin:0; flex-direction: row; align-items: center; gap: 8px;">
+          Player count
+          <select id="player-count">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <div style="font-size:12px; color:var(--muted);">Roles are assigned by seat order.</div>
+      </div>
+      <div id="player-list" class="inputs-grid"></div>
+    </section>
+
+    <section>
+      <h2>Round Input</h2>
+      <form id="round-form">
+        <div class="inputs-grid">
+          <label>Clubs (INF)
+            <input type="number" id="clubs" min="0" value="0">
+          </label>
+          <label>Diamonds (ECO)
+            <input type="number" id="diamonds" min="0" value="0">
+          </label>
+          <label>Hearts (RES)
+            <input type="number" id="hearts" min="0" value="0">
+          </label>
+          <label>Spades (GOV)
+            <input type="number" id="spades" min="0" value="0">
+          </label>
+        </div>
+        <div id="remaining" class="pill" style="width: fit-content; margin: 4px 0;">Remaining: 13</div>
+        <label>Planning Focus (optional)
+          <select id="planning-focus">
+            <option value="AUTO" selected>Auto</option>
+            <option value="RES">Residential (RES / ♥)</option>
+            <option value="COM">Commerce (COM / ♦)</option>
+            <option value="INF">Infrastructure (INF / ♣)</option>
+            <option value="CIV">Civic (CIV / ♠)</option>
+          </select>
+        </label>
+        <button type="submit">Resolve Round</button>
+      </form>
+      <div id="round-info" style="margin-top: 10px; color: var(--muted);"></div>
+    </section>
+
+    <section>
+      <h2>Missions</h2>
+      <div id="missions-list" style="display:flex; flex-direction:column; gap:8px; color:var(--muted); font-size:13px;">Missions will generate each round.</div>
+      <div style="font-size:12px; color:var(--muted); margin-top:6px;">Primary failure blocks all rewards and increases blight.</div>
+    </section>
+
+    <section>
+      <h2>Report</h2>
+      <pre id="report-output">Awaiting first resolution…</pre>
+    </section>
+
+    <section>
+      <h2>City Stats</h2>
+      <div id="stats"></div>
+    </section>
+
+    <section>
+      <h2>City Status</h2>
+      <div id="city-status"></div>
+      <div id="city-status-debug" style="margin-top:8px; font-size:12px; color:var(--muted); display:none;"></div>
+      <div id="city-status-debug-toggle" style="margin-top:6px; font-size:12px; color:var(--accent); cursor:pointer; display:none;">Details</div>
+    </section>
+
+    <section>
+      <h2>History</h2>
+      <ul id="history" style="margin: 0; padding-left: 18px; color: var(--muted);"></ul>
+    </section>
+
+    <section>
+      <h2>Dev Overlay</h2>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button id="toggle-dev" type="button">Toggle Road Eligible</button>
+        <button id="toggle-labels" type="button">Toggle Tile Labels</button>
+        <button id="run-golden" type="button" style="display:none;">Run Golden Test</button>
+        <button id="run-random" type="button" style="display:none;">Run Random Campaign</button>
+      </div>
+      <div id="dev-info" style="margin-top: 12px; color: var(--muted); font-size: 13px;"></div>
+      <pre id="golden-output" style="margin-top:10px; display:none;"></pre>
+    </section>
+  </main>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

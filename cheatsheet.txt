@@ -1,0 +1,16 @@
+
+
+netlify deploy --prod
+
+git add .
+git commit -m "update"
+git push
+
+npm run export-pages
+
+next edits: 
+
+note: remember to rebuild with `npm run export-pages` and commit the generated `dist/` folder so the published site contains the runtime bundles for the simulation modules.
+
+The build kept failing on CI because Array.at was used in game/ui/ui_main.ts but your tsconfig was targeting es2020, so the emitted lib didn’t include Array.at and tsc errored (Property 'at' does not exist on type 'number[]').
+Bumped the compiler target/lib (tsconfig.json (lines 3-6)) to es2022, which includes Array.at, rebuilt, and pushed—so future notes can say “update tsconfig target/lib to es2022 when using newer array helpers.”

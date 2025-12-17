@@ -5,6 +5,7 @@ export const REWARDS = [
   { id: "TRANSIT_STOP", type: "ASSET", name: "Transit Stop", asset: { kind: "TRANSIT_STOP" } },
   { id: "GRANT_FUNDING", type: "POLICY", name: "Grant Funding", policy: { kind: "GRANT_FUNDING", params: { rounds: 1 } } },
   { id: "ZONING_REFORM", type: "POLICY", name: "Zoning Reform", policy: { kind: "ZONING_REFORM", params: { rounds: 1 } } },
+  { id: "UNLOCK_HIGHWAYS", type: "SYSTEM", name: "Highways Authorized" },
 ];
 
 export function findRewardById(id) {
@@ -18,6 +19,12 @@ export function applyReward(state, rewardRef, rng = Math.random) {
   if (reward.type === "POLICY") {
     applyPolicyReward(state, reward);
     return { granted: true, note: reward.name };
+  }
+
+  if (reward.type === "SYSTEM" && reward.id === "UNLOCK_HIGHWAYS") {
+    state.city = state.city || {};
+    state.city.highwaysUnlocked = true;
+    return { granted: true, note: reward.name || "Highways authorized" };
   }
 
   // Asset placement

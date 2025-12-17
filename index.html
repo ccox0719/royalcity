@@ -3,207 +3,291 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Royal Kingdom Spine</title>
-  <style>
-    :root {
-      --bg: #0c1117;
-      --card: #101723;
-      --accent: #5fd0ff;
-      --text: #e7edf3;
-      --muted: #7f8b99;
-      --grid-size: 5;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 24px;
-      font-family: "SF Pro Display", "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 10% 20%, #132030, #0c1117 60%);
-      color: var(--text);
-    }
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      gap: 16px;
-      grid-template-columns: 1fr 1fr;
-    }
-    header {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    header h1 { margin: 0; font-size: 24px; letter-spacing: 0.03em; }
-    header span { color: var(--muted); font-size: 14px; }
-    section {
-      background: var(--card);
-      border: 1px solid #1e2837;
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    h2 {
-      margin: 0 0 12px;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-    }
-    #mission {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-    .pill {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid #1f2a38;
-      background: #0f1826;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 0.05em;
-    }
-    #board {
-      display: grid;
-      grid-template-columns: repeat(var(--grid-size), 1fr);
-      gap: 4px;
-      aspect-ratio: 1;
-    }
-    .cell {
-      position: relative;
-      border-radius: 6px;
-      background: #0b141f;
-      border: 1px solid #1c2533;
-      color: var(--muted);
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .cell.road-top { border-top: 3px solid var(--accent); }
-    .cell.road-bottom { border-bottom: 3px solid var(--accent); }
-    .cell.road-left { border-left: 3px solid var(--accent); }
-    .cell.road-right { border-right: 3px solid var(--accent); }
-    form {
-      display: grid;
-      gap: 8px;
-    }
-    .inputs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-    label {
-      font-size: 13px;
-      color: var(--muted);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    input[type="number"] {
-      background: #0b141f;
-      border: 1px solid #1f2a38;
-      border-radius: 8px;
-      padding: 8px 10px;
-      color: var(--text);
-    }
-    input[type="checkbox"] {
-      transform: scale(1.1);
-    }
-    button {
-      background: linear-gradient(120deg, #3da0ff, #60d5ff);
-      color: #08101a;
-      border: none;
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.08s ease, box-shadow 0.12s ease;
-    }
-    button:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(96,213,255,0.35); }
-    button:active { transform: translateY(0); }
-    pre {
-      margin: 0;
-      background: #0b131f;
-      border: 1px solid #1f2a38;
-      border-radius: 10px;
-      padding: 12px;
-      color: #c5d4e2;
-      max-height: 220px;
-      overflow: auto;
-      font-size: 12px;
-    }
-    .stat-line { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; }
-    .stat-line strong { color: var(--text); }
-    #state-json { max-height: 180px; }
-    @media (max-width: 900px) {
-      main { grid-template-columns: 1fr; }
-      #board { min-height: 320px; }
-    }
-  </style>
+  <title>Royal City</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <main>
-    <header>
-      <h1>Royal Kingdom – Spine</h1>
-      <span>State → Input → Resolve → Report</span>
-    </header>
-
-    <section id="mission">
-      <div>
-        <div class="pill">Mission</div>
-        <div id="mission-text">Placeholder mission text lives here.</div>
+    <section class="menu-bar">
+      <button class="menu-btn" aria-label="Menu" id="menu-toggle">
+        <span class="menu-label">Menu</span>
+        <span class="menu-caret">▾</span>
+      </button>
+      <div class="menu-meta">
+        <span class="pill small muted" id="round-indicator">Round 1 / 8</span>
       </div>
-      <div class="pill">Seed: <span id="seed"></span></div>
+    </section>
+    <div id="spine"><div></div></div>
+
+    <section class="hero frame board-frame" id="frame-board" data-panel="board">
+      <div class="section-heading board-heading">
+        <div>
+          <h2>Royal City</h2>
+          <div class="section-subline">Civic planning board</div>
+        </div>
+      </div>
+      <div class="board-stage">
+        <div class="board-stage__board">
+          <div id="board-wrap" class="board-wrap">
+            <div id="board" class="board"></div>
+          </div>
+        </div>
+        <div class="board-stage__aside">
+          <div class="board-aside">
+            <div class="board-aside__title">Round focus</div>
+            <p class="board-aside__body" id="board-focus-text">Align initiatives, publish census, then grow.</p>
+            <div class="board-aside__actions">
+              <button id="missions-forward" class="btn primary small" aria-label="Forward to Census Intake">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="build-panel" class="build-panel">
+        <div class="build-panel__header">
+          <div>
+            <div class="build-panel__title">Build Placement</div>
+            <div class="build-panel__sub">Click a cell to place. Remaining capacity follows tricks won.</div>
+          </div>
+          <button id="build-clear" class="btn ghost small" type="button">Clear round placements</button>
+        </div>
+        <div id="build-capacity" class="build-capacity"></div>
+        <div id="build-placements" class="build-placements"></div>
+        <div id="build-message" class="build-message"></div>
+      </div>
     </section>
 
-    <section>
-      <h2>Board</h2>
-      <div id="board"></div>
-    </section>
-
-    <section>
-      <h2>Round Input</h2>
+    <section class="frame" id="frame-input" data-panel="round-input">
+      <h2>Census Intake</h2>
       <form id="round-form">
         <div class="inputs-grid">
-          <label>Clubs (INF)
-            <input type="number" id="clubs" min="0" value="0">
+          <label>Tricks in Clubs <span class="sector sector--inf" data-sector="INF" data-suit="♣">Infrastructure</span>
+            <select id="clubs">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+            </select>
           </label>
-          <label>Diamonds (ECO)
-            <input type="number" id="diamonds" min="0" value="0">
+          <label>Tricks in Diamonds <span class="sector sector--eco" data-sector="ECO" data-suit="♦">Economy</span>
+            <select id="diamonds">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+            </select>
           </label>
-          <label>Hearts (RES)
-            <input type="number" id="hearts" min="0" value="0">
+          <label>Tricks in Hearts <span class="sector sector--res" data-sector="RES" data-suit="♥">Residential</span>
+            <select id="hearts">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+            </select>
           </label>
-          <label>Spades (GOV)
-            <input type="number" id="spades" min="0" value="0">
+          <label>Tricks in Spades <span class="sector sector--gov" data-sector="GOV" data-suit="♠">Civic</span>
+            <select id="spades">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+            </select>
           </label>
         </div>
-        <label style="flex-direction: row; align-items: center; gap: 8px;">
-          <input type="checkbox" id="mission-success"> Primary mission success
+        <div id="remaining" class="pill" style="width: fit-content; margin: 4px 0;">Remaining: 13</div>
+        <label>Planning Focus (optional)
+          <select id="planning-focus">
+            <option value="AUTO" selected>Auto</option>
+            <option value="RES">Residential (♥)</option>
+            <option value="COM">Commerce (♦)</option>
+            <option value="INF">Infrastructure (♣)</option>
+            <option value="CIV">Civic (♠)</option>
+          </select>
         </label>
-        <button type="submit">Resolve Round</button>
+        <button type="submit">Publish Ledger</button>
       </form>
-      <div style="margin-top: 10px; color: var(--muted);" id="round-info"></div>
+      <div id="round-info" style="margin-top: 10px; color: var(--muted);"></div>
     </section>
 
-    <section>
-      <h2>Report</h2>
+    <section class="frame" id="frame-missions" data-panel="missions">
+      <div class="section-heading">
+        <h2>Initiatives</h2>
+      </div>
+      <div class="phase-callout" id="mission-round-callout">
+        <span class="pill warn" id="mission-round-label">Start of round</span>
+        <div class="phase-callout__body" id="mission-round-body">
+          Deal a fresh hand to kick off the round before moving to Census.
+        </div>
+      </div>
+      <div class="mission-context" id="mission-context-line">Round 1: Establish early infrastructure and avoid blight.</div>
+      <div id="road-status-indicator" class="pill" style="margin-bottom:8px; display:none;">Highway Network: Pending authorization</div>
+      <div class="mission-special" id="mission-road-expansion-block" style="display:none;">
+        <div class="mission-stamp">Special</div>
+        <label class="mission-toggle" style="gap:8px;">
+          <input type="checkbox" id="mission-road-expansion">
+          <span class="toggle-box" aria-hidden="true"></span>
+          <div class="mission-main">
+            <div class="mission-title">Road Expansion</div>
+            <div class="mission-text">Approve expansion permits. After completion, you may place tiles anywhere.</div>
+          </div>
+        </label>
+      </div>
+      <div id="missions-list" class="missions-list">Missions will generate each round.</div>
+    </section>
+
+    <section class="frame" id="frame-metrics" data-panel="stats">
+      <div class="section-heading">
+        <h2>Civic Metrics</h2>
+        <div class="phase-actions">
+          <button id="stats-undo" class="btn ghost small" aria-label="Undo Publish">Undo</button>
+          <button id="stats-forward" class="btn primary small" aria-label="End Round">End Round</button>
+        </div>
+      </div>
+      <div id="stats" class="stat-strip"></div>
+      <div id="council-reco" class="reco-panel is-hidden">
+        <div class="reco-heading">
+          <div class="reco-title" id="reco-title">Council Recommendation</div>
+          <div class="reco-sub" id="reco-sub">After resolution</div>
+        </div>
+        <div class="reco-body" id="reco-body">Awaiting resolution…</div>
+        <div class="reco-warning" id="reco-warning"></div>
+        <div class="reco-actions">
+          <button id="reco-continue" class="btn primary small" aria-label="Continue to next phase">Continue</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="frame" id="frame-status" data-panel="status">
+      <h2>City Status</h2>
+      <div id="city-status"></div>
+      <div id="city-status-debug" style="margin-top:8px; font-size:12px; color:var(--muted); display:none;"></div>
+      <div id="city-status-debug-toggle" style="margin-top:6px; font-size:12px; color:var(--accent); cursor:pointer; display:none;">Details</div>
+    </section>
+
+    <section class="frame" id="frame-report" data-panel="report">
+      <div class="section-heading">
+        <h2>Planning Memo</h2>
+        <div class="phase-actions">
+          <button id="report-undo" class="btn ghost small" aria-label="Undo Publish">Undo</button>
+          <button id="report-forward" class="nav-btn" aria-label="Next Round">→</button>
+        </div>
+      </div>
       <pre id="report-output">Awaiting first resolution…</pre>
+      <details class="history-collapse">
+        <summary>History</summary>
+        <ul id="history" style="margin: 8px 0 0; padding-left: 18px; color: var(--muted);"></ul>
+      </details>
     </section>
 
-    <section>
-      <h2>City Stats</h2>
-      <div id="stats"></div>
+    <div class="dev-modal hidden" id="dev-modal">
+      <div class="dev-modal__inner">
+        <div class="dev-modal__header">
+          <h2>Dev Tools</h2>
+          <button id="dev-modal-close" class="btn ghost small" aria-label="Close Dev Tools">Close</button>
+        </div>
+        <div class="dev-modal__body">
+          <div class="dev-panel" id="dev-panel" data-panel="dev">
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+              <button id="toggle-dev" type="button">Toggle Road Eligible</button>
+              <button id="toggle-labels" type="button">Toggle Tile Labels</button>
+              <button id="run-golden" type="button">Run Golden Test</button>
+              <button id="run-random" type="button">Run Random Campaign</button>
+            </div>
+            <div id="dev-controls" style="display:grid; gap:8px; margin-bottom:10px;">
+              <label style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted);">
+                <input type="checkbox" id="dev-highways-unlocked">
+                Highways unlocked (playtest)
+              </label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
+                Council strictness
+                <input type="range" id="dev-council-strictness" min="0.6" max="1.4" step="0.05" value="1" style="accent-color:#9fc3ff;">
+                <span id="dev-council-strictness-value" style="font-size:12px; color:var(--faint);">1.00</span>
+              </label>
+              <button id="dev-copy-settings" type="button">Copy Dev Settings JSON</button>
+            </div>
+            <div id="dev-info" style="margin-top: 12px; color: var(--muted); font-size: 13px;"></div>
+            <pre id="golden-output" style="margin-top:10px;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="frame" id="frame-players" data-panel="players">
+      <h2>Players & Roles</h2>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <label style="margin:0; flex-direction: row; align-items: center; gap: 8px;">
+          Player count
+          <select id="player-count">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <div style="font-size:12px; color:var(--muted);">Roles are assigned by seat order.</div>
+      </div>
+      <div id="player-list" class="inputs-grid"></div>
+      <div class="phase-cta">
+        <button id="primary-cta" class="btn primary">Begin City</button>
+      </div>
     </section>
 
-    <section>
-      <h2>State JSON</h2>
-      <pre id="state-json"></pre>
-    </section>
+    <div id="menu-drawer" class="menu-drawer hidden">
+      <div class="menu-drawer__header">
+        <span>Menu</span>
+        <button id="menu-close" class="btn ghost small">Close</button>
+      </div>
+      <div class="menu-drawer__content">
+        <button class="menu-link" data-peek="players">Players & Roles</button>
+        <button class="menu-link" data-peek="round-input">Census Intake</button>
+        <button class="menu-link" data-peek="missions">Initiatives</button>
+        <button class="menu-link" data-peek="stats">Civic Metrics</button>
+        <button class="menu-link" data-peek="status">City Status</button>
+        <button class="menu-link" data-peek="report">Planning Memo</button>
+        <button class="menu-link" data-peek="history">History</button>
+        <button class="menu-link" data-peek="dev">Dev Tools</button>
+        <button id="menu-return" class="btn small ghost">Return to Phase View</button>
+      </div>
+    </div>
   </main>
 
   <script type="module" src="./src/main.js"></script>

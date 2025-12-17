@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: "royal-city-v2",
+  base: "./",
   server: {
     open: false,
   },
@@ -9,7 +9,7 @@ export default defineConfig({
     open: false,
   },
   build: {
-    outDir: "../dist",
+    outDir: "dist",
     emptyOutDir: true,
   },
 });

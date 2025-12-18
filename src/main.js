@@ -2249,3 +2249,12 @@ wireDevButtons();
 
 // Tip: enable dev tools by running in console once:
 // localStorage.setItem("devtools","1"); location.reload();
+
+// Register service worker for offline/PWA use (cache-first, safe no-op if unavailable)
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/service-worker.js").catch((err) => {
+      console.warn("[SW] registration failed", err);
+    });
+  });
+}

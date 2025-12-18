@@ -215,17 +215,6 @@
               </label>
               <button id="dev-copy-settings" type="button">Copy Dev Settings JSON</button>
             </div>
-            <div style="display:grid; gap:4px; margin-bottom:12px;">
-              <div style="font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Dev Toggles (First 6)</div>
-              <div style="font-size:13px; color:var(--text); line-height:1.4;">
-                1. Base Growth Multiplier<br>
-                2. Blight Decay Rate<br>
-                3. Max Tile Level<br>
-                4. Upgrade Cost Scaling<br>
-                5. Road Adjacency Bonus<br>
-                6. Census Multiplier
-              </div>
-            </div>
             <section id="devtools" style="display:none; margin:8px 0 12px;">
               <div style="font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Auto Run</div>
               <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -300,21 +289,26 @@
         <button id="menu-close" class="btn ghost small">Close</button>
       </div>
       <div class="menu-drawer__content">
-        <button class="menu-link" data-peek="players">Players & Roles</button>
-        <button class="menu-link" data-peek="round-input">Census Intake</button>
-        <button class="menu-link" data-peek="missions">Initiatives</button>
-        <button class="menu-link" data-peek="stats">Civic Metrics</button>
-        <button class="menu-link" data-peek="status">City Status</button>
-        <button class="menu-link" data-peek="report">Planning Memo</button>
-        <button class="menu-link" data-peek="history">History</button>
-        <button class="menu-link" data-peek="dev">Dev Tools</button>
+        <button class="menu-link" data-peek="status" style="display:grid; gap:4px; text-align:left;">
+          <div style="font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted);">City Status (Quick Check)</div>
+          <div style="font-size:14px; color:var(--text);">What’s low right now: jobs, services, space, morale.</div>
+        </button>
+        <button class="menu-link" data-peek="history" style="display:grid; gap:4px; text-align:left;">
+          <div style="font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted);">History</div>
+          <div style="font-size:14px; color:var(--text);">Round outcomes: growth, rewards, failures, blight.</div>
+        </button>
+        <button class="menu-link" data-peek="report" style="display:grid; gap:4px; text-align:left;">
+          <div style="font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted);">How to Play</div>
+          <div style="font-size:14px; color:var(--text);">Rules and symbols for planning—reference only.</div>
+        </button>
         <details class="menu-link" style="border:none; background:transparent; padding:0; color:var(--text);">
-          <summary style="cursor:pointer; padding:10px 12px; border:1px solid rgba(255,255,255,0.12); border-radius:12px; background:rgba(255,255,255,0.04);">Planning Principles</summary>
+          <summary style="cursor:pointer; padding:10px 12px; border:1px solid rgba(255,255,255,0.12); border-radius:12px; background:rgba(255,255,255,0.04); display:flex; justify-content:space-between; align-items:center;">
+            <span>Dev Tools</span>
+            <span style="font-size:12px; color:var(--muted);">Hidden during play</span>
+          </summary>
           <div style="padding:10px 12px; border:1px solid rgba(255,255,255,0.08); border-radius:12px; background:rgba(255,255,255,0.03); display:grid; gap:6px; margin-top:6px;">
-            <div><strong>Residential</strong><div style="color:var(--muted); font-size:12px;">Wants access to jobs and services.</div></div>
-            <div><strong>Commerce</strong><div style="color:var(--muted); font-size:12px;">Supports population only if housing exists.</div></div>
-            <div><strong>Infrastructure</strong><div style="color:var(--muted); font-size:12px;">Improves efficiency, not population directly.</div></div>
-            <div><strong>Civic</strong><div style="color:var(--muted); font-size:12px;">Enables stability and higher density later.</div></div>
+            <div style="font-size:14px; color:var(--muted);">Diagnostics and autorun controls.</div>
+            <button class="menu-link" data-peek="dev" style="text-align:left; border:1px dashed rgba(255,255,255,0.14); border-radius:12px; padding:8px 10px;">Open Dev Tools</button>
           </div>
         </details>
         <button id="menu-return" class="btn small ghost">Return to Phase View</button>

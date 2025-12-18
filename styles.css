@@ -166,7 +166,33 @@ section {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  background: var(--panel-2);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 55%), var(--panel-3);
+  border-left: 4px solid var(--res);
+  box-shadow: var(--shadow);
+}
+
+#mission::before {
+  content: "This round";
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(243, 245, 249, 0.78);
+  background: rgba(79, 125, 90, 0.22);
+}
+
+#mission {
+  animation: focusPulse 1.6s ease-out 1;
+}
+
+#mission .mission-main,
+#mission .mission-sub {
+  max-width: 42ch;
+  line-height: 1.35;
 }
 
 section:nth-of-type(2) {
@@ -859,7 +885,9 @@ button:active,
 .btn.primary,
 button.primary {
   border-color: rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.10);
+  background: linear-gradient(180deg, #f2a85c, #e28c3f);
+  color: #fdf8f3;
+  box-shadow: 0 12px 30px rgba(226, 140, 63, 0.35);
 }
 
 .btn.ghost {
@@ -1693,7 +1721,44 @@ pre {
 }
 
 #report-output {
-  background: var(--panel-2);
+  position: relative;
+  white-space: pre-line;
+  font-family: "Inter", "Segoe UI", "SF Pro Display", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  background:
+    linear-gradient(180deg, rgba(79, 125, 90, 0) 0%, rgba(79, 125, 90, 0.08) 45%, rgba(79, 125, 90, 0.12) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    var(--panel-2);
+  border: 1px solid var(--border-2);
+  border-radius: 16px;
+  padding: 16px 18px 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+#report-output::before {
+  content: "Round recap";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+#report-output::after {
+  content: "🎯 Next round focus lives at the bottom — act on it first";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: rgba(243, 245, 249, 0.9);
+  background: linear-gradient(180deg, rgba(94, 90, 166, 0) 0%, rgba(94, 90, 166, 0.18) 80%);
+  border-radius: 0 0 16px 16px;
+  pointer-events: none;
 }
 
 #state-json {
@@ -1733,6 +1798,23 @@ pre {
 
 .stat-strip .stat-line:last-child {
   border-bottom: 1px solid var(--border);
+}
+
+.stat-line .delta-positive {
+  color: #7ad48b;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+}
+
+.stat-line .delta-negative {
+  color: #e27d73;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.stat-line .delta-flat {
+  opacity: 0.55;
+  font-size: 0.95em;
 }
 
 .stat-bar {
@@ -2439,6 +2521,15 @@ pre {
   font-size: 13px;
 }
 
+#history li {
+  opacity: 0.42;
+  transition: opacity 120ms ease;
+}
+
+#history li:hover {
+  opacity: 0.7;
+}
+
 .round-resolving {
   opacity: 0.6;
 }
@@ -2467,6 +2558,12 @@ pre {
   from { opacity: 0; }
   40% { opacity: 1; }
   to { opacity: 0; }
+}
+
+@keyframes focusPulse {
+  0% { box-shadow: 0 0 0 0 rgba(79, 125, 90, 0.35), var(--shadow); }
+  60% { box-shadow: 0 0 0 12px rgba(79, 125, 90, 0); }
+  100% { box-shadow: var(--shadow); }
 }
 
 .processing {

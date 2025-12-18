@@ -1,11 +1,11 @@
 [
   {
-    "seed": 1766086488635,
-    "finalCensus": 2625384,
+    "seed": 1766087843389,
+    "finalCensus": 2547957,
     "primarySuccessCount": 8,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.238,
-    "totalEndgameBonus": 1143337,
+    "optionalSuccessCount": 11,
+    "endgameSurgeRatio": 2.213,
+    "totalEndgameBonus": 379954,
     "limiterMostHit": "Potential",
     "timeline": [
       {
@@ -13,120 +13,120 @@
         "primarySuccess": true,
         "suitTotals": {
           "C": 5,
-          "D": 2,
-          "H": 3,
+          "D": 4,
+          "H": 1,
           "S": 3
         },
-        "growthAttempted": 4,
-        "growthApplied": 4,
+        "growthAttempted": 2,
+        "growthApplied": 2,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
         "stackSumAfter": 9,
         "blightAfter": 0,
-        "populationUnitsAfter": 4,
-        "censusAfter": 41485
+        "populationUnitsAfter": 2,
+        "censusAfter": 26821
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
+          "C": 1,
           "D": 4,
-          "H": 3,
-          "S": 2
+          "H": 4,
+          "S": 4
         },
-        "growthAttempted": 6,
-        "growthApplied": 6,
+        "growthAttempted": 7,
+        "growthApplied": 7,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 21,
+        "stackSumAfter": 18,
         "blightAfter": 0,
-        "populationUnitsAfter": 10,
-        "censusAfter": 85931
+        "populationUnitsAfter": 9,
+        "censusAfter": 78473
       },
       {
         "round": 3,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
-          "D": 4,
-          "H": 6,
-          "S": 0
+          "C": 4,
+          "D": 3,
+          "H": 3,
+          "S": 3
         },
-        "growthAttempted": 11,
-        "growthApplied": 21,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 7,
+        "growthApplied": 14,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
+        "adjacencyBonusThisRound": 2,
         "stackSumAfter": 29,
         "blightAfter": 0,
-        "populationUnitsAfter": 31,
-        "censusAfter": 240581
+        "populationUnitsAfter": 23,
+        "censusAfter": 181982
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
-          "D": 6,
-          "H": 3,
-          "S": 1
+          "C": 1,
+          "D": 3,
+          "H": 6,
+          "S": 3
         },
-        "growthAttempted": 9,
-        "growthApplied": 20,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthAttempted": 12,
+        "growthApplied": 24,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 40,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 39,
         "blightAfter": 0,
-        "populationUnitsAfter": 51,
-        "censusAfter": 387984
+        "populationUnitsAfter": 47,
+        "censusAfter": 359146
       },
       {
         "round": 5,
         "primarySuccess": true,
         "suitTotals": {
           "C": 3,
-          "D": 2,
+          "D": 5,
           "H": 4,
-          "S": 4
+          "S": 1
         },
         "growthAttempted": 11,
-        "growthApplied": 26,
+        "growthApplied": 22,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 45,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
         "blightAfter": 0,
-        "populationUnitsAfter": 77,
-        "censusAfter": 766707
+        "populationUnitsAfter": 69,
+        "censusAfter": 610528
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 1,
-          "D": 4,
-          "H": 3,
-          "S": 5
+          "C": 5,
+          "D": 2,
+          "H": 4,
+          "S": 2
         },
-        "growthAttempted": 10,
-        "growthApplied": 24,
+        "growthAttempted": 11,
+        "growthApplied": 22,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 46,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 101,
-        "censusAfter": 1361353
+        "populationUnitsAfter": 91,
+        "censusAfter": 1093822
       },
       {
         "round": 7,
@@ -138,15 +138,15 @@
           "S": 2
         },
         "growthAttempted": 13,
-        "growthApplied": 28,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthApplied": 30,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 58,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 61,
         "blightAfter": 0,
-        "populationUnitsAfter": 129,
-        "censusAfter": 2086210
+        "populationUnitsAfter": 121,
+        "censusAfter": 1948804
       },
       {
         "round": 8,
@@ -158,45 +158,226 @@
           "S": 4
         },
         "growthAttempted": 15,
-        "growthApplied": 29,
+        "growthApplied": 34,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 4,
-        "stackSumAfter": 68,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 72,
         "blightAfter": 0,
-        "populationUnitsAfter": 158,
-        "censusAfter": 2625384
+        "populationUnitsAfter": 155,
+        "censusAfter": 2547957
       }
     ],
     "endgameInputs": {
-      "populationUnits": 158,
-      "baseLinear": 1173300,
-      "epicBonus": 2198362.988647575,
+      "populationUnits": 155,
+      "baseLinear": 1151250,
+      "epicBonus": 2096813.6936260536,
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.238,
-      "finalCensus": 2625384
+      "endgameSurgeRatio": 2.213,
+      "finalCensus": 2547957
     }
   },
   {
-    "seed": 1766086481544,
-    "finalCensus": 2367761,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 11,
-    "endgameSurgeRatio": 2.212,
-    "totalEndgameBonus": 1012890,
+    "seed": 1766087842899,
+    "finalCensus": 2511682,
+    "primarySuccessCount": 6,
+    "optionalSuccessCount": 7,
+    "endgameSurgeRatio": 2.224,
+    "totalEndgameBonus": 1104133,
     "limiterMostHit": "None",
     "timeline": [
       {
         "round": 1,
         "primarySuccess": true,
         "suitTotals": {
+          "C": 0,
+          "D": 4,
+          "H": 6,
+          "S": 3
+        },
+        "growthAttempted": 3,
+        "growthApplied": 3,
+        "limiter": "Services",
+        "blockedBy": "services",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 10,
+        "blightAfter": 0,
+        "populationUnitsAfter": 3,
+        "censusAfter": 34188
+      },
+      {
+        "round": 2,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 5,
+          "D": 3,
+          "H": 2,
+          "S": 3
+        },
+        "growthAttempted": 8,
+        "growthApplied": 1,
+        "limiter": "None",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 21,
+        "blightAfter": 1,
+        "populationUnitsAfter": 4,
+        "censusAfter": 34135
+      },
+      {
+        "round": 3,
+        "primarySuccess": false,
+        "suitTotals": {
           "C": 3,
+          "D": 2,
+          "H": 6,
+          "S": 2
+        },
+        "growthAttempted": 9,
+        "growthApplied": 1,
+        "limiter": "Jobs",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 3,
+        "stackSumAfter": 29,
+        "blightAfter": 2,
+        "populationUnitsAfter": 5,
+        "censusAfter": 31273
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 5,
+          "H": 3,
+          "S": 1
+        },
+        "growthAttempted": 11,
+        "growthApplied": 24,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 3,
+        "stackSumAfter": 42,
+        "blightAfter": 1,
+        "populationUnitsAfter": 28,
+        "censusAfter": 179441
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 1,
+          "H": 3,
+          "S": 6
+        },
+        "growthAttempted": 12,
+        "growthApplied": 28,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 3,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 56,
+        "censusAfter": 425950
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 1,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 3,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 86,
+        "censusAfter": 969554
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 2,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 15,
+        "growthApplied": 34,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 3,
+        "stackSumAfter": 58,
+        "blightAfter": 0,
+        "populationUnitsAfter": 120,
+        "censusAfter": 1949483
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 2,
+          "S": 6
+        },
+        "growthAttempted": 14,
+        "growthApplied": 32,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 4,
+        "stackSumAfter": 66,
+        "blightAfter": 0,
+        "populationUnitsAfter": 152,
+        "censusAfter": 2511682
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 152,
+      "baseLinear": 1129200,
+      "epicBonus": 1997076.1217436348,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.224,
+      "finalCensus": 2511682
+    }
+  },
+  {
+    "seed": 1766087842201,
+    "finalCensus": 2510673,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 9,
+    "endgameSurgeRatio": 2.209,
+    "totalEndgameBonus": 1106333,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
           "D": 4,
           "H": 3,
-          "S": 3
+          "S": 4
         },
         "growthAttempted": 5,
         "growthApplied": 5,
@@ -204,98 +385,279 @@
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 10,
+        "stackSumAfter": 11,
         "blightAfter": 0,
         "populationUnitsAfter": 5,
-        "censusAfter": 49031
+        "censusAfter": 48946
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 1,
-          "D": 4,
-          "H": 4,
+          "C": 2,
+          "D": 5,
+          "H": 2,
           "S": 4
         },
-        "growthAttempted": 9,
-        "growthApplied": 9,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 5,
+        "growthApplied": 10,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 22,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 23,
         "blightAfter": 0,
-        "populationUnitsAfter": 14,
-        "censusAfter": 115312
+        "populationUnitsAfter": 15,
+        "censusAfter": 122850
       },
       {
         "round": 3,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 0,
+          "C": 4,
           "D": 2,
-          "H": 6,
+          "H": 7,
+          "S": 0
+        },
+        "growthAttempted": 11,
+        "growthApplied": 22,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 28,
+        "blightAfter": 0,
+        "populationUnitsAfter": 37,
+        "censusAfter": 285550
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 1,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 39,
+        "blightAfter": 0,
+        "populationUnitsAfter": 57,
+        "censusAfter": 437009
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 8,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
+        "blightAfter": 0,
+        "populationUnitsAfter": 75,
+        "censusAfter": 725646
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 2,
+          "H": 4,
           "S": 5
         },
-        "growthAttempted": 10,
+        "growthAttempted": 9,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 93,
+        "censusAfter": 1143739
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 1,
+          "H": 5,
+          "S": 3
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 59,
+        "blightAfter": 0,
+        "populationUnitsAfter": 123,
+        "censusAfter": 1981986
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 6,
+          "D": 1,
+          "H": 3,
+          "S": 3
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 4,
+        "stackSumAfter": 71,
+        "blightAfter": 0,
+        "populationUnitsAfter": 153,
+        "censusAfter": 2510673
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 153,
+      "baseLinear": 1136550,
+      "epicBonus": 2030119.3248157597,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.209,
+      "finalCensus": 2510673
+    }
+  },
+  {
+    "seed": 1766087836811,
+    "finalCensus": 2477121,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 11,
+    "endgameSurgeRatio": 2.223,
+    "totalEndgameBonus": 369127,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 5,
+        "growthApplied": 5,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 0,
+        "stackSumAfter": 8,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 49029
+      },
+      {
+        "round": 2,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 5,
+          "H": 5,
+          "S": 0
+        },
+        "growthAttempted": 7,
+        "growthApplied": 7,
+        "limiter": "Services",
+        "blockedBy": "services",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 20,
+        "blightAfter": 0,
+        "populationUnitsAfter": 12,
+        "censusAfter": 100430
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 1,
+          "H": 4,
+          "S": 3
+        },
+        "growthAttempted": 9,
         "growthApplied": 20,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 28,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 27,
         "blightAfter": 0,
-        "populationUnitsAfter": 34,
-        "censusAfter": 262805
+        "populationUnitsAfter": 32,
+        "censusAfter": 248264
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
           "C": 2,
-          "D": 2,
-          "H": 5,
-          "S": 4
+          "D": 3,
+          "H": 3,
+          "S": 5
         },
-        "growthAttempted": 12,
-        "growthApplied": 26,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 40,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 36,
         "blightAfter": 0,
-        "populationUnitsAfter": 60,
-        "censusAfter": 472360
+        "populationUnitsAfter": 52,
+        "censusAfter": 395736
       },
       {
         "round": 5,
-        "primarySuccess": false,
+        "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 4,
-          "S": 2
+          "C": 6,
+          "D": 2,
+          "H": 1,
+          "S": 4
         },
-        "growthAttempted": 11,
-        "growthApplied": 3,
-        "limiter": "Services",
-        "blockedBy": "mission",
+        "growthAttempted": 8,
+        "growthApplied": 16,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 47,
-        "blightAfter": 1,
-        "populationUnitsAfter": 60,
-        "censusAfter": 387154
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 45,
+        "blightAfter": 0,
+        "populationUnitsAfter": 68,
+        "censusAfter": 593334
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 4,
-          "H": 1,
+          "C": 3,
+          "D": 3,
+          "H": 3,
           "S": 4
         },
         "growthAttempted": 10,
@@ -303,92 +665,92 @@
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
+        "adjacencyBonusThisRound": 2,
         "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 84,
-        "censusAfter": 920807
+        "populationUnitsAfter": 92,
+        "censusAfter": 1116992
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 2,
-          "H": 2,
-          "S": 5
+          "C": 3,
+          "D": 3,
+          "H": 3,
+          "S": 4
         },
-        "growthAttempted": 12,
-        "growthApplied": 28,
+        "growthAttempted": 11,
+        "growthApplied": 26,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
+        "adjacencyBonusThisRound": 2,
         "stackSumAfter": 58,
         "blightAfter": 0,
-        "populationUnitsAfter": 112,
-        "censusAfter": 1692772
+        "populationUnitsAfter": 118,
+        "censusAfter": 1885385
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 5,
-          "D": 3,
-          "H": 2,
-          "S": 3
+          "C": 1,
+          "D": 4,
+          "H": 3,
+          "S": 5
         },
-        "growthAttempted": 16,
+        "growthAttempted": 14,
         "growthApplied": 32,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 6,
-        "stackSumAfter": 69,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 67,
         "blightAfter": 0,
-        "populationUnitsAfter": 144,
-        "censusAfter": 2367761
+        "populationUnitsAfter": 150,
+        "censusAfter": 2477121
       }
     ],
     "endgameInputs": {
-      "populationUnits": 144,
-      "baseLinear": 1070400,
-      "epicBonus": 1740138.656546777,
+      "populationUnits": 150,
+      "baseLinear": 1114500,
+      "epicBonus": 1931601.8498831908,
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.212,
-      "finalCensus": 2367761
+      "endgameSurgeRatio": 2.223,
+      "finalCensus": 2477121
     }
   },
   {
-    "seed": 1766086478780,
-    "finalCensus": 2366855,
+    "seed": 1766087837888,
+    "finalCensus": 2437846,
     "primarySuccessCount": 8,
-    "optionalSuccessCount": 7,
-    "endgameSurgeRatio": 2.196,
-    "totalEndgameBonus": 1043593,
-    "limiterMostHit": "None",
+    "optionalSuccessCount": 4,
+    "endgameSurgeRatio": 2.217,
+    "totalEndgameBonus": 1070676,
+    "limiterMostHit": "Potential",
     "timeline": [
       {
         "round": 1,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 4,
-          "H": 2,
-          "S": 3
+          "C": 2,
+          "D": 6,
+          "H": 3,
+          "S": 2
         },
-        "growthAttempted": 4,
-        "growthApplied": 4,
+        "growthAttempted": 5,
+        "growthApplied": 5,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 11,
+        "stackSumAfter": 10,
         "blightAfter": 0,
-        "populationUnitsAfter": 4,
-        "censusAfter": 41618
+        "populationUnitsAfter": 5,
+        "censusAfter": 48969
       },
       {
         "round": 2,
@@ -396,19 +758,19 @@
         "suitTotals": {
           "C": 4,
           "D": 2,
-          "H": 5,
-          "S": 2
+          "H": 4,
+          "S": 3
         },
-        "growthAttempted": 5,
-        "growthApplied": 6,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
+        "growthAttempted": 8,
+        "growthApplied": 14,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 24,
+        "stackSumAfter": 22,
         "blightAfter": 0,
-        "populationUnitsAfter": 10,
-        "censusAfter": 85825
+        "populationUnitsAfter": 19,
+        "censusAfter": 152083
       },
       {
         "round": 3,
@@ -419,136 +781,317 @@
           "H": 3,
           "S": 3
         },
-        "growthAttempted": 10,
-        "growthApplied": 24,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 30,
-        "blightAfter": 0,
-        "populationUnitsAfter": 34,
-        "censusAfter": 262916
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 4,
-          "H": 1,
-          "S": 5
-        },
         "growthAttempted": 8,
         "growthApplied": 16,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 39,
+        "stackSumAfter": 31,
         "blightAfter": 0,
-        "populationUnitsAfter": 50,
-        "censusAfter": 381014
+        "populationUnitsAfter": 35,
+        "censusAfter": 270304
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 6,
+          "H": 1,
+          "S": 4
+        },
+        "growthAttempted": 6,
+        "growthApplied": 14,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 41,
+        "blightAfter": 0,
+        "populationUnitsAfter": 49,
+        "censusAfter": 373683
       },
       {
         "round": 5,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 1,
-          "D": 5,
+          "C": 2,
+          "D": 3,
           "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 11,
+        "growthApplied": 26,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
+        "blightAfter": 0,
+        "populationUnitsAfter": 75,
+        "censusAfter": 724136
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 5,
           "S": 3
         },
         "growthAttempted": 12,
-        "growthApplied": 14,
+        "growthApplied": 24,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 99,
+        "censusAfter": 1306808
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 1,
+          "H": 6,
+          "S": 1
+        },
+        "growthAttempted": 13,
+        "growthApplied": 15,
         "limiter": "Jobs",
         "blockedBy": "jobs",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 44,
+        "stackSumAfter": 58,
         "blightAfter": 0,
-        "populationUnitsAfter": 64,
-        "censusAfter": 528994
+        "populationUnitsAfter": 114,
+        "censusAfter": 1753811
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 2,
+          "H": 5,
+          "S": 2
+        },
+        "growthAttempted": 17,
+        "growthApplied": 34,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 70,
+        "blightAfter": 0,
+        "populationUnitsAfter": 148,
+        "censusAfter": 2437846
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 148,
+      "baseLinear": 1099800,
+      "epicBonus": 1866949.4621819993,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.217,
+      "finalCensus": 2437846
+    }
+  },
+  {
+    "seed": 1766087840068,
+    "finalCensus": 2403231,
+    "primarySuccessCount": 7,
+    "optionalSuccessCount": 5,
+    "endgameSurgeRatio": 2.215,
+    "totalEndgameBonus": 699454,
+    "limiterMostHit": "None",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 3,
+          "H": 5,
+          "S": 1
+        },
+        "growthAttempted": 5,
+        "growthApplied": 5,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 0,
+        "stackSumAfter": 10,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 49040
+      },
+      {
+        "round": 2,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 1,
+          "D": 4,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 9,
+        "growthApplied": 2,
+        "limiter": "None",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 22,
+        "blightAfter": 1,
+        "populationUnitsAfter": 7,
+        "censusAfter": 52267
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 4,
+          "H": 3,
+          "S": 2
+        },
+        "growthAttempted": 8,
+        "growthApplied": 16,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 30,
+        "blightAfter": 0,
+        "populationUnitsAfter": 23,
+        "censusAfter": 182118
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 8,
+          "D": 1,
+          "H": 2,
+          "S": 2
+        },
+        "growthAttempted": 8,
+        "growthApplied": 16,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 40,
+        "blightAfter": 0,
+        "populationUnitsAfter": 39,
+        "censusAfter": 300347
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 4,
+          "S": 3
+        },
+        "growthAttempted": 12,
+        "growthApplied": 24,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 63,
+        "censusAfter": 512923
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
           "C": 4,
-          "D": 5,
+          "D": 4,
           "H": 2,
-          "S": 2
+          "S": 3
         },
-        "growthAttempted": 12,
-        "growthApplied": 28,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
+        "adjacencyBonusThisRound": 1,
         "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 92,
-        "censusAfter": 1117847
+        "populationUnitsAfter": 83,
+        "censusAfter": 898699
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 5,
-          "S": 2
+          "C": 3,
+          "D": 2,
+          "H": 4,
+          "S": 4
         },
-        "growthAttempted": 14,
-        "growthApplied": 25,
+        "growthAttempted": 13,
+        "growthApplied": 30,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
+        "adjacencyBonusThisRound": 1,
         "stackSumAfter": 60,
         "blightAfter": 0,
-        "populationUnitsAfter": 117,
-        "censusAfter": 1851755
+        "populationUnitsAfter": 113,
+        "censusAfter": 1723626
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
+          "C": 3,
           "D": 4,
           "H": 4,
-          "S": 3
+          "S": 2
         },
         "growthAttempted": 16,
-        "growthApplied": 28,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthApplied": 33,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 71,
+        "adjacencyBonusThisRound": 4,
+        "stackSumAfter": 73,
         "blightAfter": 0,
-        "populationUnitsAfter": 145,
-        "censusAfter": 2366855
+        "populationUnitsAfter": 146,
+        "censusAfter": 2403231
       }
     ],
     "endgameInputs": {
-      "populationUnits": 145,
-      "baseLinear": 1077750,
-      "epicBonus": 1771527.340400628,
+      "populationUnits": 146,
+      "baseLinear": 1085100,
+      "epicBonus": 1803125.984260058,
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.196,
-      "finalCensus": 2366855
+      "endgameSurgeRatio": 2.215,
+      "finalCensus": 2403231
     }
   },
   {
-    "seed": 1766086486761,
-    "finalCensus": 2365200,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 8,
-    "endgameSurgeRatio": 2.195,
-    "totalEndgameBonus": 1040311,
+    "seed": 1766087840269,
+    "finalCensus": 2403176,
+    "primarySuccessCount": 7,
+    "optionalSuccessCount": 9,
+    "endgameSurgeRatio": 2.215,
+    "totalEndgameBonus": 711619,
     "limiterMostHit": "Potential",
     "timeline": [
       {
@@ -556,8 +1099,8 @@
         "primarySuccess": true,
         "suitTotals": {
           "C": 1,
-          "D": 4,
-          "H": 4,
+          "D": 5,
+          "H": 3,
           "S": 4
         },
         "growthAttempted": 6,
@@ -565,28 +1108,390 @@
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 9,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 11,
         "blightAfter": 0,
         "populationUnitsAfter": 6,
-        "censusAfter": 56289
+        "censusAfter": 56433
+      },
+      {
+        "round": 2,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 4,
+          "D": 1,
+          "H": 5,
+          "S": 3
+        },
+        "growthAttempted": 6,
+        "growthApplied": 1,
+        "limiter": "Jobs",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 22,
+        "blightAfter": 1,
+        "populationUnitsAfter": 7,
+        "censusAfter": 52296
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 3,
+          "H": 2,
+          "S": 3
+        },
+        "growthAttempted": 7,
+        "growthApplied": 14,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 30,
+        "blightAfter": 0,
+        "populationUnitsAfter": 21,
+        "censusAfter": 166942
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 6,
+          "S": 2
+        },
+        "growthAttempted": 13,
+        "growthApplied": 26,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 41,
+        "blightAfter": 0,
+        "populationUnitsAfter": 47,
+        "censusAfter": 359033
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 3,
+          "S": 5
+        },
+        "growthAttempted": 10,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
+        "blightAfter": 0,
+        "populationUnitsAfter": 67,
+        "censusAfter": 577837
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 4,
+          "H": 5,
+          "S": 2
+        },
+        "growthAttempted": 12,
+        "growthApplied": 24,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 91,
+        "censusAfter": 1091851
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 3,
+          "H": 4,
+          "S": 2
+        },
+        "growthAttempted": 14,
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 61,
+        "blightAfter": 0,
+        "populationUnitsAfter": 121,
+        "censusAfter": 1950676
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 4,
+          "H": 2,
+          "S": 5
+        },
+        "growthAttempted": 13,
+        "growthApplied": 25,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 71,
+        "blightAfter": 0,
+        "populationUnitsAfter": 146,
+        "censusAfter": 2403176
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 146,
+      "baseLinear": 1085100,
+      "epicBonus": 1803125.984260058,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.215,
+      "finalCensus": 2403176
+    }
+  },
+  {
+    "seed": 1766087836993,
+    "finalCensus": 2402434,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 11,
+    "endgameSurgeRatio": 2.199,
+    "totalEndgameBonus": 711425,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 4,
+          "H": 4,
+          "S": 0
+        },
+        "growthAttempted": 6,
+        "growthApplied": 6,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 11,
+        "blightAfter": 0,
+        "populationUnitsAfter": 6,
+        "censusAfter": 56293
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 1,
-          "D": 5,
+          "C": 4,
+          "D": 2,
+          "H": 5,
+          "S": 2
+        },
+        "growthAttempted": 7,
+        "growthApplied": 7,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 23,
+        "blightAfter": 0,
+        "populationUnitsAfter": 13,
+        "censusAfter": 108091
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 8,
+          "D": 1,
+          "H": 2,
+          "S": 2
+        },
+        "growthAttempted": 5,
+        "growthApplied": 6,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 29,
+        "blightAfter": 0,
+        "populationUnitsAfter": 19,
+        "censusAfter": 152187
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 3,
+          "H": 2,
+          "S": 4
+        },
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 39,
+        "blightAfter": 0,
+        "populationUnitsAfter": 39,
+        "censusAfter": 300012
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 4,
           "H": 4,
+          "S": 0
+        },
+        "growthAttempted": 14,
+        "growthApplied": 31,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 70,
+        "censusAfter": 630049
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 2,
+          "H": 2,
+          "S": 4
+        },
+        "growthAttempted": 11,
+        "growthApplied": 23,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 93,
+        "censusAfter": 1143181
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 3,
+          "H": 3,
           "S": 3
         },
-        "growthAttempted": 6,
-        "growthApplied": 7,
+        "growthAttempted": 14,
+        "growthApplied": 26,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 59,
+        "blightAfter": 0,
+        "populationUnitsAfter": 119,
+        "censusAfter": 1916839
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 6,
+          "H": 2,
+          "S": 0
+        },
+        "growthAttempted": 16,
+        "growthApplied": 28,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 70,
+        "blightAfter": 0,
+        "populationUnitsAfter": 147,
+        "censusAfter": 2402434
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 147,
+      "baseLinear": 1092450,
+      "epicBonus": 1834933.6621371277,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.199,
+      "finalCensus": 2402434
+    }
+  },
+  {
+    "seed": 1766087837477,
+    "finalCensus": 2401190,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 4,
+    "endgameSurgeRatio": 2.198,
+    "totalEndgameBonus": 712840,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 0,
+          "D": 5,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 5,
+        "growthApplied": 5,
         "limiter": "Services",
         "blockedBy": "services",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 21,
+        "stackSumAfter": 12,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 48890
+      },
+      {
+        "round": 2,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 7,
+          "D": 3,
+          "H": 1,
+          "S": 2
+        },
+        "growthAttempted": 4,
+        "growthApplied": 8,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 22,
         "blightAfter": 0,
         "populationUnitsAfter": 13,
         "censusAfter": 108042
@@ -597,208 +1502,7 @@
         "suitTotals": {
           "C": 2,
           "D": 3,
-          "H": 3,
-          "S": 5
-        },
-        "growthAttempted": 8,
-        "growthApplied": 18,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 28,
-        "blightAfter": 0,
-        "populationUnitsAfter": 31,
-        "censusAfter": 240714
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 6,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 10,
-        "growthApplied": 24,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 40,
-        "blightAfter": 0,
-        "populationUnitsAfter": 55,
-        "censusAfter": 417931
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 10,
-        "growthApplied": 24,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 46,
-        "blightAfter": 0,
-        "populationUnitsAfter": 79,
-        "censusAfter": 808609
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 1,
-          "S": 5
-        },
-        "growthAttempted": 8,
-        "growthApplied": 18,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 97,
-        "censusAfter": 1252313
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 5,
-          "H": 0,
-          "S": 4
-        },
-        "growthAttempted": 7,
-        "growthApplied": 16,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 60,
-        "blightAfter": 0,
-        "populationUnitsAfter": 113,
-        "censusAfter": 1722035
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 3,
-          "H": 5,
-          "S": 3
-        },
-        "growthAttempted": 14,
-        "growthApplied": 32,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 4,
-        "stackSumAfter": 72,
-        "blightAfter": 0,
-        "populationUnitsAfter": 145,
-        "censusAfter": 2365200
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 145,
-      "baseLinear": 1077750,
-      "epicBonus": 1771527.340400628,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.195,
-      "finalCensus": 2365200
-    }
-  },
-  {
-    "seed": 1766086488642,
-    "finalCensus": 2330270,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 7,
-    "endgameSurgeRatio": 2.207,
-    "totalEndgameBonus": 695201,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 3,
-          "H": 4,
-          "S": 1
-        },
-        "growthAttempted": 6,
-        "growthApplied": 6,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 10,
-        "blightAfter": 0,
-        "populationUnitsAfter": 6,
-        "censusAfter": 56262
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 4,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 6,
-        "growthApplied": 8,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 21,
-        "blightAfter": 0,
-        "populationUnitsAfter": 14,
-        "censusAfter": 115349
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 4,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 7,
-        "growthApplied": 16,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 29,
-        "blightAfter": 0,
-        "populationUnitsAfter": 30,
-        "censusAfter": 233257
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 5,
+          "H": 6,
           "S": 2
         },
         "growthAttempted": 11,
@@ -807,10 +1511,30 @@
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 40,
+        "stackSumAfter": 30,
         "blightAfter": 0,
-        "populationUnitsAfter": 56,
-        "censusAfter": 426073
+        "populationUnitsAfter": 39,
+        "censusAfter": 300362
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 2,
+          "S": 5
+        },
+        "growthAttempted": 8,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 41,
+        "blightAfter": 0,
+        "populationUnitsAfter": 57,
+        "censusAfter": 436951
       },
       {
         "round": 5,
@@ -818,19 +1542,19 @@
         "suitTotals": {
           "C": 3,
           "D": 3,
-          "H": 3,
-          "S": 4
+          "H": 4,
+          "S": 3
         },
-        "growthAttempted": 10,
+        "growthAttempted": 11,
         "growthApplied": 20,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 46,
+        "stackSumAfter": 47,
         "blightAfter": 0,
-        "populationUnitsAfter": 76,
-        "censusAfter": 745144
+        "populationUnitsAfter": 77,
+        "censusAfter": 766698
       },
       {
         "round": 6,
@@ -841,28 +1565,209 @@
           "H": 5,
           "S": 3
         },
-        "growthAttempted": 13,
-        "growthApplied": 26,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 12,
+        "growthApplied": 22,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 102,
-        "censusAfter": 1392607
+        "populationUnitsAfter": 99,
+        "censusAfter": 1305627
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
+          "C": 4,
+          "D": 2,
+          "H": 5,
+          "S": 2
+        },
+        "growthAttempted": 14,
+        "growthApplied": 24,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 60,
+        "blightAfter": 0,
+        "populationUnitsAfter": 123,
+        "censusAfter": 1982278
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 6,
+          "D": 1,
+          "H": 3,
+          "S": 3
+        },
+        "growthAttempted": 14,
+        "growthApplied": 24,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 71,
+        "blightAfter": 0,
+        "populationUnitsAfter": 147,
+        "censusAfter": 2401190
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 147,
+      "baseLinear": 1092450,
+      "epicBonus": 1834933.6621371277,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.198,
+      "finalCensus": 2401190
+    }
+  },
+  {
+    "seed": 1766087836775,
+    "finalCensus": 2401071,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 9,
+    "endgameSurgeRatio": 2.213,
+    "totalEndgameBonus": 1008785,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 3,
+          "H": 5,
+          "S": 4
+        },
+        "growthAttempted": 6,
+        "growthApplied": 6,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 0,
+        "stackSumAfter": 10,
+        "blightAfter": 0,
+        "populationUnitsAfter": 6,
+        "censusAfter": 56416
+      },
+      {
+        "round": 2,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 6,
+          "H": 4,
+          "S": 2
+        },
+        "growthAttempted": 6,
+        "growthApplied": 6,
+        "limiter": "Services",
+        "blockedBy": "services",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 23,
+        "blightAfter": 0,
+        "populationUnitsAfter": 12,
+        "censusAfter": 100408
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 3,
+          "H": 4,
+          "S": 2
+        },
+        "growthAttempted": 9,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 29,
+        "blightAfter": 0,
+        "populationUnitsAfter": 30,
+        "censusAfter": 233703
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
           "C": 3,
-          "D": 7,
+          "D": 4,
           "H": 2,
+          "S": 4
+        },
+        "growthAttempted": 8,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 40,
+        "blightAfter": 0,
+        "populationUnitsAfter": 48,
+        "censusAfter": 366334
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 2,
+          "H": 6,
+          "S": 3
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
+        "blightAfter": 0,
+        "populationUnitsAfter": 78,
+        "censusAfter": 787694
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 9,
+          "H": 1,
           "S": 1
         },
-        "growthAttempted": 10,
-        "growthApplied": 20,
+        "growthAttempted": 8,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 96,
+        "censusAfter": 1224066
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 6,
+          "D": 3,
+          "H": 3,
+          "S": 1
+        },
+        "growthAttempted": 11,
+        "growthApplied": 26,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
@@ -870,27 +1775,208 @@
         "stackSumAfter": 59,
         "blightAfter": 0,
         "populationUnitsAfter": 122,
-        "censusAfter": 1983369
+        "censusAfter": 1982170
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 5,
-          "H": 1,
-          "S": 3
+          "C": 2,
+          "D": 2,
+          "H": 2,
+          "S": 7
         },
-        "growthAttempted": 9,
-        "growthApplied": 20,
+        "growthAttempted": 12,
+        "growthApplied": 24,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 67,
+        "blightAfter": 0,
+        "populationUnitsAfter": 146,
+        "censusAfter": 2401071
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 146,
+      "baseLinear": 1085100,
+      "epicBonus": 1803125.984260058,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.213,
+      "finalCensus": 2401071
+    }
+  },
+  {
+    "seed": 1766087841436,
+    "finalCensus": 2330600,
+    "primarySuccessCount": 7,
+    "optionalSuccessCount": 8,
+    "endgameSurgeRatio": 2.208,
+    "totalEndgameBonus": 959583,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 5,
+          "S": 3
+        },
+        "growthAttempted": 5,
+        "growthApplied": 5,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 0,
+        "stackSumAfter": 9,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 48990
+      },
+      {
+        "round": 2,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 5,
+          "H": 5,
+          "S": 1
+        },
+        "growthAttempted": 6,
+        "growthApplied": 6,
+        "limiter": "Services",
+        "blockedBy": "services",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 21,
+        "blightAfter": 0,
+        "populationUnitsAfter": 11,
+        "censusAfter": 93319
+      },
+      {
+        "round": 3,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 3,
+          "D": 4,
+          "H": 3,
+          "S": 3
+        },
+        "growthAttempted": 8,
+        "growthApplied": 1,
+        "limiter": "Potential",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 29,
+        "blightAfter": 1,
+        "populationUnitsAfter": 12,
+        "censusAfter": 82440
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 6,
+          "S": 2
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 40,
+        "blightAfter": 0,
+        "populationUnitsAfter": 42,
+        "censusAfter": 321394
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 2,
+          "H": 1,
+          "S": 5
+        },
+        "growthAttempted": 8,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
+        "blightAfter": 0,
+        "populationUnitsAfter": 60,
+        "censusAfter": 473046
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 4,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 10,
+        "growthApplied": 24,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 84,
+        "censusAfter": 921547
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 2,
+          "H": 3,
+          "S": 5
+        },
+        "growthAttempted": 11,
+        "growthApplied": 26,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 58,
+        "blightAfter": 0,
+        "populationUnitsAfter": 110,
+        "censusAfter": 1629595
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 2,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 16,
+        "growthApplied": 32,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 4,
-        "stackSumAfter": 70,
+        "stackSumAfter": 69,
         "blightAfter": 0,
         "populationUnitsAfter": 142,
-        "censusAfter": 2330270
+        "censusAfter": 2330600
       }
     ],
     "endgameInputs": {
@@ -900,199 +1986,18 @@
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.207,
-      "finalCensus": 2330270
+      "endgameSurgeRatio": 2.208,
+      "finalCensus": 2330600
     }
   },
   {
-    "seed": 1766086486936,
-    "finalCensus": 2295358,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.189,
-    "totalEndgameBonus": 679128,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": false,
-        "suitTotals": {
-          "C": 1,
-          "D": 5,
-          "H": 2,
-          "S": 5
-        },
-        "growthAttempted": 3,
-        "growthApplied": 0,
-        "limiter": "Potential",
-        "blockedBy": "mission",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 7,
-        "blightAfter": 1,
-        "populationUnitsAfter": 0,
-        "censusAfter": 9877
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 7,
-        "growthApplied": 7,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 19,
-        "blightAfter": 0,
-        "populationUnitsAfter": 7,
-        "censusAfter": 63732
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 9,
-        "growthApplied": 18,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 27,
-        "blightAfter": 0,
-        "populationUnitsAfter": 25,
-        "censusAfter": 196855
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 2,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 12,
-        "growthApplied": 28,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 40,
-        "blightAfter": 0,
-        "populationUnitsAfter": 53,
-        "censusAfter": 402982
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 7,
-          "D": 1,
-          "H": 4,
-          "S": 1
-        },
-        "growthAttempted": 11,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 45,
-        "blightAfter": 0,
-        "populationUnitsAfter": 79,
-        "censusAfter": 808536
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 4,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 10,
-        "growthApplied": 20,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 99,
-        "censusAfter": 1307525
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 1,
-          "D": 5,
-          "H": 4,
-          "S": 3
-        },
-        "growthAttempted": 10,
-        "growthApplied": 10,
-        "limiter": "Services",
-        "blockedBy": "services",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 60,
-        "blightAfter": 0,
-        "populationUnitsAfter": 109,
-        "censusAfter": 1599312
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 14,
-        "growthApplied": 32,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 73,
-        "blightAfter": 0,
-        "populationUnitsAfter": 141,
-        "censusAfter": 2295358
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 141,
-      "baseLinear": 1048350,
-      "epicBonus": 1647241.845052917,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.189,
-      "finalCensus": 2295358
-    }
-  },
-  {
-    "seed": 1766086481382,
-    "finalCensus": 2295152,
+    "seed": 1766087842866,
+    "finalCensus": 2328701,
     "primarySuccessCount": 8,
-    "optionalSuccessCount": 3,
-    "endgameSurgeRatio": 2.189,
-    "totalEndgameBonus": 346277,
-    "limiterMostHit": "None",
+    "optionalSuccessCount": 6,
+    "endgameSurgeRatio": 2.191,
+    "totalEndgameBonus": 954572,
+    "limiterMostHit": "Potential",
     "timeline": [
       {
         "round": 1,
@@ -1108,54 +2013,356 @@
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 12,
+        "adjacencyBonusThisRound": 0,
+        "stackSumAfter": 9,
         "blightAfter": 0,
         "populationUnitsAfter": 5,
-        "censusAfter": 48866
+        "censusAfter": 48974
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
           "C": 2,
-          "D": 4,
+          "D": 2,
           "H": 4,
-          "S": 3
+          "S": 5
         },
         "growthAttempted": 8,
-        "growthApplied": 12,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthApplied": 14,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 25,
+        "stackSumAfter": 21,
         "blightAfter": 0,
-        "populationUnitsAfter": 17,
-        "censusAfter": 137587
+        "populationUnitsAfter": 19,
+        "censusAfter": 152140
       },
       {
         "round": 3,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 5,
-          "D": 2,
+          "C": 2,
+          "D": 8,
           "H": 2,
-          "S": 4
+          "S": 1
         },
-        "growthAttempted": 8,
-        "growthApplied": 17,
+        "growthAttempted": 7,
+        "growthApplied": 14,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 28,
+        "blightAfter": 0,
+        "populationUnitsAfter": 33,
+        "censusAfter": 255093
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 0,
+          "H": 3,
+          "S": 5
+        },
+        "growthAttempted": 5,
+        "growthApplied": 6,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 39,
+        "blightAfter": 0,
+        "populationUnitsAfter": 39,
+        "censusAfter": 300136
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 2,
+          "H": 3,
+          "S": 5
+        },
+        "growthAttempted": 10,
+        "growthApplied": 24,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 30,
+        "stackSumAfter": 46,
         "blightAfter": 0,
-        "populationUnitsAfter": 34,
-        "censusAfter": 262461
+        "populationUnitsAfter": 63,
+        "censusAfter": 514062
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 4,
+          "H": 2,
+          "S": 4
+        },
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 83,
+        "censusAfter": 898819
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 3,
+          "H": 4,
+          "S": 5
+        },
+        "growthAttempted": 14,
+        "growthApplied": 32,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 60,
+        "blightAfter": 0,
+        "populationUnitsAfter": 115,
+        "censusAfter": 1785174
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 14,
+        "growthApplied": 28,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 4,
+        "stackSumAfter": 73,
+        "blightAfter": 0,
+        "populationUnitsAfter": 143,
+        "censusAfter": 2328701
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 143,
+      "baseLinear": 1063050,
+      "epicBonus": 1708960.8732045528,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.191,
+      "finalCensus": 2328701
+    }
+  },
+  {
+    "seed": 1766087840630,
+    "finalCensus": 2295722,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 7,
+    "endgameSurgeRatio": 2.19,
+    "totalEndgameBonus": 353304,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 5,
+          "D": 4,
+          "H": 3,
+          "S": 1
+        },
+        "growthAttempted": 5,
+        "growthApplied": 5,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 11,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 49022
+      },
+      {
+        "round": 2,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 5,
+          "H": 6,
+          "S": 1
+        },
+        "growthAttempted": 8,
+        "growthApplied": 8,
+        "limiter": "Services",
+        "blockedBy": "services",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 22,
+        "blightAfter": 0,
+        "populationUnitsAfter": 13,
+        "censusAfter": 108036
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 1,
+          "S": 6
+        },
+        "growthAttempted": 5,
+        "growthApplied": 12,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 29,
+        "blightAfter": 0,
+        "populationUnitsAfter": 25,
+        "censusAfter": 196266
       },
       {
         "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 6,
+          "H": 2,
+          "S": 2
+        },
+        "growthAttempted": 7,
+        "growthApplied": 16,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 41,
+        "blightAfter": 0,
+        "populationUnitsAfter": 41,
+        "censusAfter": 314469
+      },
+      {
+        "round": 5,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 4,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 9,
+        "growthApplied": 18,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
+        "blightAfter": 0,
+        "populationUnitsAfter": 59,
+        "censusAfter": 460011
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 5,
+          "H": 3,
+          "S": 4
+        },
+        "growthAttempted": 11,
+        "growthApplied": 22,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
+        "blightAfter": 0,
+        "populationUnitsAfter": 81,
+        "censusAfter": 853554
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 1,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 58,
+        "blightAfter": 0,
+        "populationUnitsAfter": 111,
+        "censusAfter": 1661265
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 6,
+          "D": 1,
+          "H": 2,
+          "S": 4
+        },
+        "growthAttempted": 13,
+        "growthApplied": 30,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 4,
+        "stackSumAfter": 67,
+        "blightAfter": 0,
+        "populationUnitsAfter": 141,
+        "censusAfter": 2295722
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 141,
+      "baseLinear": 1048350,
+      "epicBonus": 1647241.845052917,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.19,
+      "finalCensus": 2295722
+    }
+  },
+  {
+    "seed": 1766087840436,
+    "finalCensus": 2294404,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 5,
+    "endgameSurgeRatio": 2.189,
+    "totalEndgameBonus": 348800,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
         "primarySuccess": true,
         "suitTotals": {
           "C": 4,
@@ -1163,16 +2370,76 @@
           "H": 2,
           "S": 2
         },
-        "growthAttempted": 8,
-        "growthApplied": 17,
+        "growthAttempted": 3,
+        "growthApplied": 3,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 42,
+        "stackSumAfter": 10,
         "blightAfter": 0,
-        "populationUnitsAfter": 51,
-        "censusAfter": 387789
+        "populationUnitsAfter": 3,
+        "censusAfter": 34236
+      },
+      {
+        "round": 2,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 3,
+          "H": 5,
+          "S": 1
+        },
+        "growthAttempted": 8,
+        "growthApplied": 8,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 23,
+        "blightAfter": 0,
+        "populationUnitsAfter": 11,
+        "censusAfter": 93058
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 3,
+          "H": 5,
+          "S": 2
+        },
+        "growthAttempted": 9,
+        "growthApplied": 9,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 30,
+        "blightAfter": 0,
+        "populationUnitsAfter": 20,
+        "censusAfter": 159337
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 7,
+          "H": 2,
+          "S": 2
+        },
+        "growthAttempted": 10,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 39,
+        "blightAfter": 0,
+        "populationUnitsAfter": 40,
+        "censusAfter": 306940
       },
       {
         "round": 5,
@@ -1183,16 +2450,16 @@
           "H": 5,
           "S": 4
         },
-        "growthAttempted": 12,
-        "growthApplied": 20,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 11,
+        "growthApplied": 11,
+        "limiter": "Jobs",
+        "blockedBy": "jobs",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 48,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 44,
         "blightAfter": 0,
-        "populationUnitsAfter": 71,
-        "censusAfter": 648072
+        "populationUnitsAfter": 51,
+        "censusAfter": 388952
       },
       {
         "round": 6,
@@ -1203,56 +2470,56 @@
           "H": 4,
           "S": 4
         },
-        "growthAttempted": 12,
-        "growthApplied": 22,
+        "growthAttempted": 13,
+        "growthApplied": 30,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 48,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 46,
         "blightAfter": 0,
-        "populationUnitsAfter": 93,
-        "censusAfter": 1143207
+        "populationUnitsAfter": 81,
+        "censusAfter": 851606
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 5,
-          "S": 2
+          "C": 4,
+          "D": 4,
+          "H": 2,
+          "S": 3
         },
-        "growthAttempted": 14,
-        "growthApplied": 24,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 12,
+        "growthApplied": 28,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 60,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 57,
         "blightAfter": 0,
-        "populationUnitsAfter": 117,
-        "censusAfter": 1851731
+        "populationUnitsAfter": 109,
+        "censusAfter": 1598510
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 7,
-          "D": 1,
+          "C": 6,
+          "D": 3,
           "H": 3,
-          "S": 2
+          "S": 1
         },
-        "growthAttempted": 14,
-        "growthApplied": 24,
+        "growthAttempted": 18,
+        "growthApplied": 32,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 4,
+        "adjacencyBonusThisRound": 5,
         "stackSumAfter": 70,
         "blightAfter": 0,
         "populationUnitsAfter": 141,
-        "censusAfter": 2295152
+        "censusAfter": 2294404
       }
     ],
     "endgameInputs": {
@@ -1263,177 +2530,177 @@
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
       "endgameSurgeRatio": 2.189,
-      "finalCensus": 2295152
+      "finalCensus": 2294404
     }
   },
   {
-    "seed": 1766086487766,
-    "finalCensus": 2293748,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 12,
+    "seed": 1766087836545,
+    "finalCensus": 2293733,
+    "primarySuccessCount": 7,
+    "optionalSuccessCount": 8,
     "endgameSurgeRatio": 2.203,
-    "totalEndgameBonus": 678709,
+    "totalEndgameBonus": 611876,
     "limiterMostHit": "Potential",
     "timeline": [
       {
         "round": 1,
-        "primarySuccess": true,
+        "primarySuccess": false,
         "suitTotals": {
-          "C": 4,
-          "D": 2,
-          "H": 5,
-          "S": 2
+          "C": 7,
+          "D": 3,
+          "H": 2,
+          "S": 1
         },
-        "growthAttempted": 2,
-        "growthApplied": 2,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
+        "growthAttempted": 3,
+        "growthApplied": 0,
+        "limiter": "Potential",
+        "blockedBy": "mission",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 8,
-        "blightAfter": 0,
-        "populationUnitsAfter": 2,
-        "censusAfter": 26786
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 10,
+        "blightAfter": 1,
+        "populationUnitsAfter": 0,
+        "censusAfter": 9865
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
           "C": 1,
-          "D": 4,
-          "H": 2,
-          "S": 6
+          "D": 3,
+          "H": 4,
+          "S": 5
         },
-        "growthAttempted": 5,
-        "growthApplied": 10,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthAttempted": 8,
+        "growthApplied": 8,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 18,
+        "stackSumAfter": 19,
         "blightAfter": 0,
-        "populationUnitsAfter": 12,
-        "censusAfter": 100511
+        "populationUnitsAfter": 8,
+        "censusAfter": 71197
       },
       {
         "round": 3,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 3,
-          "S": 3
+          "C": 2,
+          "D": 6,
+          "H": 1,
+          "S": 4
         },
-        "growthAttempted": 7,
-        "growthApplied": 14,
+        "growthAttempted": 4,
+        "growthApplied": 8,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 30,
+        "stackSumAfter": 24,
         "blightAfter": 0,
-        "populationUnitsAfter": 26,
-        "censusAfter": 203998
+        "populationUnitsAfter": 16,
+        "censusAfter": 130097
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
-          "D": 2,
-          "H": 3,
-          "S": 5
+          "C": 1,
+          "D": 5,
+          "H": 4,
+          "S": 3
         },
         "growthAttempted": 9,
-        "growthApplied": 18,
+        "growthApplied": 20,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 41,
+        "stackSumAfter": 34,
         "blightAfter": 0,
-        "populationUnitsAfter": 44,
-        "censusAfter": 337340
+        "populationUnitsAfter": 36,
+        "censusAfter": 277378
       },
       {
         "round": 5,
         "primarySuccess": true,
         "suitTotals": {
           "C": 4,
-          "D": 2,
-          "H": 2,
-          "S": 5
+          "D": 3,
+          "H": 3,
+          "S": 3
         },
-        "growthAttempted": 8,
-        "growthApplied": 16,
+        "growthAttempted": 10,
+        "growthApplied": 24,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 47,
+        "stackSumAfter": 42,
         "blightAfter": 0,
         "populationUnitsAfter": 60,
-        "censusAfter": 472368
+        "censusAfter": 471711
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
-          "D": 4,
-          "H": 3,
-          "S": 3
+          "C": 2,
+          "D": 5,
+          "H": 1,
+          "S": 5
         },
-        "growthAttempted": 10,
-        "growthApplied": 20,
+        "growthAttempted": 8,
+        "growthApplied": 18,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 48,
+        "stackSumAfter": 44,
         "blightAfter": 0,
-        "populationUnitsAfter": 80,
-        "censusAfter": 830492
+        "populationUnitsAfter": 78,
+        "censusAfter": 787302
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
+          "C": 4,
           "D": 3,
-          "H": 3,
-          "S": 4
+          "H": 4,
+          "S": 2
         },
-        "growthAttempted": 11,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthAttempted": 14,
+        "growthApplied": 32,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 60,
+        "stackSumAfter": 56,
         "blightAfter": 0,
-        "populationUnitsAfter": 106,
-        "censusAfter": 1507468
+        "populationUnitsAfter": 110,
+        "censusAfter": 1628626
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
+          "C": 2,
           "D": 2,
-          "H": 4,
-          "S": 4
+          "H": 3,
+          "S": 6
         },
         "growthAttempted": 15,
-        "growthApplied": 34,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthApplied": 30,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 4,
-        "stackSumAfter": 72,
+        "stackSumAfter": 64,
         "blightAfter": 0,
         "populationUnitsAfter": 140,
-        "censusAfter": 2293748
+        "censusAfter": 2293733
       }
     ],
     "endgameInputs": {
@@ -1444,17 +2711,17 @@
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
       "endgameSurgeRatio": 2.203,
-      "finalCensus": 2293748
+      "finalCensus": 2293733
     }
   },
   {
-    "seed": 1766086483598,
-    "finalCensus": 2259297,
+    "seed": 1766087840271,
+    "finalCensus": 2293215,
     "primarySuccessCount": 7,
-    "optionalSuccessCount": 6,
-    "endgameSurgeRatio": 2.201,
-    "totalEndgameBonus": 671456,
-    "limiterMostHit": "Potential",
+    "optionalSuccessCount": 7,
+    "endgameSurgeRatio": 2.203,
+    "totalEndgameBonus": 1011955,
+    "limiterMostHit": "None",
     "timeline": [
       {
         "round": 1,
@@ -1462,79 +2729,260 @@
         "suitTotals": {
           "C": 4,
           "D": 2,
-          "H": 4,
-          "S": 3
-        },
-        "growthAttempted": 2,
-        "growthApplied": 2,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 9,
-        "blightAfter": 0,
-        "populationUnitsAfter": 2,
-        "censusAfter": 26798
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 2,
+          "H": 3,
           "S": 4
         },
         "growthAttempted": 5,
-        "growthApplied": 10,
+        "growthApplied": 5,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 11,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 48923
+      },
+      {
+        "round": 2,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 1,
+          "D": 5,
+          "H": 6,
+          "S": 1
+        },
+        "growthAttempted": 8,
+        "growthApplied": 1,
+        "limiter": "Services",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 22,
+        "blightAfter": 1,
+        "populationUnitsAfter": 6,
+        "censusAfter": 46205
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 2,
+          "D": 4,
+          "H": 6,
+          "S": 1
+        },
+        "growthAttempted": 11,
+        "growthApplied": 22,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 30,
+        "blightAfter": 0,
+        "populationUnitsAfter": 28,
+        "censusAfter": 219042
+      },
+      {
+        "round": 4,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 4,
+          "H": 5,
+          "S": 3
+        },
+        "growthAttempted": 12,
+        "growthApplied": 28,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 19,
+        "stackSumAfter": 42,
         "blightAfter": 0,
-        "populationUnitsAfter": 12,
-        "censusAfter": 100753
+        "populationUnitsAfter": 56,
+        "censusAfter": 426214
       },
       {
-        "round": 3,
-        "primarySuccess": false,
+        "round": 5,
+        "primarySuccess": true,
         "suitTotals": {
           "C": 3,
           "D": 3,
-          "H": 3,
-          "S": 4
+          "H": 4,
+          "S": 3
+        },
+        "growthAttempted": 11,
+        "growthApplied": 26,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 82,
+        "censusAfter": 875646
+      },
+      {
+        "round": 6,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 0,
+          "D": 2,
+          "H": 4,
+          "S": 7
+        },
+        "growthAttempted": 11,
+        "growthApplied": 26,
+        "limiter": "None",
+        "blockedBy": "",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 108,
+        "censusAfter": 1568696
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 6,
+          "D": 3,
+          "H": 2,
+          "S": 2
+        },
+        "growthAttempted": 10,
+        "growthApplied": 24,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 58,
+        "blightAfter": 0,
+        "populationUnitsAfter": 132,
+        "censusAfter": 2152639
+      },
+      {
+        "round": 8,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 6,
+          "H": 5,
+          "S": 1
         },
         "growthAttempted": 7,
-        "growthApplied": 2,
+        "growthApplied": 8,
+        "limiter": "Services",
+        "blockedBy": "services",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 69,
+        "blightAfter": 0,
+        "populationUnitsAfter": 140,
+        "censusAfter": 2293215
+      }
+    ],
+    "endgameInputs": {
+      "populationUnits": 140,
+      "baseLinear": 1041000,
+      "epicBonus": 1616702.5574755396,
+      "blight": 0,
+      "censusMultiplier": 1,
+      "penaltiesFromBlight": 0,
+      "endgameSurgeRatio": 2.203,
+      "finalCensus": 2293215
+    }
+  },
+  {
+    "seed": 1766087844332,
+    "finalCensus": 2260758,
+    "primarySuccessCount": 6,
+    "optionalSuccessCount": 11,
+    "endgameSurgeRatio": 2.203,
+    "totalEndgameBonus": 670097,
+    "limiterMostHit": "Potential",
+    "timeline": [
+      {
+        "round": 1,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 2,
+          "D": 3,
+          "H": 4,
+          "S": 4
+        },
+        "growthAttempted": 6,
+        "growthApplied": 1,
+        "limiter": "None",
+        "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 0,
+        "stackSumAfter": 10,
+        "blightAfter": 1,
+        "populationUnitsAfter": 1,
+        "censusAfter": 15906
+      },
+      {
+        "round": 2,
+        "primarySuccess": false,
+        "suitTotals": {
+          "C": 2,
+          "D": 5,
+          "H": 3,
+          "S": 3
+        },
+        "growthAttempted": 7,
+        "growthApplied": 0,
         "limiter": "Potential",
         "blockedBy": "mission",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 22,
+        "blightAfter": 2,
+        "populationUnitsAfter": 1,
+        "censusAfter": 12410
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 3,
+          "D": 4,
+          "H": 3,
+          "S": 3
+        },
+        "growthAttempted": 7,
+        "growthApplied": 14,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 28,
         "blightAfter": 1,
-        "populationUnitsAfter": 14,
-        "censusAfter": 94539
+        "populationUnitsAfter": 15,
+        "censusAfter": 100653
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
           "C": 3,
-          "D": 4,
-          "H": 1,
-          "S": 5
+          "D": 3,
+          "H": 4,
+          "S": 3
         },
-        "growthAttempted": 6,
-        "growthApplied": 12,
+        "growthAttempted": 10,
+        "growthApplied": 23,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 38,
+        "stackSumAfter": 40,
         "blightAfter": 0,
-        "populationUnitsAfter": 26,
-        "censusAfter": 203935
+        "populationUnitsAfter": 38,
+        "censusAfter": 292231
       },
       {
         "round": 5,
@@ -1545,76 +2993,76 @@
           "H": 3,
           "S": 2
         },
-        "growthAttempted": 9,
-        "growthApplied": 18,
+        "growthAttempted": 10,
+        "growthApplied": 22,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 47,
         "blightAfter": 0,
-        "populationUnitsAfter": 44,
-        "censusAfter": 337357
+        "populationUnitsAfter": 60,
+        "censusAfter": 471823
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
           "C": 3,
-          "D": 4,
-          "H": 3,
+          "D": 3,
+          "H": 4,
           "S": 3
         },
-        "growthAttempted": 10,
-        "growthApplied": 24,
+        "growthAttempted": 11,
+        "growthApplied": 23,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 68,
-        "censusAfter": 593542
+        "populationUnitsAfter": 83,
+        "censusAfter": 898193
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 4,
+          "C": 3,
+          "D": 2,
+          "H": 5,
           "S": 3
         },
-        "growthAttempted": 14,
-        "growthApplied": 32,
+        "growthAttempted": 15,
+        "growthApplied": 27,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 60,
+        "stackSumAfter": 59,
         "blightAfter": 0,
-        "populationUnitsAfter": 100,
-        "censusAfter": 1334471
+        "populationUnitsAfter": 110,
+        "censusAfter": 1630776
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 2,
+          "C": 2,
+          "D": 1,
           "H": 4,
-          "S": 3
+          "S": 6
         },
-        "growthAttempted": 17,
-        "growthApplied": 38,
+        "growthAttempted": 16,
+        "growthApplied": 28,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 72,
+        "adjacencyBonusThisRound": 4,
+        "stackSumAfter": 68,
         "blightAfter": 0,
         "populationUnitsAfter": 138,
-        "censusAfter": 2259297
+        "censusAfter": 2260758
       }
     ],
     "endgameInputs": {
@@ -1624,178 +3072,178 @@
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.201,
-      "finalCensus": 2259297
+      "endgameSurgeRatio": 2.203,
+      "finalCensus": 2260758
     }
   },
   {
-    "seed": 1766086479455,
-    "finalCensus": 2257515,
+    "seed": 1766087838112,
+    "finalCensus": 2260693,
     "primarySuccessCount": 7,
-    "optionalSuccessCount": 5,
-    "endgameSurgeRatio": 2.184,
-    "totalEndgameBonus": 1003551,
-    "limiterMostHit": "Potential",
+    "optionalSuccessCount": 10,
+    "endgameSurgeRatio": 2.187,
+    "totalEndgameBonus": 349240,
+    "limiterMostHit": "None",
     "timeline": [
       {
         "round": 1,
-        "primarySuccess": false,
+        "primarySuccess": true,
         "suitTotals": {
           "C": 2,
-          "D": 3,
-          "H": 5,
+          "D": 6,
+          "H": 2,
           "S": 3
         },
-        "growthAttempted": 5,
-        "growthApplied": 0,
-        "limiter": "Jobs",
-        "blockedBy": "mission",
+        "growthAttempted": 4,
+        "growthApplied": 4,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 11,
-        "blightAfter": 1,
-        "populationUnitsAfter": 0,
-        "censusAfter": 9862
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 10,
+        "blightAfter": 0,
+        "populationUnitsAfter": 4,
+        "censusAfter": 41573
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
+          "C": 1,
           "D": 4,
-          "H": 3,
+          "H": 6,
           "S": 2
         },
-        "growthAttempted": 7,
-        "growthApplied": 11,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthAttempted": 5,
+        "growthApplied": 6,
+        "limiter": "Services",
+        "blockedBy": "services",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
+        "adjacencyBonusThisRound": 2,
         "stackSumAfter": 23,
         "blightAfter": 0,
-        "populationUnitsAfter": 11,
-        "censusAfter": 93074
+        "populationUnitsAfter": 10,
+        "censusAfter": 85984
       },
       {
         "round": 3,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 1,
+          "C": 2,
           "D": 2,
-          "H": 4,
+          "H": 3,
           "S": 6
         },
-        "growthAttempted": 10,
-        "growthApplied": 14,
+        "growthAttempted": 11,
+        "growthApplied": 26,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 28,
+        "stackSumAfter": 30,
         "blightAfter": 0,
-        "populationUnitsAfter": 25,
-        "censusAfter": 196582
+        "populationUnitsAfter": 36,
+        "censusAfter": 278211
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 7,
-          "D": 2,
-          "H": 4,
-          "S": 0
+          "C": 3,
+          "D": 4,
+          "H": 3,
+          "S": 3
         },
-        "growthAttempted": 12,
-        "growthApplied": 22,
+        "growthAttempted": 13,
+        "growthApplied": 26,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 38,
+        "stackSumAfter": 42,
         "blightAfter": 0,
-        "populationUnitsAfter": 47,
-        "censusAfter": 358782
+        "populationUnitsAfter": 62,
+        "censusAfter": 498721
       },
       {
         "round": 5,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 4,
-          "S": 3
+          "C": 4,
+          "D": 2,
+          "H": 3,
+          "S": 4
         },
         "growthAttempted": 13,
-        "growthApplied": 25,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthApplied": 26,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 46,
+        "stackSumAfter": 47,
         "blightAfter": 0,
-        "populationUnitsAfter": 72,
-        "censusAfter": 667426
+        "populationUnitsAfter": 88,
+        "censusAfter": 1017375
       },
       {
         "round": 6,
-        "primarySuccess": true,
+        "primarySuccess": false,
         "suitTotals": {
-          "C": 4,
-          "D": 4,
-          "H": 1,
+          "C": 2,
+          "D": 5,
+          "H": 2,
           "S": 4
         },
-        "growthAttempted": 10,
-        "growthApplied": 22,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthAttempted": 7,
+        "growthApplied": 1,
+        "limiter": "Services",
+        "blockedBy": "mission",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 3,
         "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 94,
-        "censusAfter": 1169203
+        "blightAfter": 1,
+        "populationUnitsAfter": 85,
+        "censusAfter": 775285
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
-          "D": 2,
-          "H": 5,
-          "S": 4
+          "C": 4,
+          "D": 6,
+          "H": 1,
+          "S": 2
         },
-        "growthAttempted": 11,
-        "growthApplied": 13,
-        "limiter": "Services",
-        "blockedBy": "services",
+        "growthAttempted": 12,
+        "growthApplied": 28,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 3,
         "stackSumAfter": 59,
         "blightAfter": 0,
-        "populationUnitsAfter": 107,
-        "censusAfter": 1536753
+        "populationUnitsAfter": 113,
+        "censusAfter": 1724346
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
           "C": 4,
-          "D": 2,
-          "H": 1,
-          "S": 6
+          "D": 4,
+          "H": 0,
+          "S": 5
         },
-        "growthAttempted": 15,
-        "growthApplied": 32,
+        "growthAttempted": 11,
+        "growthApplied": 26,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 6,
+        "adjacencyBonusThisRound": 5,
         "stackSumAfter": 68,
         "blightAfter": 0,
         "populationUnitsAfter": 139,
-        "censusAfter": 2257515
+        "censusAfter": 2260693
       }
     ],
     "endgameInputs": {
@@ -1805,87 +3253,67 @@
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.184,
-      "finalCensus": 2257515
+      "endgameSurgeRatio": 2.187,
+      "finalCensus": 2260693
     }
   },
   {
-    "seed": 1766086481251,
-    "finalCensus": 2225054,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 10,
-    "endgameSurgeRatio": 2.184,
-    "totalEndgameBonus": 661650,
+    "seed": 1766087840318,
+    "finalCensus": 2260310,
+    "primarySuccessCount": 8,
+    "optionalSuccessCount": 7,
+    "endgameSurgeRatio": 2.187,
+    "totalEndgameBonus": 1004686,
     "limiterMostHit": "Potential",
     "timeline": [
       {
         "round": 1,
-        "primarySuccess": false,
+        "primarySuccess": true,
         "suitTotals": {
           "C": 4,
-          "D": 2,
-          "H": 6,
-          "S": 1
+          "D": 5,
+          "H": 4,
+          "S": 0
         },
-        "growthAttempted": 4,
-        "growthApplied": 0,
-        "limiter": "Jobs",
-        "blockedBy": "mission",
+        "growthAttempted": 5,
+        "growthApplied": 5,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 10,
-        "blightAfter": 1,
-        "populationUnitsAfter": 0,
-        "censusAfter": 9884
+        "stackSumAfter": 9,
+        "blightAfter": 0,
+        "populationUnitsAfter": 5,
+        "censusAfter": 49002
       },
       {
         "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 5,
-          "H": 2,
-          "S": 2
-        },
-        "growthAttempted": 6,
-        "growthApplied": 12,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 21,
-        "blightAfter": 0,
-        "populationUnitsAfter": 12,
-        "censusAfter": 100661
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 2,
-          "S": 3
-        },
-        "growthAttempted": 7,
-        "growthApplied": 16,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 29,
-        "blightAfter": 0,
-        "populationUnitsAfter": 28,
-        "censusAfter": 218529
-      },
-      {
-        "round": 4,
         "primarySuccess": true,
         "suitTotals": {
           "C": 2,
           "D": 3,
           "H": 3,
           "S": 5
+        },
+        "growthAttempted": 6,
+        "growthApplied": 9,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 1,
+        "stackSumAfter": 21,
+        "blightAfter": 0,
+        "populationUnitsAfter": 14,
+        "censusAfter": 115576
+      },
+      {
+        "round": 3,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 1,
+          "D": 3,
+          "H": 5,
+          "S": 4
         },
         "growthAttempted": 9,
         "growthApplied": 20,
@@ -1893,472 +3321,130 @@
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 37,
-        "blightAfter": 0,
-        "populationUnitsAfter": 48,
-        "censusAfter": 366500
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 10,
-        "growthApplied": 20,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 44,
-        "blightAfter": 0,
-        "populationUnitsAfter": 68,
-        "censusAfter": 593384
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 0,
-          "H": 5,
-          "S": 4
-        },
-        "growthAttempted": 12,
-        "growthApplied": 28,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 47,
-        "blightAfter": 0,
-        "populationUnitsAfter": 96,
-        "censusAfter": 1225220
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 2,
-          "H": 3,
-          "S": 5
-        },
-        "growthAttempted": 11,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 55,
-        "blightAfter": 0,
-        "populationUnitsAfter": 122,
-        "censusAfter": 1984570
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 2,
-          "H": 4,
-          "S": 5
-        },
-        "growthAttempted": 13,
-        "growthApplied": 15,
-        "limiter": "Services",
-        "blockedBy": "services",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 63,
-        "blightAfter": 0,
-        "populationUnitsAfter": 137,
-        "censusAfter": 2225054
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 137,
-      "baseLinear": 1018950,
-      "epicBonus": 1526377.6842891567,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.184,
-      "finalCensus": 2225054
-    }
-  },
-  {
-    "seed": 1766086480936,
-    "finalCensus": 2224945,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.184,
-    "totalEndgameBonus": 662491,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 6,
-          "H": 4,
-          "S": 1
-        },
-        "growthAttempted": 4,
-        "growthApplied": 4,
-        "limiter": "Services",
-        "blockedBy": "services",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 12,
-        "blightAfter": 0,
-        "populationUnitsAfter": 4,
-        "censusAfter": 41567
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 8,
-        "growthApplied": 16,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 24,
-        "blightAfter": 0,
-        "populationUnitsAfter": 20,
-        "censusAfter": 159773
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 2,
-          "H": 2,
-          "S": 5
-        },
-        "growthAttempted": 7,
-        "growthApplied": 14,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 29,
+        "stackSumAfter": 30,
         "blightAfter": 0,
         "populationUnitsAfter": 34,
-        "censusAfter": 262527
+        "censusAfter": 263112
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
           "C": 2,
-          "D": 1,
+          "D": 4,
           "H": 5,
-          "S": 5
+          "S": 2
         },
-        "growthAttempted": 11,
-        "growthApplied": 13,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
+        "growthAttempted": 10,
+        "growthApplied": 22,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 37,
+        "stackSumAfter": 41,
         "blightAfter": 0,
-        "populationUnitsAfter": 47,
-        "censusAfter": 358427
+        "populationUnitsAfter": 56,
+        "censusAfter": 427451
       },
       {
         "round": 5,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
+          "C": 4,
           "D": 3,
-          "H": 1,
-          "S": 7
-        },
-        "growthAttempted": 8,
-        "growthApplied": 18,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 42,
-        "blightAfter": 0,
-        "populationUnitsAfter": 65,
-        "censusAfter": 543836
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 4,
           "H": 4,
-          "S": 0
+          "S": 2
         },
-        "growthAttempted": 11,
-        "growthApplied": 25,
+        "growthAttempted": 9,
+        "growthApplied": 20,
         "limiter": "Potential",
         "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 90,
-        "censusAfter": 1065941
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 1,
-          "H": 3,
-          "S": 6
-        },
-        "growthAttempted": 11,
-        "growthApplied": 21,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 56,
-        "blightAfter": 0,
-        "populationUnitsAfter": 111,
-        "censusAfter": 1661271
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 6,
-          "D": 1,
-          "H": 5,
-          "S": 1
-        },
-        "growthAttempted": 16,
-        "growthApplied": 26,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 4,
-        "stackSumAfter": 67,
-        "blightAfter": 0,
-        "populationUnitsAfter": 137,
-        "censusAfter": 2224945
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 137,
-      "baseLinear": 1018950,
-      "epicBonus": 1526377.6842891567,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.184,
-      "finalCensus": 2224945
-    }
-  },
-  {
-    "seed": 1766086479459,
-    "finalCensus": 2224385,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 10,
-    "endgameSurgeRatio": 2.183,
-    "totalEndgameBonus": 988361,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 3,
-          "H": 5,
-          "S": 3
-        },
-        "growthAttempted": 4,
-        "growthApplied": 4,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 7,
-        "blightAfter": 0,
-        "populationUnitsAfter": 4,
-        "censusAfter": 41638
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 1,
-          "S": 4
-        },
-        "growthAttempted": 4,
-        "growthApplied": 5,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 16,
-        "blightAfter": 0,
-        "populationUnitsAfter": 9,
-        "censusAfter": 78317
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 8,
-        "growthApplied": 12,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 25,
-        "blightAfter": 0,
-        "populationUnitsAfter": 21,
-        "censusAfter": 166728
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 5,
-          "S": 2
-        },
-        "growthAttempted": 12,
-        "growthApplied": 18,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 37,
-        "blightAfter": 0,
-        "populationUnitsAfter": 39,
-        "censusAfter": 300299
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 12,
-        "growthApplied": 26,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 44,
-        "blightAfter": 0,
-        "populationUnitsAfter": 65,
-        "censusAfter": 543778
+        "populationUnitsAfter": 76,
+        "censusAfter": 744556
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 5,
-          "D": 1,
-          "H": 3,
-          "S": 4
+          "C": 3,
+          "D": 3,
+          "H": 4,
+          "S": 3
         },
-        "growthAttempted": 13,
-        "growthApplied": 27,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 47,
+        "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 48,
         "blightAfter": 0,
-        "populationUnitsAfter": 92,
-        "censusAfter": 1118098
+        "populationUnitsAfter": 96,
+        "censusAfter": 1222850
       },
       {
         "round": 7,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 3,
-          "S": 2
+          "C": 2,
+          "D": 2,
+          "H": 4,
+          "S": 5
         },
-        "growthAttempted": 8,
-        "growthApplied": 9,
-        "limiter": "Services",
-        "blockedBy": "services",
+        "growthAttempted": 11,
+        "growthApplied": 23,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
+        "adjacencyBonusThisRound": 2,
         "stackSumAfter": 59,
         "blightAfter": 0,
-        "populationUnitsAfter": 101,
-        "censusAfter": 1363051
+        "populationUnitsAfter": 119,
+        "censusAfter": 1917958
       },
       {
         "round": 8,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 5,
-          "D": 1,
-          "H": 3,
-          "S": 4
+          "C": 4,
+          "D": 5,
+          "H": 1,
+          "S": 3
         },
-        "growthAttempted": 17,
-        "growthApplied": 36,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 9,
+        "growthApplied": 20,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 6,
-        "stackSumAfter": 68,
+        "adjacencyBonusThisRound": 5,
+        "stackSumAfter": 72,
         "blightAfter": 0,
-        "populationUnitsAfter": 137,
-        "censusAfter": 2224385
+        "populationUnitsAfter": 139,
+        "censusAfter": 2260310
       }
     ],
     "endgameInputs": {
-      "populationUnits": 137,
-      "baseLinear": 1018950,
-      "epicBonus": 1526377.6842891567,
+      "populationUnits": 139,
+      "baseLinear": 1033650,
+      "epicBonus": 1586378.0857431758,
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.183,
-      "finalCensus": 2224385
+      "endgameSurgeRatio": 2.187,
+      "finalCensus": 2260310
     }
   },
   {
-    "seed": 1766086486269,
-    "finalCensus": 2224192,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 8,
-    "endgameSurgeRatio": 2.183,
-    "totalEndgameBonus": 667515,
+    "seed": 1766087835985,
+    "finalCensus": 2257784,
+    "primarySuccessCount": 7,
+    "optionalSuccessCount": 7,
+    "endgameSurgeRatio": 2.2,
+    "totalEndgameBonus": 615261,
     "limiterMostHit": "Potential",
     "timeline": [
       {
@@ -2367,47 +3453,47 @@
         "suitTotals": {
           "C": 2,
           "D": 4,
-          "H": 4,
-          "S": 3
+          "H": 2,
+          "S": 5
         },
-        "growthAttempted": 7,
-        "growthApplied": 7,
-        "limiter": "None",
-        "blockedBy": "",
+        "growthAttempted": 4,
+        "growthApplied": 4,
+        "limiter": "Potential",
+        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 8,
+        "stackSumAfter": 10,
         "blightAfter": 0,
-        "populationUnitsAfter": 7,
-        "censusAfter": 63794
+        "populationUnitsAfter": 4,
+        "censusAfter": 41492
       },
       {
         "round": 2,
         "primarySuccess": true,
         "suitTotals": {
           "C": 1,
-          "D": 4,
-          "H": 3,
-          "S": 5
+          "D": 2,
+          "H": 6,
+          "S": 4
         },
-        "growthAttempted": 6,
-        "growthApplied": 6,
-        "limiter": "Potential",
-        "blockedBy": "potential",
+        "growthAttempted": 8,
+        "growthApplied": 10,
+        "limiter": "None",
+        "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 19,
+        "stackSumAfter": 21,
         "blightAfter": 0,
-        "populationUnitsAfter": 13,
-        "censusAfter": 108103
+        "populationUnitsAfter": 14,
+        "censusAfter": 115557
       },
       {
         "round": 3,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 3,
+          "C": 5,
+          "D": 3,
+          "H": 1,
           "S": 4
         },
         "growthAttempted": 7,
@@ -2418,982 +3504,57 @@
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 27,
         "blightAfter": 0,
-        "populationUnitsAfter": 27,
-        "censusAfter": 211590
+        "populationUnitsAfter": 28,
+        "censusAfter": 218845
       },
       {
         "round": 4,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 2,
-          "D": 3,
-          "H": 5,
+          "C": 5,
+          "D": 2,
+          "H": 3,
           "S": 3
         },
-        "growthAttempted": 13,
-        "growthApplied": 22,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 40,
-        "blightAfter": 0,
-        "populationUnitsAfter": 49,
-        "censusAfter": 374114
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 3,
-          "S": 4
-        },
-        "growthAttempted": 12,
-        "growthApplied": 24,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 47,
-        "blightAfter": 0,
-        "populationUnitsAfter": 73,
-        "censusAfter": 686479
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 4,
-          "S": 1
-        },
-        "growthAttempted": 8,
+        "growthAttempted": 9,
         "growthApplied": 9,
-        "limiter": "Services",
-        "blockedBy": "services",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 82,
-        "censusAfter": 874639
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 4,
-          "H": 1,
-          "S": 5
-        },
-        "growthAttempted": 11,
-        "growthApplied": 22,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 59,
-        "blightAfter": 0,
-        "populationUnitsAfter": 104,
-        "censusAfter": 1449431
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 7,
-          "D": 2,
-          "H": 3,
-          "S": 1
-        },
-        "growthAttempted": 17,
-        "growthApplied": 33,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 6,
-        "stackSumAfter": 68,
-        "blightAfter": 0,
-        "populationUnitsAfter": 137,
-        "censusAfter": 2224192
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 137,
-      "baseLinear": 1018950,
-      "epicBonus": 1526377.6842891567,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.183,
-      "finalCensus": 2224192
-    }
-  },
-  {
-    "seed": 1766086486865,
-    "finalCensus": 2224184,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.183,
-    "totalEndgameBonus": 667512,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 2,
-          "S": 4
-        },
-        "growthAttempted": 5,
-        "growthApplied": 5,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 11,
-        "blightAfter": 0,
-        "populationUnitsAfter": 5,
-        "censusAfter": 48921
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 1,
-          "D": 4,
-          "H": 5,
-          "S": 3
-        },
-        "growthAttempted": 10,
-        "growthApplied": 10,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 23,
-        "blightAfter": 0,
-        "populationUnitsAfter": 15,
-        "censusAfter": 122564
-      },
-      {
-        "round": 3,
-        "primarySuccess": false,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 10,
-        "growthApplied": 2,
-        "limiter": "Potential",
-        "blockedBy": "mission",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 31,
-        "blightAfter": 1,
-        "populationUnitsAfter": 17,
-        "censusAfter": 112674
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 2,
-          "H": 1,
-          "S": 6
-        },
-        "growthAttempted": 8,
-        "growthApplied": 16,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 40,
-        "blightAfter": 0,
-        "populationUnitsAfter": 33,
-        "censusAfter": 255087
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 1,
-          "D": 3,
-          "H": 4,
-          "S": 5
-        },
-        "growthAttempted": 13,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 47,
-        "blightAfter": 0,
-        "populationUnitsAfter": 59,
-        "censusAfter": 459439
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 6,
-          "D": 4,
-          "H": 2,
-          "S": 1
-        },
-        "growthAttempted": 11,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 85,
-        "censusAfter": 943878
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 1,
-          "D": 7,
-          "H": 0,
-          "S": 5
-        },
-        "growthAttempted": 10,
-        "growthApplied": 24,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 3,
-        "stackSumAfter": 56,
-        "blightAfter": 0,
-        "populationUnitsAfter": 109,
-        "censusAfter": 1598973
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 4,
-          "H": 2,
-          "S": 2
-        },
-        "growthAttempted": 12,
-        "growthApplied": 28,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 68,
-        "blightAfter": 0,
-        "populationUnitsAfter": 137,
-        "censusAfter": 2224184
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 137,
-      "baseLinear": 1018950,
-      "epicBonus": 1526377.6842891567,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.183,
-      "finalCensus": 2224184
-    }
-  },
-  {
-    "seed": 1766086487575,
-    "finalCensus": 2223632,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.182,
-    "totalEndgameBonus": 663888,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 5,
-        "growthApplied": 5,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 11,
-        "blightAfter": 0,
-        "populationUnitsAfter": 5,
-        "censusAfter": 49012
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 8,
-        "growthApplied": 12,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 23,
-        "blightAfter": 0,
-        "populationUnitsAfter": 17,
-        "censusAfter": 137654
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 6,
-          "D": 0,
-          "H": 3,
-          "S": 4
-        },
-        "growthAttempted": 6,
-        "growthApplied": 6,
         "limiter": "Jobs",
         "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 28,
-        "blightAfter": 0,
-        "populationUnitsAfter": 23,
-        "censusAfter": 181454
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 6,
-          "S": 1
-        },
-        "growthAttempted": 12,
-        "growthApplied": 12,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 39,
-        "blightAfter": 0,
-        "populationUnitsAfter": 35,
-        "censusAfter": 270105
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 1,
-          "H": 4,
-          "S": 6
-        },
-        "growthAttempted": 11,
-        "growthApplied": 22,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 42,
-        "blightAfter": 0,
-        "populationUnitsAfter": 57,
-        "censusAfter": 436377
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 2,
-          "S": 5
-        },
-        "growthAttempted": 9,
-        "growthApplied": 20,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 77,
-        "censusAfter": 766908
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 3,
-          "H": 3,
-          "S": 5
-        },
-        "growthAttempted": 11,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 57,
-        "blightAfter": 0,
-        "populationUnitsAfter": 103,
-        "censusAfter": 1419864
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 4,
-          "H": 4,
-          "S": 1
-        },
-        "growthAttempted": 15,
-        "growthApplied": 34,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 70,
-        "blightAfter": 0,
-        "populationUnitsAfter": 137,
-        "censusAfter": 2223632
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 137,
-      "baseLinear": 1018950,
-      "epicBonus": 1526377.6842891567,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.182,
-      "finalCensus": 2223632
-    }
-  },
-  {
-    "seed": 1766086482998,
-    "finalCensus": 2223494,
-    "primarySuccessCount": 8,
-    "optionalSuccessCount": 5,
-    "endgameSurgeRatio": 2.198,
-    "totalEndgameBonus": 983648,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 7,
-          "D": 2,
-          "H": 1,
-          "S": 3
-        },
-        "growthAttempted": 2,
-        "growthApplied": 2,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 8,
-        "blightAfter": 0,
-        "populationUnitsAfter": 2,
-        "censusAfter": 26825
-      },
-      {
-        "round": 2,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 5,
-          "S": 1
-        },
-        "growthAttempted": 8,
-        "growthApplied": 8,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 19,
-        "blightAfter": 0,
-        "populationUnitsAfter": 10,
-        "censusAfter": 85966
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 5,
-          "H": 3,
-          "S": 1
-        },
-        "growthAttempted": 7,
-        "growthApplied": 13,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 29,
-        "blightAfter": 0,
-        "populationUnitsAfter": 23,
-        "censusAfter": 181906
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 2,
-          "S": 4
-        },
-        "growthAttempted": 7,
-        "growthApplied": 16,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 37,
-        "blightAfter": 0,
-        "populationUnitsAfter": 39,
-        "censusAfter": 300264
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 1,
-          "D": 5,
-          "H": 5,
-          "S": 2
-        },
-        "growthAttempted": 12,
-        "growthApplied": 26,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 41,
-        "blightAfter": 0,
-        "populationUnitsAfter": 65,
-        "censusAfter": 544308
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 3,
-          "H": 5,
-          "S": 0
-        },
-        "growthAttempted": 12,
-        "growthApplied": 24,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 47,
-        "blightAfter": 0,
-        "populationUnitsAfter": 89,
-        "censusAfter": 1041646
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 4,
-          "H": 2,
-          "S": 2
-        },
-        "growthAttempted": 10,
-        "growthApplied": 22,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 58,
-        "blightAfter": 0,
-        "populationUnitsAfter": 111,
-        "censusAfter": 1660010
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 3,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 13,
-        "growthApplied": 25,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 4,
-        "stackSumAfter": 69,
-        "blightAfter": 0,
-        "populationUnitsAfter": 136,
-        "censusAfter": 2223494
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 136,
-      "baseLinear": 1011600,
-      "epicBonus": 1496703.8451374257,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.198,
-      "finalCensus": 2223494
-    }
-  },
-  {
-    "seed": 1766086483925,
-    "finalCensus": 2222000,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.197,
-    "totalEndgameBonus": 983912,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 3,
-          "H": 3,
-          "S": 2
-        },
-        "growthAttempted": 5,
-        "growthApplied": 5,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 9,
-        "blightAfter": 0,
-        "populationUnitsAfter": 5,
-        "censusAfter": 49040
-      },
-      {
-        "round": 2,
-        "primarySuccess": false,
-        "suitTotals": {
-          "C": 3,
-          "D": 5,
-          "H": 4,
-          "S": 1
-        },
-        "growthAttempted": 8,
-        "growthApplied": 1,
-        "limiter": "Potential",
-        "blockedBy": "mission",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 21,
-        "blightAfter": 1,
-        "populationUnitsAfter": 6,
-        "censusAfter": 46152
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 2,
-          "H": 5,
-          "S": 2
-        },
-        "growthAttempted": 10,
-        "growthApplied": 20,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 28,
-        "blightAfter": 0,
-        "populationUnitsAfter": 26,
-        "censusAfter": 203777
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 7,
-          "H": 3,
-          "S": 0
-        },
-        "growthAttempted": 9,
-        "growthApplied": 20,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 39,
-        "blightAfter": 0,
-        "populationUnitsAfter": 46,
-        "censusAfter": 351778
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 1,
-          "D": 2,
-          "H": 3,
-          "S": 7
-        },
-        "growthAttempted": 10,
-        "growthApplied": 22,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 43,
-        "blightAfter": 0,
-        "populationUnitsAfter": 68,
-        "censusAfter": 593529
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 2,
-          "H": 7,
-          "S": 2
-        },
-        "growthAttempted": 11,
-        "growthApplied": 13,
-        "limiter": "Services",
-        "blockedBy": "services",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 45,
-        "blightAfter": 0,
-        "populationUnitsAfter": 81,
-        "censusAfter": 851685
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 5,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 11,
-        "growthApplied": 26,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 55,
-        "blightAfter": 0,
-        "populationUnitsAfter": 107,
-        "censusAfter": 1536536
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 15,
-        "growthApplied": 29,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 66,
-        "blightAfter": 0,
-        "populationUnitsAfter": 136,
-        "censusAfter": 2222000
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 136,
-      "baseLinear": 1011600,
-      "epicBonus": 1496703.8451374257,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.197,
-      "finalCensus": 2222000
-    }
-  },
-  {
-    "seed": 1766086481000,
-    "finalCensus": 2190567,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 12,
-    "endgameSurgeRatio": 2.181,
-    "totalEndgameBonus": 610515,
-    "limiterMostHit": "Potential",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 5,
-          "D": 2,
-          "H": 3,
-          "S": 3
-        },
-        "growthAttempted": 2,
-        "growthApplied": 2,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 9,
-        "blightAfter": 0,
-        "populationUnitsAfter": 2,
-        "censusAfter": 26810
-      },
-      {
-        "round": 2,
-        "primarySuccess": false,
-        "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 5,
-          "S": 2
-        },
-        "growthAttempted": 7,
-        "growthApplied": 1,
-        "limiter": "Jobs",
-        "blockedBy": "mission",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 1,
-        "stackSumAfter": 20,
-        "blightAfter": 1,
-        "populationUnitsAfter": 3,
-        "censusAfter": 28018
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 1,
-          "S": 6
-        },
-        "growthAttempted": 5,
-        "growthApplied": 10,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 28,
-        "blightAfter": 0,
-        "populationUnitsAfter": 13,
-        "censusAfter": 107839
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 2,
-          "S": 5
-        },
-        "growthAttempted": 7,
-        "growthApplied": 14,
-        "limiter": "Potential",
-        "blockedBy": "potential",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
         "stackSumAfter": 38,
         "blightAfter": 0,
-        "populationUnitsAfter": 27,
-        "censusAfter": 211059
+        "populationUnitsAfter": 37,
+        "censusAfter": 284681
       },
       {
         "round": 5,
-        "primarySuccess": true,
+        "primarySuccess": false,
         "suitTotals": {
-          "C": 3,
-          "D": 3,
-          "H": 3,
-          "S": 4
+          "C": 4,
+          "D": 2,
+          "H": 2,
+          "S": 5
         },
-        "growthAttempted": 9,
-        "growthApplied": 18,
+        "growthAttempted": 11,
+        "growthApplied": 2,
         "limiter": "Potential",
-        "blockedBy": "potential",
+        "blockedBy": "mission",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 46,
-        "blightAfter": 0,
-        "populationUnitsAfter": 45,
-        "censusAfter": 344712
+        "stackSumAfter": 44,
+        "blightAfter": 1,
+        "populationUnitsAfter": 38,
+        "censusAfter": 239941
       },
       {
         "round": 6,
         "primarySuccess": true,
         "suitTotals": {
-          "C": 4,
-          "D": 2,
-          "H": 3,
-          "S": 4
-        },
-        "growthAttempted": 10,
-        "growthApplied": 24,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 69,
-        "censusAfter": 611167
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
           "C": 2,
-          "D": 4,
-          "H": 5,
-          "S": 2
+          "D": 5,
+          "H": 3,
+          "S": 3
         },
         "growthAttempted": 14,
         "growthApplied": 32,
@@ -3401,10 +3562,30 @@
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 2,
+        "stackSumAfter": 47,
+        "blightAfter": 0,
+        "populationUnitsAfter": 70,
+        "censusAfter": 628696
+      },
+      {
+        "round": 7,
+        "primarySuccess": true,
+        "suitTotals": {
+          "C": 4,
+          "D": 4,
+          "H": 3,
+          "S": 2
+        },
+        "growthAttempted": 15,
+        "growthApplied": 34,
+        "limiter": "Potential",
+        "blockedBy": "potential",
+        "assetsPlacedThisRound": 0,
+        "adjacencyBonusThisRound": 2,
         "stackSumAfter": 60,
         "blightAfter": 0,
-        "populationUnitsAfter": 101,
-        "censusAfter": 1364030
+        "populationUnitsAfter": 104,
+        "censusAfter": 1448074
       },
       {
         "round": 8,
@@ -3417,206 +3598,25 @@
         },
         "growthAttempted": 17,
         "growthApplied": 34,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 72,
-        "blightAfter": 0,
-        "populationUnitsAfter": 135,
-        "censusAfter": 2190567
-      }
-    ],
-    "endgameInputs": {
-      "populationUnits": 135,
-      "baseLinear": 1004250,
-      "epicBonus": 1467249.0039908143,
-      "blight": 0,
-      "censusMultiplier": 1,
-      "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.181,
-      "finalCensus": 2190567
-    }
-  },
-  {
-    "seed": 1766086487718,
-    "finalCensus": 2189739,
-    "primarySuccessCount": 7,
-    "optionalSuccessCount": 9,
-    "endgameSurgeRatio": 2.18,
-    "totalEndgameBonus": 334920,
-    "limiterMostHit": "Jobs",
-    "timeline": [
-      {
-        "round": 1,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 4,
-          "H": 4,
-          "S": 3
-        },
-        "growthAttempted": 6,
-        "growthApplied": 6,
-        "limiter": "Potential",
-        "blockedBy": "potential",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 0,
-        "stackSumAfter": 9,
-        "blightAfter": 0,
-        "populationUnitsAfter": 6,
-        "censusAfter": 56309
-      },
-      {
-        "round": 2,
-        "primarySuccess": false,
-        "suitTotals": {
-          "C": 2,
-          "D": 2,
-          "H": 6,
-          "S": 3
-        },
-        "growthAttempted": 7,
-        "growthApplied": 1,
-        "limiter": "Jobs",
-        "blockedBy": "mission",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 22,
-        "blightAfter": 1,
-        "populationUnitsAfter": 7,
-        "censusAfter": 52227
-      },
-      {
-        "round": 3,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 9,
-        "growthApplied": 10,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 31,
-        "blightAfter": 0,
-        "populationUnitsAfter": 17,
-        "censusAfter": 137244
-      },
-      {
-        "round": 4,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 3,
-          "D": 6,
-          "H": 4,
-          "S": 0
-        },
-        "growthAttempted": 12,
-        "growthApplied": 14,
-        "limiter": "Services",
-        "blockedBy": "services",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 42,
-        "blightAfter": 0,
-        "populationUnitsAfter": 31,
-        "censusAfter": 241250
-      },
-      {
-        "round": 5,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 4,
-          "D": 3,
-          "H": 4,
-          "S": 2
-        },
-        "growthAttempted": 12,
-        "growthApplied": 12,
-        "limiter": "Jobs",
-        "blockedBy": "jobs",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 47,
-        "blightAfter": 0,
-        "populationUnitsAfter": 43,
-        "censusAfter": 329696
-      },
-      {
-        "round": 6,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 3,
-          "H": 3,
-          "S": 5
-        },
-        "growthAttempted": 13,
-        "growthApplied": 30,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 48,
-        "blightAfter": 0,
-        "populationUnitsAfter": 73,
-        "censusAfter": 686636
-      },
-      {
-        "round": 7,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 2,
-          "D": 3,
-          "H": 4,
-          "S": 4
-        },
-        "growthAttempted": 14,
-        "growthApplied": 30,
-        "limiter": "None",
-        "blockedBy": "",
-        "assetsPlacedThisRound": 0,
-        "adjacencyBonusThisRound": 2,
-        "stackSumAfter": 60,
-        "blightAfter": 0,
-        "populationUnitsAfter": 103,
-        "censusAfter": 1420797
-      },
-      {
-        "round": 8,
-        "primarySuccess": true,
-        "suitTotals": {
-          "C": 6,
-          "D": 3,
-          "H": 2,
-          "S": 2
-        },
-        "growthAttempted": 18,
-        "growthApplied": 32,
         "limiter": "None",
         "blockedBy": "",
         "assetsPlacedThisRound": 0,
         "adjacencyBonusThisRound": 5,
-        "stackSumAfter": 70,
+        "stackSumAfter": 73,
         "blightAfter": 0,
-        "populationUnitsAfter": 135,
-        "censusAfter": 2189739
+        "populationUnitsAfter": 138,
+        "censusAfter": 2257784
       }
     ],
     "endgameInputs": {
-      "populationUnits": 135,
-      "baseLinear": 1004250,
-      "epicBonus": 1467249.0039908143,
+      "populationUnits": 138,
+      "baseLinear": 1026300,
+      "epicBonus": 1556269.4491915016,
       "blight": 0,
       "censusMultiplier": 1,
       "penaltiesFromBlight": 0,
-      "endgameSurgeRatio": 2.18,
-      "finalCensus": 2189739
+      "endgameSurgeRatio": 2.2,
+      "finalCensus": 2257784
     }
   }
 ]

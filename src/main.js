@@ -2072,7 +2072,7 @@ let __autorunStop = false;
 function showDevTools() {
   const el = document.querySelector("#devtools");
   if (!el) return;
-  el.style.display = DEV_AUTORUN_ENABLED ? "block" : "none";
+  el.style.display = "block";
 }
 showDevTools();
 
@@ -2230,8 +2230,6 @@ async function runManyCampaigns(n = 50) {
 
 // Wire buttons
 function wireDevButtons() {
-  if (!DEV_AUTORUN_ENABLED) return;
-
   document.querySelector("#dev-autorun-1")?.addEventListener("click", async () => {
     __autorunStop = false;
     const out = document.querySelector("#dev-out");

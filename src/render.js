@@ -22,7 +22,9 @@ function sectorTokenFromKey(key) {
 
 function sectorMetaFromCode(code) {
   const upper = (code || "").toUpperCase();
-  return SECTORS[upper] || null;
+  if (SECTORS[upper]) return SECTORS[upper];
+  const match = Object.values(SECTORS).find((meta) => meta.legacy?.includes(upper));
+  return match || null;
 }
 
 function sectorSpan(code, opts = {}) {
@@ -51,6 +53,24 @@ export function renderBoard(container, state, options = {}) {
   container.innerHTML = "";
   const showOverlay = options.devOverlay || false;
   const showLabels = options.showLabels || false;
+  const placements = options.placements || [];
+  const assetPlacements = options.assetPlacements || [];
+  const placementMap = new Map();
+  placements.forEach((p) => {
+    const key = `${p.row},${p.col}`;
+    const meta = sectorMetaFromCode(p.sector);
+    const sector = meta?.key || p.sector;
+    const entry = placementMap.get(key) || { count: 0, sector };
+    if (!entry.sector && sector) entry.sector = sector;
+    if (entry.sector && sector && entry.sector !== sector) entry.mixed = true;
+    entry.count += 1;
+    placementMap.set(key, entry);
+  });
+  const assetPlacementMap = new Map();
+  assetPlacements.forEach((p) => {
+    const key = `${p.row},${p.col}`;
+    if (!assetPlacementMap.has(key)) assetPlacementMap.set(key, p);
+  });
 
   const size = state.gridSize;
   const parent = container.parentElement;
@@ -89,6 +109,8 @@ export function renderBoard(container, state, options = {}) {
     row.forEach((cell) => {
       const tile = document.createElement("div");
       tile.className = "cell";
+      tile.dataset.row = String(cell.row);
+      tile.dataset.col = String(cell.col);
       const label = cell.sector
         ? `${cell.sector}${cell.level || 1}`
         : `${cell.row + 1},${cell.col + 1}`;
@@ -98,17 +120,7 @@ export function renderBoard(container, state, options = {}) {
       } else {
         tile.textContent = cell.sector ? `${cell.sector}${cell.level || 1}` : "";
       }
-      if (cell.asset) {
-        const badge = document.createElement("div");
-        badge.textContent = assetSymbol(cell.asset.type);
-        badge.style.position = "absolute";
-        badge.style.right = "4px";
-        badge.style.bottom = "4px";
-        badge.style.fontSize = "12px";
-        badge.style.opacity = "0.9";
-        badge.title = `Asset: ${cell.asset.type}`;
-        tile.appendChild(badge);
-      }
+      const pendingAsset = assetPlacementMap.get(`${cell.row},${cell.col}`);
       if (cell.sector) {
         const key = sectorKey(cell.sector);
         const token = sectorTokenFromKey(key);
@@ -116,19 +128,28 @@ export function renderBoard(container, state, options = {}) {
         if (key === "commerce") tile.classList.add("com"); // legacy class
         if (key === "civic") tile.classList.add("civ"); // legacy class
         tile.classList.add(roadAdj ? "active" : "inactive");
+        const synergyClass = synergyClassForCell(cell, state.board);
+        if (synergyClass) tile.classList.add(synergyClass);
         const marker = document.createElement("div");
         marker.className = `cell-marker marker-${token || key}`;
-        const pips = document.createElement("div");
-        pips.className = "cell-pips";
         const level = Math.max(1, cell.level || 1);
-        const pipCount = Math.min(level, 4);
-        for (let i = 0; i < pipCount; i += 1) {
-          const pip = document.createElement("span");
-          pip.className = "pip";
-          pips.appendChild(pip);
-        }
-        marker.appendChild(pips);
+        const rank = document.createElement("div");
+        rank.className = "cell-rank";
+        rank.textContent = levelGlyph(level);
+        marker.appendChild(rank);
         tile.appendChild(marker);
+      }
+      if (cell.asset || pendingAsset) {
+        const badge = document.createElement("span");
+        const type = cell.asset ? cell.asset.type : pendingAsset.type;
+        badge.className = `asset-badge${cell.asset ? "" : " pending"}`;
+        badge.style.opacity = cell.asset ? "0.9" : "";
+        badge.title = cell.asset ? `Asset: ${type}` : `Queued asset: ${type}`;
+        const icon = document.createElement("span");
+        icon.className = `asset-icon asset-icon--${assetToken(type)}`;
+        icon.setAttribute("aria-hidden", "true");
+        badge.appendChild(icon);
+        tile.appendChild(badge);
       }
       if (showOverlay) {
         const roadAdj = isRoadAdjacent(cell, state.roads);
@@ -139,6 +160,34 @@ export function renderBoard(container, state, options = {}) {
       if (grewMap?.[cell.row]?.[cell.col]) {
         tile.classList.add("grew");
         setTimeout(() => tile.classList.remove("grew"), 800);
+      }
+
+      const pending = placementMap.get(`${cell.row},${cell.col}`);
+      if (pending) {
+        tile.classList.add("pending-placement");
+        const pendingLevel = (cell.sector ? cell.level || 1 : 0) + (pending.count || 0);
+        if (cell.sector) {
+          const pendingLabel = showLabels
+            ? `${cell.sector}${pendingLevel}${roadAdj ? "✓" : "×"}`
+            : `${cell.sector}${pendingLevel}`;
+          if (tile.firstChild?.nodeType === Node.TEXT_NODE) {
+            tile.firstChild.nodeValue = pendingLabel;
+          } else {
+            tile.insertBefore(document.createTextNode(pendingLabel), tile.firstChild);
+          }
+          const rank = tile.querySelector(".cell-rank");
+          if (rank) rank.textContent = levelGlyph(pendingLevel);
+        } else if (pending.sector) {
+          tile.textContent = `${pending.sector}${pendingLevel || 1}`;
+          const pendingMeta = sectorMetaFromCode(pending.sector);
+          if (pendingMeta?.token) tile.classList.add(pendingMeta.token);
+          if (pendingMeta?.key === "ECO" || pendingMeta?.key === "COM") tile.classList.add("com");
+          if (pendingMeta?.key === "GOV" || pendingMeta?.key === "CIV") tile.classList.add("civ");
+          const rank = document.createElement("div");
+          rank.className = "cell-rank pending-rank";
+          rank.textContent = levelGlyph(pendingLevel || 1);
+          tile.appendChild(rank);
+        }
       }
 
       container.appendChild(tile);
@@ -230,6 +279,54 @@ export function renderBoard(container, state, options = {}) {
   previousBoard = state.board.map((row) => row.map((cell) => ({ ...cell })));
 }
 
+function levelGlyph(level) {
+  switch (level) {
+    case 1:
+      return "I";
+    case 2:
+      return "II";
+    case 3:
+      return "III";
+    case 4:
+      return "IV";
+    default:
+      return String(level || 1);
+  }
+}
+
+function synergyClassForCell(cell, board) {
+  if (!cell?.sector) return "";
+  const code = sectorKey(cell.sector);
+  if (!code) return "";
+  const dirs = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  let touchingRes = false;
+  let touchingCom = false;
+  let touchingCiv = false;
+  let touchingInf = false;
+  dirs.forEach(([dx, dy]) => {
+    const ny = cell.row + dy;
+    const nx = cell.col + dx;
+    const n = board?.[ny]?.[nx];
+    if (!n || !n.sector) return;
+    const nCode = sectorKey(n.sector);
+    if (nCode === "residential") touchingRes = true;
+    if (nCode === "commerce") touchingCom = true;
+    if (nCode === "civic") touchingCiv = true;
+    if (nCode === "infrastructure") touchingInf = true;
+  });
+
+  if (code === "residential" && touchingCiv) return "synergy-good";
+  if (code === "commerce" && !touchingRes) return "synergy-warn";
+  if (code === "infrastructure" && Number(touchingRes) + Number(touchingCom) + Number(touchingCiv) >= 2) return "synergy-good";
+  if (code === "civic" && touchingRes) return "synergy-good";
+  return "";
+}
+
 const CIVIC_META = [
   {
     key: "populationUnits",
@@ -240,7 +337,7 @@ const CIVIC_META = [
       { key: "roads", label: "+ Road access helped" },
       { key: "pressure", label: "− Waiting list shrank" },
       { key: "capacity", label: "− Not enough jobs/services" },
-      { key: "blight", label: "− Blight held us back" },
+      { key: "blight", label: "− Urban decay reduced growth" },
     ],
     max: 100,
   },
@@ -251,7 +348,7 @@ const CIVIC_META = [
     causes: [
       { key: "population", label: "+ Tracks new households" },
       { key: "prestige", label: "+ Milestone boost" },
-      { key: "blight", label: "− Blight held us back" },
+      { key: "blight", label: "− Urban decay reduced census" },
     ],
     max: 1_000_000,
   },
@@ -286,9 +383,9 @@ const CIVIC_META = [
     copy: "Homes built but not filled yet. Drops when roads connect and jobs/services are there.",
     causes: [
       { key: "vacancy", label: "+ Homes built, no move-in" },
+      { key: "pressure", label: "+ Waiting list stalled move-in" },
       { key: "roads", label: "− Roads filled empty homes" },
       { key: "missions", label: "− Projects attracted people" },
-      { key: "pressure", label: "+ Waiting list stalled move-in" },
     ],
     max: 30,
   },
@@ -402,7 +499,7 @@ export function generateCouncilRecommendation(state, report, opts = {}) {
   }
   if (pressure >= thresholds.pressureHigh) {
     picks.push("The waiting list is high and will slow growth. Add jobs/services or steady the city next round.");
-    warnings.push("Warning: Waiting list is in the danger band.");
+    warnings.push("Warning: Waiting list is very high.");
   } else if (pressure >= thresholds.pressureWarning && !primarySuccess) {
     picks.push("The city strained after a failed directive. Keep the next round reliable to ease the waiting list.");
   } else if (pressure >= thresholds.pressureWarning) {
@@ -554,6 +651,9 @@ export function renderReport(element, report) {
       if (b.action === "build") return `Placed ${b.sector} at (${b.position[0] + 1},${b.position[1] + 1}).`;
       if (b.action === "upgrade")
         return `Upgraded ${b.sector} at (${b.position[0] + 1},${b.position[1] + 1}) to L${b.level}.`;
+      if (b.action === "asset") return `Placed ${assetLabel(b.asset)} at (${b.position[0] + 1},${b.position[1] + 1}).`;
+      if (b.action === "asset-skip")
+        return `Skipped ${assetLabel(b.asset)} at (${b.position[0] + 1},${b.position[1] + 1}) (${b.reason}).`;
       return `Skipped ${b.sector} (no road-adjacent slot).`;
     })
     .join("\n");
@@ -590,6 +690,7 @@ export function renderReport(element, report) {
     pressureLine,
     censusLine,
     notes,
+    report.meta?.synergyHint ? `Insight: ${report.meta.synergyHint}` : "",
   ]
     .filter(Boolean)
     .join("\n");
@@ -695,18 +796,6 @@ export function renderCityStatus(element, status) {
       <div>${status.roadsExpanded ? "Operational" : "Pending authorization"}</div>
     </div>
 
-    <div style="margin-bottom:10px;">
-      <div style="font-size:12px; color:var(--muted); letter-spacing:0.08em; margin-bottom:4px;">DEVELOPMENT SNAPSHOT</div>
-      ${mkRow("RES", `${status.tiles.res.tiles} tiles (${status.tiles.res.levels} lvl)`)}
-      ${mkRow("COM", `${status.tiles.com.tiles} tiles (${status.tiles.com.levels} lvl)`)}
-      ${mkRow("INF", `${status.tiles.inf.tiles} tiles (${status.tiles.inf.levels} lvl)`)}
-      ${mkRow("CIV", `${status.tiles.civ.tiles} tiles (${status.tiles.civ.levels} lvl)`)}
-    </div>
-
-    <div>
-      <div style="font-size:12px; color:var(--muted); letter-spacing:0.08em; margin-bottom:4px;">ROAD ACCESS</div>
-      <div>${status.connected} / ${status.developed} tiles connected</div>
-    </div>
   `;
 }
 
@@ -835,19 +924,20 @@ function historyMissionTag(missions) {
   return [prim, opts || "0"].join(" | ");
 }
 
-function assetSymbol(type) {
-  switch (type) {
-    case "park":
-      return "🌳";
-    case "market":
-      return "🏪";
-    case "clinic":
-      return "🏥";
-    case "transit":
-      return "🚏";
-    default:
-      return "•";
-  }
+function assetToken(type) {
+  const key = String(type || "").toLowerCase();
+  if (!key) return "unknown";
+  if (key === "transit_stop") return "transit";
+  return key;
+}
+
+function assetLabel(type) {
+  const key = String(type || "").toLowerCase();
+  if (key === "park") return "Park";
+  if (key === "market") return "Market";
+  if (key === "clinic") return "Clinic";
+  if (key === "transit" || key === "transit_stop") return "Transit Stop";
+  return String(type || "");
 }
 
 export function computeCityStatus(state, lastReport) {

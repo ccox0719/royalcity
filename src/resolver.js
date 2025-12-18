@@ -1,7 +1,9 @@
 import { generateMissions } from "./missions.js";
-import { applyReward, placeQueuedAssets } from "./rewards.js";
+import { applyReward } from "./rewards.js";
 import { mulberry32 } from "./rng.js";
 import { MAX_BLIGHT } from "./constants.js";
+import { recordRoundTelemetry, recordRewardEarned } from "./telemetry.js";
+import { BALANCE, clamp01 } from "./balance.js";
 
 export function resolveRound(state, input) {
   // Growth Contract:
@@ -16,14 +18,20 @@ export function resolveRound(state, input) {
   const optionalSuccesses = input?.optionalSuccesses || [];
   const optionalCount = optionalSuccesses.filter(Boolean).length;
   const planningFocus = normalizePlanningFocus(input?.planningFocus);
+  const placements = Array.isArray(input?.placements) ? input.placements : [];
+  const assetPlacements = Array.isArray(input?.assetPlacements) ? input.assetPlacements : [];
+  const dev = input?.dev || {};
+  const telemetry = input?.telemetry || null;
+  const totalTricks =
+    (Number(suits.clubs) || 0) +
+    (Number(suits.diamonds) || 0) +
+    (Number(suits.hearts) || 0) +
+    (Number(suits.spades) || 0);
 
   const nextState = deepClone(state);
   pruneExpiredPolicies(nextState);
 
   const rng = mulberry32(nextState.seed + nextState.round * 997);
-
-  // Place any previously queued assets before computing growth.
-  placeQueuedAssets(nextState, rng);
 
   // Generate or use provided missions for this round.
   const missions =
@@ -31,13 +39,39 @@ export function resolveRound(state, input) {
       ? input.missions
       : generateMissions(state.seed, state.round, nextState.players || [], { state: nextState });
   nextState.currentMissions = missions;
-  const censusBefore = censusEstimate(nextState.seed, nextState.round, nextState.stats.populationUnits);
+  const censusBefore = censusEstimate(nextState.seed, nextState.round, nextState.stats.populationUnits, {
+    blight: nextState.city?.blight || 0,
+    censusMultiplier: Number(dev.censusMultiplier) || 1,
+  });
+  const blightStart = nextState.city?.blight || 0;
 
   const sectorPoints = {
     infrastructure: suits.clubs,
     commerce: suits.diamonds,
     residential: suits.hearts,
     civic: suits.spades,
+  };
+
+  if (roadExpansionComplete) {
+    nextState.city.highwaysUnlocked = true;
+    nextState.city.roadsExpanded = true;
+  } else if (nextState.city?.highwaysUnlocked) {
+    nextState.city.roadsExpanded = true;
+  }
+
+  const placementActions = applyPlacements(
+    nextState,
+    placements,
+    nextState.city?.roadsExpanded,
+    Number(dev.maxTileLevel) || null,
+  );
+  const assetActions = applyAssetPlacements(nextState, assetPlacements);
+  const placedAssets = assetActions.filter((a) => a.action === "asset");
+  const focusInfo = {
+    selection: planningFocus,
+    label: focusLabel(planningFocus),
+    applied: placementActions.length > 0,
+    note: "Manual placement applied.",
   };
 
   // Grant rewards if allowed and apply asset/policy effects before growth.
@@ -49,14 +83,17 @@ export function resolveRound(state, input) {
     (missions.optional || []).forEach((m, idx) => {
       if (optionalSuccesses[idx]) rewardResults.push(applyReward(nextState, m.reward, rng));
     });
+    if (telemetry) {
+      const earnedIds = collectEarnedRewardIds(missions, primaryMissionSuccess, optionalSuccesses);
+      earnedIds.forEach((id) => recordRewardEarned(telemetry, id));
+    }
   }
 
-  // Build/upgrade up to 2 road-adjacent tiles.
-  const actionBudget = computeActionBudget(nextState);
-  const buildResult = applyBuildActions(nextState, sectorPoints, actionBudget, planningFocus);
+  const buildResult = { actions: [...placementActions, ...assetActions], focus: focusInfo };
 
   // Developed summary only counts road-adjacent tiles.
-  let developedSummary = summarizeDeveloped(nextState, true);
+  const roadOnly = !(nextState.city?.roadsExpanded || nextState.city?.highwaysUnlocked);
+  let developedSummary = summarizeDeveloped(nextState, roadOnly);
   const highwayFactor = nextState.city?.highwaysUnlocked ? 1 : 0.5;
   if (highwayFactor < 1) {
     developedSummary = {
@@ -72,36 +109,58 @@ export function resolveRound(state, input) {
     nextState.city.roadsExpanded = true;
   }
   const assetsBonus = computeAssetBonuses(nextState, nextState.city?.highwaysUnlocked);
+  const layoutBonus = computeLayoutBonuses(nextState, roadOnly);
   const capacityBonus = consumeCapacityBonus(nextState);
 
   // Needs gate
   const bufferAdjusted = applyCapacityBuffer(
-    sectorPoints.residential + developedSummary.residential + assetsBonus.residents + capacityBonus.residents,
-    sectorPoints.commerce + developedSummary.commerce + assetsBonus.jobs + capacityBonus.jobs,
+    sectorPoints.residential + developedSummary.residential + assetsBonus.residents + layoutBonus.residents + capacityBonus.residents,
+    sectorPoints.commerce + developedSummary.commerce + assetsBonus.jobs + layoutBonus.jobs + capacityBonus.jobs,
     sectorPoints.infrastructure +
       sectorPoints.civic +
       developedSummary.infrastructure +
       developedSummary.civic +
       assetsBonus.services +
+      layoutBonus.services +
       capacityBonus.services,
     capacityBonus.buffer,
   );
   const connectivityBonus = nextState.city?.highwaysUnlocked && developedSummary && Object.values(developedSummary).some((v) => v > 0) ? 1 : 0;
-  const potentialResidents = bufferAdjusted.residents;
-  const jobsCapacity = bufferAdjusted.jobs;
-  const servicesCapacity =
-    sectorPoints.infrastructure +
-    sectorPoints.civic +
-    developedSummary.infrastructure +
-    developedSummary.civic +
-    assetsBonus.services +
-    capacityBonus.services;
+  const potentialBonus =
+    Math.floor((layoutBonus.residents || 0) * (BALANCE.potential?.adjBonusFactor || 0)) +
+    (BALANCE.potential?.flatBonus || 0);
+  const potentialResidents = bufferAdjusted.residents + potentialBonus;
+  const rawJobs =
+    (sectorPoints.commerce + developedSummary.commerce) * (BALANCE.jobs.tileMult || 1) +
+    (assetsBonus.marketCount || 0) * (BALANCE.jobs.marketAsset || 2) +
+    (assetsBonus.transitCount || 0) * (BALANCE.jobs.transitAsset || 0.5) +
+    (layoutBonus.jobs || 0) +
+    (capacityBonus.jobs || 0);
+  const jobsRequirementRate = BALANCE.jobs.requirementRate || 1;
+  const jobsCapacity = Math.floor(rawJobs / jobsRequirementRate);
+
+  const rawServices =
+    (sectorPoints.infrastructure + developedSummary.infrastructure) * (BALANCE.services.weights.INF || 1) +
+    (sectorPoints.civic + developedSummary.civic) * (BALANCE.services.weights.CIV || 1) +
+    (assetsBonus.services || 0) +
+    (layoutBonus.services || 0) +
+    (capacityBonus.services || 0) +
+    (assetsBonus.clinicCount || 0) * (BALANCE.services.weights.CLINIC || 1.1) +
+    (assetsBonus.parkCount || 0) * (BALANCE.services.weights.PARK || 0.35);
+  const servicesRequirementRate = BALANCE.services.residentRequirementRate || 1;
+  let servicesCapacity = Math.floor(rawServices / servicesRequirementRate);
+  const servicesUpkeep = Math.floor((nextState.stats.populationUnits || 0) * (BALANCE.services.upkeepPerPop || 0));
+  servicesCapacity = Math.max(0, servicesCapacity - servicesUpkeep);
   const limiting = computeLimiting(potentialResidents, jobsCapacity, servicesCapacity);
 
-  const roadInfo = computeRoadFactor(nextState, assetsBonus.roadBoost);
+  const roadInfo = computeRoadFactor(nextState, assetsBonus.roadBoost, Number(dev.roadAdjacencyBonus) || 0);
 
   const growthBase = limiting.value + connectivityBonus;
-  const growthAfterRoads = Math.floor(growthBase * roadInfo.factor);
+  const growthMultiplier = Number(dev.growthMultiplier) || 1;
+  const adjustedGrowthBase = Math.max(0, growthBase * growthMultiplier);
+  const growthAfterRoads = Math.floor(adjustedGrowthBase * roadInfo.factor);
+  const salvageRatio = BALANCE.salvageOnPrimaryFail || 0;
+  const growthAfterMissionGate = primaryMissionSuccess ? growthAfterRoads : Math.floor(growthAfterRoads * salvageRatio);
 
   // Primary fail recession + blight update
   let blight = nextState.city?.blight || 0;
@@ -112,9 +171,30 @@ export function resolveRound(state, input) {
   }
   nextState.city.blight = blight;
 
-  let populationUnitsGain = primaryMissionSuccess ? growthAfterRoads : Math.floor(growthAfterRoads * 0.5);
+  let populationUnitsGain = growthAfterMissionGate;
+  const activePolicies = Math.min(
+    BALANCE.policies.maxActive,
+    Array.isArray(nextState?.bonuses?.activePolicies) ? nextState.bonuses.activePolicies.length : 0,
+  );
+  const policyGrowthMult =
+    1 + Math.min(BALANCE.policies.capGrowthBonus || 0, (BALANCE.policies.perPolicyGrowthBonus || 0) * activePolicies);
+  let policyGrowthDelta = Math.floor(populationUnitsGain * policyGrowthMult) - populationUnitsGain;
+  const policyFlat = Math.min(8, activePolicies * 1); // +1 flat per policy, capped
+  policyGrowthDelta += policyFlat;
+  if (process.env.NODE_ENV !== "production") {
+    const maxDelta = Math.floor(populationUnitsGain * (BALANCE.policies.capGrowthBonus || 0.15)) + policyFlat;
+    if (policyGrowthDelta > maxDelta + 1) {
+      console.warn("[BalanceGuard] policyGrowthDelta high", { policyGrowthDelta, maxDelta, activePolicies });
+    }
+  }
+  populationUnitsGain += Math.max(0, policyGrowthDelta);
   // Blight penalty after recession scaling
   populationUnitsGain = Math.max(0, populationUnitsGain - blight);
+  let foundingBoost = false;
+  if (state.round === 1 && primaryMissionSuccess && totalTricks > 0 && populationUnitsGain === 0) {
+    populationUnitsGain = 1;
+    foundingBoost = true;
+  }
 
   // Pressure: unmet demand carries if jobs/services block growth on a successful mission.
   const pressureBefore = nextState.stats.pressure || 0;
@@ -136,6 +216,12 @@ export function resolveRound(state, input) {
   }
   nextState.stats.pressure = pressure;
   nextState.stats.populationUnits += populationUnitsGain;
+  const decayRate = Number(dev.blightDecayRate) || 0.05;
+  const populationDecay =
+    blight > 0 ? Math.floor(nextState.stats.populationUnits * blight * decayRate) : 0;
+  if (populationDecay > 0) {
+    nextState.stats.populationUnits = Math.max(0, nextState.stats.populationUnits - populationDecay);
+  }
 
   const attractionGain = optionalSuccesses.filter(Boolean).length;
   nextState.stats.attraction += attractionGain;
@@ -154,9 +240,13 @@ export function resolveRound(state, input) {
 
   const roundCap = state.rounds || 8;
   nextState.round = Math.min(state.round + 1, roundCap);
-  nextState.roundInput = { planningFocus: "AUTO" };
+  nextState.roundInput = { planningFocus: "AUTO", placements: [], assetPlacements: [] };
 
-  const census = censusEstimate(nextState.seed, nextState.round, nextState.stats.populationUnits);
+  const census = censusEstimate(nextState.seed, nextState.round, nextState.stats.populationUnits, {
+    blight: nextState.city?.blight || 0,
+    censusMultiplier: Number(dev.censusMultiplier) || 1,
+  });
+  const stackStatsAfter = computeStackStats(nextState.board);
 
   const missionResults = resolveMissionOutcomes(missions, primaryMissionSuccess, optionalSuccesses, nextState, rewardsBlocked, rewardResults);
 
@@ -170,6 +260,7 @@ export function resolveRound(state, input) {
     planningFocus: buildResult.focus,
     missions: missionResults,
     assetsBonus,
+    layoutBonus,
     blight: nextState.city.blight,
     sectorPoints,
     builds: buildResult.actions,
@@ -180,7 +271,7 @@ export function resolveRound(state, input) {
       servicesCapacity,
       limitingFactor: limiting.label,
       graceApplied: limiting.graceApplied,
-      growthBase,
+      growthBase: adjustedGrowthBase,
       roadFactor: roadInfo.factor,
       roadConnected: roadInfo.connected,
       roadDeveloped: roadInfo.developed,
@@ -188,6 +279,7 @@ export function resolveRound(state, input) {
     },
     changes: {
       populationUnits: populationUnitsGain,
+      populationDecay,
       attraction: attractionGain,
       adjacencyAttraction: adjacency.attractionDelta,
       adjacencyPressure: adjacency.pressureDelta,
@@ -199,24 +291,140 @@ export function resolveRound(state, input) {
     },
     statsBefore: { census: censusBefore, blight: state.city?.blight || 0 },
     statsAfter: { ...nextState.stats, census, blight: nextState.city?.blight || 0 },
-    meta: { roadsExpanded: nextState.city?.roadsExpanded || nextState.city?.highwaysUnlocked || false },
-    notes: buildNotesGated(
-      limiting.label,
-      roadInfo,
-      populationUnitsGain,
-      primaryMissionSuccess,
-      buildResult.actions,
-      adjacency,
-      pressureDelta,
-      pressureApplied,
-      limiting.graceApplied,
-      buildResult.focus,
-    ),
+    meta: { roadsExpanded: nextState.city?.roadsExpanded || nextState.city?.highwaysUnlocked || false, synergyHint: deriveSynergyHint(nextState) },
+    notes: [
+      ...(foundingBoost ? ["Founding settlement established."] : []),
+      ...(Array.isArray(input?.placementNotes) ? input.placementNotes : []),
+      ...buildNotesGated(
+        limiting.label,
+        roadInfo,
+        populationUnitsGain,
+        populationDecay,
+        primaryMissionSuccess,
+        buildResult.actions,
+        adjacency,
+        pressureDelta,
+        pressureApplied,
+        limiting.graceApplied,
+        buildResult.focus,
+      ),
+    ],
   };
 
   nextState.history = [...state.history, report];
   // Clear current missions so the next round regenerates.
   nextState.currentMissions = null;
+
+  if (state.round === state.rounds) {
+  const endgame = computeEndgameBonus(nextState, census, rng);
+  if (telemetry) telemetry.endgame = endgame;
+  report.meta = { ...(report.meta || {}), prestigeScore: endgame.prestigeScore, prestigeTier: endgame.prestigeTier, prestigeMult: endgame.prestigeMult, boomMult: endgame.boomMult, endgameBase: endgame.endgameBase, endgameBonus: endgame.endgameBonus, blightPenalty: endgame.blightPenalty };
+  report.statsAfter = { ...(report.statsAfter || {}), census: endgame.finalCensus };
+  report.notes.push(
+    `Prestige: ${endgame.prestigeTier} — Finale bonus +${endgame.endgameBonus.toLocaleString?.() || endgame.endgameBonus}${endgame.boomMult > 1 ? " (Boom!)" : ""}`,
+    endgame.policyNote,
+  );
+
+  // Human-friendly recap and suggestion
+  const prestigeLabel =
+    endgame.prestigeScore < 40
+      ? "Struggling"
+      : endgame.prestigeScore < 60
+        ? "Stable"
+        : endgame.prestigeScore < 80
+          ? "Respected"
+          : "Legendary";
+
+  const limiterLabel = report.gating?.limitingFactor;
+  const problems =
+    limiterLabel === "Services"
+      ? "Needs services (Clinics/Parks)."
+      : limiterLabel === "Jobs"
+        ? "Needs jobs (Markets/commerce)."
+        : limiterLabel === "Potential"
+          ? "No room to grow (space/roads)."
+          : !primaryMissionSuccess
+            ? "Missed mission rewards."
+            : "None this round.";
+
+  const blightAfter = report.statsAfter?.blight ?? blight;
+  const suggestion =
+    blightAfter > 0
+      ? "Clear blight (take the blight-removal mission)."
+      : limiterLabel === "Services"
+        ? "Win INF/CIV tricks to earn Clinics/Parks."
+        : limiterLabel === "Jobs"
+          ? "Win COM tricks to earn Markets (jobs)."
+          : limiterLabel === "Potential"
+            ? "Prioritize Road Expansion / placement to unlock space."
+            : !primaryMissionSuccess
+              ? "Play safer: secure the Primary mission first."
+              : "Chase optional missions for assets and stacking opportunities.";
+
+  const roundGain = report.changes?.populationUnits || 0;
+  const smartGain = report.changes?.adjacencyAttraction || 0;
+  const policyGain = policyGrowthDelta || 0;
+  const blightDragPct = Math.round((endgame.blightPenalty || 0) * 100);
+  report.notes = [
+    `Your city grew by +${roundGain} population.`,
+    `District growth: +${roundGain}`,
+    `Smart placement: +${smartGain}`,
+    `City policy effects: +${policyGain}`,
+    ...(problems !== "None this round." ? [`Problems holding you back: ${problems}`] : []),
+    `Next round focus: ${suggestion}`,
+    `Finale payoff: +${endgame.endgameBonus.toLocaleString?.() || endgame.endgameBonus} (Prestige: ${prestigeLabel}, Boom: x${endgame.boomMult}, Blight drag: ${blightDragPct}%)`,
+    ...(endgame.prestigeScore < 60
+      ? ["Complete more primary missions and build cohesive districts."]
+      : []),
+    ...(blightDragPct > 0 ? ["Clear blight to protect your finale payoff."] : []),
+    ...(endgame.boomMult === 1 ? ["Higher prestige unlocks a boom chance in the finale."] : []),
+  ];
+}
+
+  if (telemetry) {
+    const totalAssets = countAssets(nextState.board);
+    const maxStackHeight = computeMaxStackHeight(nextState.board);
+    const adjacencyBonusThisRound =
+      assetsBonus.residents +
+      assetsBonus.jobs +
+      assetsBonus.services +
+      layoutBonus.residents +
+      layoutBonus.jobs +
+      layoutBonus.services;
+    recordRoundTelemetry(telemetry, {
+      round: state.round,
+      primarySuccess: primaryMissionSuccess,
+      optionalCompleted: optionalSuccesses.filter(Boolean).length,
+      optionalSuccessesThisRound: optionalSuccesses.map(Boolean),
+      suitTotals: { C: suits.clubs, D: suits.diamonds, H: suits.hearts, S: suits.spades },
+      growthAttempted: growthBase, // pre-road, pre-mission gate
+      growthAfterSuitPoints: sectorPoints.residential,
+      growthAfterBoardBonuses: potentialResidents,
+      growthAfterGates: growthAfterRoads,
+      growthAfterMissionGate,
+      growthApplied: populationUnitsGain,
+      limiter: limiting.label,
+      jobsCap: jobsCapacity,
+      servicesCap: servicesCapacity,
+      housingCap: potentialResidents,
+      assetsPlacedThisRound: placedAssets.length,
+      assetsPlacedTypes: placedAssets.map((a) => a.asset),
+      totalAssets,
+      maxStackHeight,
+      adjacencyBonusThisRound,
+      blightLevel: blight,
+      stackSumAfter: stackStatsAfter.sum,
+      populationUnitsAfter: nextState.stats.populationUnits,
+      censusAfter: census,
+      adjacencyBonusBySource: {
+        assets: assetsBonus.residents + assetsBonus.jobs + assetsBonus.services,
+        layout: layoutBonus.residents + layoutBonus.jobs + layoutBonus.services,
+        road: assetsBonus.roadBoost,
+        policies: 0,
+      },
+      policyGrowthDelta,
+    });
+  }
 
   return { nextState, report };
 }
@@ -239,6 +447,230 @@ function deepClone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function normalizeSectorCode(code) {
+  const c = String(code || "").toUpperCase();
+  if (c === "ECO") return "COM";
+  if (c === "GOV") return "CIV";
+  return ["RES", "COM", "INF", "CIV"].includes(c) ? c : null;
+}
+
+function normalizeAssetType(type) {
+  const t = String(type || "").toUpperCase();
+  if (t === "TRANSIT") return "TRANSIT_STOP";
+  return ["PARK", "MARKET", "CLINIC", "TRANSIT_STOP"].includes(t) ? t : null;
+}
+
+function countAssets(board = []) {
+  let total = 0;
+  board.forEach((row) =>
+    row.forEach((cell) => {
+      if (cell?.asset) total += 1;
+    }),
+  );
+  return total;
+}
+
+function computeMaxStackHeight(board = []) {
+  let max = 0;
+  board.forEach((row) =>
+    row.forEach((cell) => {
+      const level = cell?.level || (cell?.sector ? 1 : 0);
+      if (level > max) max = level;
+    }),
+  );
+  return max;
+}
+
+function collectEarnedRewardIds(missions, primarySuccess, optionalSuccesses) {
+  const ids = [];
+  if (missions?.primary && primarySuccess) ids.push(missions.primary.reward?.id || missions.primary.reward?.name);
+  (missions?.optional || []).forEach((m, idx) => {
+    if (optionalSuccesses?.[idx]) ids.push(m.reward?.id || m.reward?.name);
+  });
+  return ids.filter(Boolean);
+}
+
+function computeStackStats(board = []) {
+  const levels = [];
+  board.forEach((row) =>
+    row.forEach((cell) => {
+      if (cell?.sector) levels.push(cell.level || 1);
+    }),
+  );
+  levels.sort((a, b) => b - a);
+  const sum = levels.reduce((a, b) => a + b, 0);
+  const top = levels[0] || 0;
+  return { sum, top };
+}
+
+function computeEndgameBonus(state, baseCensus, rng) {
+  const history = state.history || [];
+  const primarySuccessCount = history.filter((h) => h.mission?.primarySuccess).length;
+  const optionalSuccessCount = history.reduce((sum, h) => sum + (h.mission?.optionalSuccesses?.filter(Boolean).length || 0), 0);
+  const adjacencyBonusTotal = history.reduce(
+    (sum, h) => sum + (h.layoutBonus?.residents || 0) + (h.layoutBonus?.jobs || 0) + (h.layoutBonus?.services || 0),
+    0,
+  );
+  const totalAssets = countAssets(state.board);
+  const policyCount = Math.min(
+    BALANCE.policies.maxActive,
+    Array.isArray(state?.bonuses?.activePolicies) ? state.bonuses.activePolicies.length : 0,
+  );
+  const blightEnd = state.city?.blight || 0;
+  const servicesHealth = deriveServicesHealth(history);
+
+  const norm = (v, min, max) => clamp01((v - min) / Math.max(1, max - min));
+  const normPrimary = Math.sqrt((primarySuccessCount || 0) / Math.max(1, state.rounds || 8));
+  const normOptional = Math.sqrt((optionalSuccessCount || 0) / Math.max(1, (state.rounds || 8) * 1.5));
+  const w = BALANCE.endgame.prestigeWeights;
+  const prestige01 =
+    clamp01(
+      (w.popUnits || 0) * norm(state.stats.populationUnits || 0, 0, 80) +
+        (w.adjacency || 0) * norm(adjacencyBonusTotal, 8, 26) +
+        (w.primary || 0) * normPrimary +
+        (w.optional || 0) * normOptional +
+        (w.policy || 0) * norm(policyCount, 0, 2) -
+        (w.blightPenalty || 0) * norm(blightEnd, 0, 3) +
+        (BALANCE.services.usePrestigeContribution ? (BALANCE.services.prestigeContribution || 0) * servicesHealth : 0) +
+        (BALANCE.policies.perPolicyPrestigeBonus || 0) * policyCount,
+    ) || 0;
+  const prestigeScore = Math.round(prestige01 * 100);
+  const prestigeScoreFinal = Math.min(100, prestigeScore + policyCount * 6);
+  const prestigeScoreBoosted = Math.min(100, prestigeScore + policyCount * 6);
+
+  const curve = BALANCE.endgame.curve;
+  const prestigeMult = Math.min(
+    curve.maxMult,
+    curve.baseMult + 0.55 * Math.pow(prestigeScoreFinal / 100, curve.exponent),
+  );
+
+  const boom = BALANCE.endgame.boom;
+  const boomRoll = rng();
+  let boomMult = 1;
+  let boomChance = 0.005;
+  if (prestigeScoreFinal >= 95) boomChance = 0.03;
+  else if (prestigeScoreFinal >= 85) boomChance = 0.02;
+  else if (prestigeScoreFinal >= 70) boomChance = 0.01;
+  if (boomRoll < boomChance) {
+    if (boomRoll < boomChance * 0.25) boomMult = boom.epic || 1.75;
+    else if (boomRoll < boomChance * 0.6) boomMult = boom.strong || 1.5;
+    else boomMult = boom.modest || 1.25;
+  }
+
+  const baseRate = BALANCE.endgame.baseRate + (state.bonuses?.endgameBaseBonus || 0);
+  const endgameBaseBoost = Math.round(lerp(0, 60000, prestigeScoreFinal / 100));
+  const endgameBase = Math.round(baseCensus * baseRate + endgameBaseBoost);
+  let endgameBonus = Math.round(endgameBase * prestigeMult * boomMult);
+  const endgameMin = Math.max(BALANCE.ENDGAME_MIN_ABS || 0, Math.round(baseCensus * (BALANCE.ENDGAME_MIN_RATE || 0)));
+  const endgameMax = BALANCE.ENDGAME_MAX_ABS || Number.MAX_SAFE_INTEGER;
+  endgameBonus = Math.max(endgameMin, Math.min(endgameBonus, endgameMax));
+  const finalCensus = baseCensus + endgameBonus;
+  state.stats = state.stats || {};
+  state.stats.census = finalCensus;
+  if (process.env.NODE_ENV !== "production") {
+    if (endgameBonus < endgameMin || endgameBonus > endgameMax) {
+      console.warn("[BalanceGuard] endgameBonus out of clamp", { endgameBonus, endgameMin, endgameMax });
+    }
+    if (prestigeScoreFinal < 0 || prestigeScoreFinal > 100) {
+      console.warn("[BalanceGuard] prestigeScore out of bounds", prestigeScoreFinal);
+    }
+    const boomMax = BALANCE.endgame.boom?.epic || 1.75;
+    if (boomMult < 1 || boomMult > boomMax) {
+      console.warn("[BalanceGuard] boomMult out of bounds", boomMult);
+    }
+  }
+
+  return {
+    prestigeScore: prestigeScoreFinal,
+    prestigeTier: prestigeScoreFinal >= 70 ? "High" : prestigeScoreFinal >= 40 ? "Medium" : "Low",
+    prestigeMult,
+    boomMult,
+    endgameBase,
+    endgameBonus,
+    finalCensus,
+    blightPenalty: Math.min(BALANCE.blight.maxPenalty, (BALANCE.blight.penaltyRate || 0.18) * Math.max(0, blightEnd)),
+    policyNote: policyCount > 0 ? `Policy active (${policyCount}): small growth and prestige boost applied.` : "",
+  };
+}
+
+function deriveServicesHealth(history) {
+  const last = history[history.length - 1];
+  if (!last?.gating) return 0;
+  const demand = last.gating.potentialResidents || 1;
+  const slack = (last.gating.servicesCapacity || 0) - demand;
+  return clamp01(slack / Math.max(1, demand));
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function applyPlacements(state, placements = [], roadsExpanded = false, levelCapOverride = null) {
+  const actions = [];
+  const levelCap = Number(levelCapOverride) || maxLevelForRound(state.round);
+  placements.forEach((p) => {
+    const row = Number(p.row);
+    const col = Number(p.col);
+    const code = normalizeSectorCode(p.sector);
+    if (Number.isNaN(row) || Number.isNaN(col) || !code) return;
+    const cell = state.board?.[row]?.[col];
+    if (!cell) return;
+    const roadOk = roadsExpanded || isRoadAdjacent(cell, state.roads);
+    if (!roadOk) {
+      actions.push({ action: "skip", sector: sectorKey(code) || code, position: [row, col], reason: "Not road-adjacent" });
+      return;
+    }
+    const blocking = cell.sector && normalizeSectorCode(cell.sector) !== code;
+    if (blocking) {
+      actions.push({ action: "skip", sector: sectorKey(code) || code, position: [row, col], reason: "Occupied" });
+      return;
+    }
+    if (cell.sector) {
+      if ((cell.level || 1) >= levelCap) {
+        actions.push({ action: "skip", sector: sectorKey(code) || code, position: [row, col], reason: "Max level reached" });
+        return;
+      }
+      cell.level = (cell.level || 1) + 1;
+      if (cell.level > levelCap) cell.level = levelCap;
+      actions.push({ action: "upgrade", sector: sectorKey(code) || code, position: [row, col], level: cell.level, reason: "Manual upgrade" });
+    } else {
+      cell.sector = code;
+      cell.level = 1;
+      actions.push({ action: "build", sector: sectorKey(code) || code, position: [row, col], level: 1, reason: "Manual placement" });
+    }
+  });
+  return actions;
+}
+
+function applyAssetPlacements(state, assetPlacements = []) {
+  const actions = [];
+  if (!assetPlacements.length) return actions;
+  state.unplacedAssets = Array.isArray(state.unplacedAssets) ? state.unplacedAssets : [];
+
+  assetPlacements.forEach((p) => {
+    const row = Number(p.row);
+    const col = Number(p.col);
+    const type = normalizeAssetType(p.type);
+    if (Number.isNaN(row) || Number.isNaN(col) || !type) return;
+    const cell = state.board?.[row]?.[col];
+    if (!cell) return;
+    if (cell.asset) {
+      actions.push({ action: "asset-skip", asset: type, position: [row, col], reason: "Asset already present" });
+      return;
+    }
+    const idx = state.unplacedAssets.findIndex((a) => normalizeAssetType(a) === type);
+    if (idx < 0) {
+      actions.push({ action: "asset-skip", asset: type, position: [row, col], reason: "No asset available" });
+      return;
+    }
+    state.unplacedAssets.splice(idx, 1);
+    cell.asset = { type };
+    actions.push({ action: "asset", asset: type, position: [row, col], reason: "Manual placement" });
+  });
+
+  return actions;
+}
+
 function computeLimiting(potential, jobs, services) {
   const caps = [
     { label: "Potential", value: potential },
@@ -258,24 +690,29 @@ function computeLimiting(potential, jobs, services) {
   return { value: minEntry.value, label: minEntry.label, graceApplied: false };
 }
 
-function computeRoadFactor(state, roadBoost = 0) {
+function computeRoadFactor(state, roadBoost = 0, roadAdjacencyBonus = 0) {
   const counts = countRoadConnectivity(state);
   if (counts.developed === 0) return { factor: 1, connected: 0, developed: 0 };
   const ratio = counts.connected / counts.developed;
   let factor = Math.max(0.3, Math.min(1, ratio));
   if (roadBoost > 0) factor = Math.min(1, factor + 0.05 * roadBoost);
+  if (roadAdjacencyBonus > 0) factor = Math.min(1, factor + roadAdjacencyBonus);
   return { factor, connected: counts.connected, developed: counts.developed };
 }
 
-export function censusEstimate(seed, round, populationUnits) {
+export function censusEstimate(seed, round, populationUnits, opts = {}) {
+  const blight = Number(opts.blight) || 0;
+  const censusMultiplier = Number(opts.censusMultiplier) || 1;
   const base = 12000;
-  const multiplier = 7350;
+  const multiplier = BALANCE.unitToPeople || 7350;
   const EPIC_THRESHOLD_UNITS = 55;
   const EPIC_STRENGTH = 0.18;
   const PRESTIGE_EXPONENT = 1.6;
 
-  const linear = base + populationUnits * multiplier;
-  const t = Math.max(0, populationUnits - EPIC_THRESHOLD_UNITS);
+  const adjustedUnits =
+    populationUnits <= 120 ? populationUnits : 120 + Math.floor((populationUnits - 120) * 0.5);
+  const linear = base + adjustedUnits * multiplier;
+  const t = Math.max(0, adjustedUnits - EPIC_THRESHOLD_UNITS);
   const epicBonus = multiplier * Math.pow(t, PRESTIGE_EXPONENT) * EPIC_STRENGTH;
 
   // Jitter stays small and proportional to avoid fake spikes.
@@ -285,13 +722,20 @@ export function censusEstimate(seed, round, populationUnits) {
   const jitterFactor = jitterMin + rng() * (jitterMax - jitterMin);
   const jitter = Math.floor(linear * jitterFactor);
 
-  return Math.floor(linear + epicBonus + jitter);
+  const blightPenalty = Math.min(
+    BALANCE.blight.maxPenalty,
+    (BALANCE.blight.penaltyRate || 0.18) * Math.max(0, blight),
+  );
+  const preBlight = (linear + epicBonus + jitter) * censusMultiplier;
+  const applied = Math.max(0, Math.round(preBlight * (1 - blightPenalty)));
+  return applied;
 }
 
 function buildNotesGated(
   limiting,
   roadInfo,
   popGain,
+  popDecay,
   primarySuccess,
   actions,
   adjacency,
@@ -301,17 +745,18 @@ function buildNotesGated(
   planningFocus,
 ) {
   const notes = [];
-  if (!primarySuccess) notes.push("Primary failed: no population growth.");
+  if (!primarySuccess) notes.push("Primary effort failed: no population growth this round.");
   if (popGain > 0 && limiting !== "None") notes.push(`Growth limited by ${limiting}.`);
-  if (graceApplied) notes.push("Balanced grace applied: small mismatch ignored (+1 growth).");
+  if (popDecay > 0) notes.push("Unaddressed blight caused residents to leave.");
+  if (graceApplied) notes.push("Balanced planning smoothed a small mismatch (+1 growth).");
   if (roadInfo.factor < 1) {
     notes.push(
-      `Road access reduced growth (connected ${roadInfo.connected}/${roadInfo.developed}, factor x${roadInfo.factor.toFixed(2)}).`,
+      `Limited road access reduced growth (connected ${roadInfo.connected}/${roadInfo.developed}, factor x${roadInfo.factor.toFixed(2)}).`,
     );
   }
-  if (popGain === 0 && primarySuccess) notes.push("No growth after gating factors.");
+  if (popGain === 0 && primarySuccess) notes.push("No growth after civic constraints.");
   const skipped = actions.filter((a) => a.action === "skip");
-  if (skipped.length) notes.push("Some builds skipped (no road-adjacent tiles).");
+  if (skipped.length) notes.push("Some builds were skipped (no road-adjacent tiles).");
   if (adjacency.attractionDelta !== 0 || adjacency.pressureDelta !== 0) {
     notes.push(
       `Adjacency effects: attraction ${adjacency.attractionDelta >= 0 ? "+" : ""}${adjacency.attractionDelta}, pressure ${adjacency.pressureDelta >= 0 ? "+" : ""}${adjacency.pressureDelta}`,
@@ -324,9 +769,70 @@ function buildNotesGated(
       notes.push("Focused development unavailable; standard planning rules applied.");
     }
   }
-  if (pressureDelta > 0) notes.push(`Pressure accumulated: +${pressureDelta}.`);
-  if (pressureApplied > 0) notes.push(`Pressure released into growth: +${pressureApplied}.`);
+  if (pressureDelta > 0) notes.push(`Unmet demand carried forward: +${pressureDelta}.`);
+  if (pressureApplied > 0) notes.push(`Stored demand converted into growth: +${pressureApplied}.`);
   return notes;
+}
+
+function deriveSynergyHint(state) {
+  const board = state.board || [];
+  let resNearCom = 0;
+  let resFarCom = 0;
+  let civCluster = 0;
+  let civTouchRes = 0;
+  let infraTouches = 0;
+  let infraCount = 0;
+  let vertical = false;
+
+  const dirs = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+
+  board.forEach((row) => {
+    row.forEach((cell) => {
+      if (!cell.sector) return;
+      const code = sectorKey(cell.sector);
+      if (cell.level && cell.level > 1) vertical = true;
+      if (code === "residential" || code === "commerce" || code === "civic" || code === "infrastructure") {
+        let touchingRes = false;
+        let touchingCom = false;
+        let touchingCiv = false;
+        let touchingInf = false;
+        dirs.forEach(([dx, dy]) => {
+          const ny = cell.row + dy;
+          const nx = cell.col + dx;
+          const n = board?.[ny]?.[nx];
+          if (!n || !n.sector) return;
+          const nCode = sectorKey(n.sector);
+          if (nCode === "residential") touchingRes = true;
+          if (nCode === "commerce") touchingCom = true;
+          if (nCode === "civic") touchingCiv = true;
+          if (nCode === "infrastructure") touchingInf = true;
+        });
+        if (code === "residential" && touchingCom) resNearCom += 1;
+        if (code === "residential" && !touchingCom) resFarCom += 1;
+        if (code === "civic") {
+          civCluster += touchingCiv ? 1 : 0;
+          civTouchRes += touchingRes ? 1 : 0;
+        }
+        if (code === "infrastructure") {
+          infraCount += 1;
+          if (Number(touchingRes) + Number(touchingCom) + Number(touchingCiv) >= 2) infraTouches += 1;
+        }
+      }
+    });
+  });
+
+  const hintOptions = [];
+  if (resFarCom > resNearCom) hintOptions.push("Most residential growth occurred away from jobs.");
+  if (civCluster > civTouchRes) hintOptions.push("Civic services are clustered but underutilized.");
+  if (infraTouches > 0) hintOptions.push("Road access is improving efficiency across districts.");
+  if (vertical) hintOptions.push("Vertical growth is compensating for limited space.");
+
+  return hintOptions[0] || "";
 }
 
 function applyBuildActions(state, sectorPoints, actionBudget, planningFocus) {
@@ -566,6 +1072,38 @@ function summarizeDeveloped(state, roadOnly = false) {
   return summary;
 }
 
+function computeLayoutBonuses(state, roadOnly = false) {
+  const counts = {
+    residential: { tiles: 0, maxLevel: 0 },
+    commerce: { tiles: 0, maxLevel: 0 },
+    civic: { tiles: 0, maxLevel: 0 },
+    infrastructure: { tiles: 0, maxLevel: 0 },
+  };
+
+  state.board.forEach((row) => {
+    row.forEach((cell) => {
+      if (!cell.sector) return;
+      if (roadOnly && !isRoadAdjacent(cell, state.roads)) return;
+      const key = sectorKey(cell.sector);
+      if (!key || !counts[key]) return;
+      counts[key].tiles += 1;
+      const lvl = cell.level || 1;
+      if (lvl > counts[key].maxLevel) counts[key].maxLevel = lvl;
+    });
+  });
+
+  const bonus = { residents: 0, jobs: 0, services: 0 };
+  if (counts.residential.tiles >= 5) bonus.residents += 1;
+  if (counts.commerce.tiles >= 5) bonus.jobs += 1;
+  if (counts.civic.tiles + counts.infrastructure.tiles >= 5) bonus.services += 1;
+
+  if (counts.residential.maxLevel >= 5) bonus.residents += 1;
+  if (counts.commerce.maxLevel >= 5) bonus.jobs += 1;
+  if (Math.max(counts.civic.maxLevel, counts.infrastructure.maxLevel) >= 5) bonus.services += 1;
+
+  return bonus;
+}
+
 function sectorKey(label) {
   switch (label) {
     case "RES":
@@ -647,8 +1185,9 @@ function applyAdjacencyEffects(state) {
 }
 
 function computeAssetBonuses(state, highwaysUnlocked = true) {
-  if (!highwaysUnlocked) return { residents: 0, jobs: 0, services: 0, roadBoost: 0 };
-  const bonus = { residents: 0, jobs: 0, services: 0, roadBoost: 0 };
+  if (!highwaysUnlocked)
+    return { residents: 0, jobs: 0, services: 0, roadBoost: 0, parkCount: 0, clinicCount: 0, marketCount: 0, transitCount: 0 };
+  const bonus = { residents: 0, jobs: 0, services: 0, roadBoost: 0, parkCount: 0, clinicCount: 0, marketCount: 0, transitCount: 0 };
   let parkCap = 0;
   let marketCap = 0;
   let clinicCap = 0;
@@ -656,6 +1195,10 @@ function computeAssetBonuses(state, highwaysUnlocked = true) {
   state.board.forEach((row) => {
     row.forEach((cell) => {
       if (!cell.asset) return;
+      if (cell.asset.type === "PARK") bonus.parkCount += 1;
+      if (cell.asset.type === "CLINIC") bonus.clinicCount += 1;
+      if (cell.asset.type === "MARKET") bonus.marketCount += 1;
+      if (cell.asset.type === "TRANSIT_STOP") bonus.transitCount += 1;
       const neighbors = [
         [1, 0],
         [-1, 0],
@@ -684,11 +1227,11 @@ function computeAssetBonuses(state, highwaysUnlocked = true) {
           bonus.services += 1;
           clinicCap += 1;
         }
-        if (cell.asset.type === "TRANSIT_STOP" && n.sector && transitCap < 3) {
-          bonus.roadBoost += 1;
-          transitCap += 1;
-        }
       });
+      if (cell.asset.type === "TRANSIT_STOP" && transitCap < 3 && isRoadAdjacent(cell, state.roads)) {
+        bonus.roadBoost += 1;
+        transitCap += 1;
+      }
     });
   });
   return bonus;
@@ -739,4 +1282,10 @@ function resolveMissionOutcomes(missions, primaryMissionSuccess, optionalSuccess
     if (rewardResult?.note) results.rewardNotes.push(rewardResult.note);
   });
   return results;
+}
+
+function maxLevelForRound(round) {
+  if (round <= 3) return 2;
+  if (round <= 6) return 3;
+  return 6;
 }

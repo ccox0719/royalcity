@@ -7,12 +7,20 @@ export const REWARDS = [
   { id: "ZONING_REFORM", type: "POLICY", name: "Zoning Reform", policy: { kind: "ZONING_REFORM", params: { rounds: 1 } } },
   { id: "UNLOCK_HIGHWAYS", type: "SYSTEM", name: "Highways Authorized" },
 ];
+import { BALANCE } from "./balance.js";
 
 export function findRewardById(id) {
   return REWARDS.find((r) => r.id === id);
 }
 
 export function applyReward(state, rewardRef, rng = Math.random) {
+  if (rewardRef?.type === "BLIGHT") {
+    const remove = Math.max(0, Number(rewardRef.remove) || 0);
+    state.city = state.city || {};
+    const current = state.city.blight || 0;
+    state.city.blight = Math.max(0, current - remove);
+    return { granted: true, note: `Removed ${remove} blight` };
+  }
   const reward = findRewardById(rewardRef?.id || rewardRef?.rewardId || rewardRef?.name);
   if (!reward) return { granted: false, note: "No reward." };
 
@@ -27,20 +35,10 @@ export function applyReward(state, rewardRef, rng = Math.random) {
     return { granted: true, note: reward.name || "Highways authorized" };
   }
 
-  // Asset placement
-  const placed = placeAsset(state, reward.asset.kind, rng);
-  if (placed) {
-    return {
-      granted: true,
-      note: `${reward.name} placed at (${placed.row + 1},${placed.col + 1})`,
-      position: [placed.row, placed.col],
-    };
-  }
-
-  // Queue unplaced
+  // Queue assets for manual placement in the build phase.
   state.unplacedAssets = state.unplacedAssets || [];
   state.unplacedAssets.push(reward.asset.kind);
-  return { granted: true, note: `${reward.name} queued (no road-adjacent spot).`, queued: true };
+  return { granted: true, note: `${reward.name} queued for placement.`, queued: true };
 }
 
 function placeAsset(state, assetType, rng) {
@@ -72,8 +70,8 @@ function scoreCellForAsset(state, cell, assetType) {
     if (assetType === "PARK" && key === "residential") score += 2;
     if (assetType === "MARKET" && key === "commerce") score += 2;
     if (assetType === "CLINIC" && (key === "infrastructure" || key === "civic")) score += 2;
-    if (assetType === "TRANSIT_STOP" && n.sector) score += 1;
   });
+  if (assetType === "TRANSIT_STOP" && isRoadAdjacent(cell, state.roads)) score += 2;
   // Prefer empty cells
   score += cell.sector ? -1 : 1;
   return score;
@@ -111,17 +109,32 @@ export function placeQueuedAssets(state, rng = Math.random) {
 
 function applyPolicyReward(state, reward) {
   state.bonuses = state.bonuses || { nextRound: { actionBonus: 0, capacityBonus: { jobs: 0, services: 0, residents: 0 }, capacityBuffer: 0 }, activePolicies: [] };
-  if (reward.policy?.kind === "GRANT_FUNDING") {
-    state.bonuses.nextRound.actionBonus += 1;
-  }
-  if (reward.policy?.kind === "ZONING_REFORM") {
-    state.bonuses.nextRound.capacityBuffer = Math.max(1, state.bonuses.nextRound.capacityBuffer || 0);
-  }
   state.bonuses.activePolicies = state.bonuses.activePolicies || [];
+  const maxActive = BALANCE.policies.maxActive || 1;
+  if (state.bonuses.activePolicies.length >= maxActive) return;
+
+  const kind = reward.policy?.kind;
+  if (kind === "ZONING_REFORM") {
+    const extra = BALANCE.policies.effects.ZONING_REFORM?.buildActionsBonus || 1;
+    state.bonuses.nextRound.actionBonus = Math.min(extra, (state.bonuses.nextRound.actionBonus || 0) + extra);
+  } else if (kind === "GRANT_FUNDING") {
+    const maxStacks = BALANCE.policies.effects.GRANT_FUNDING?.maxStacks || 2;
+    state.bonuses.endgameBaseBonus = Math.min(
+      (BALANCE.policies.effects.GRANT_FUNDING?.endgameBaseBonus || 0.1) * maxStacks,
+      ((state.bonuses.endgameBaseBonus || 0) + (BALANCE.policies.effects.GRANT_FUNDING?.endgameBaseBonus || 0.1)),
+    );
+  } else {
+    const reduce = BALANCE.policies.effects.DEFAULT?.blightReduceOnGain || 0;
+    if (reduce > 0) {
+      state.city = state.city || {};
+      state.city.blight = Math.max(0, (state.city.blight || 0) - reduce);
+    }
+  }
+
   state.bonuses.activePolicies.push({
-    kind: reward.policy?.kind,
+    kind,
     name: reward.name,
-    expiresAfterRound: state.round,
+    expiresAfterRound: state.round + (reward.policy?.params?.rounds || state.rounds || 8),
   });
 }
 

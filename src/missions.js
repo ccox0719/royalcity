@@ -5,31 +5,43 @@ import { MISSIONS_V1 } from "./missions.v1.js";
 // Hard-coded blight cleanup missions (toggle-only; table enforces removal).
 export const BLIGHT_MISSIONS = [
   {
-    id: "P_B1_REMOVE_1_BLIGHT",
-    tier: "PRIMARY",
-    difficulty: 2,
-    tags: ["BLIGHT", "CLEANUP"],
-    text: "Remove 1 blight counter from the city.",
-    check: { kind: "REMOVE_BLIGHT", params: { n: 1 } },
-    reward: { type: "POLICY", id: "STABILITY_PUSH" },
-  },
-  {
-    id: "P_B3_REMOVE_2_BLIGHT",
-    tier: "PRIMARY",
-    difficulty: 3,
-    tags: ["BLIGHT", "CLEANUP"],
-    text: "Remove 2 blight counters from the city.",
-    check: { kind: "REMOVE_BLIGHT", params: { n: 2 } },
-    reward: { type: "ASSET", id: "CLINIC" },
-  },
-  {
-    id: "O_B1_REMOVE_1_BLIGHT",
+    id: "B_E2_DIAMOND_CLEANUP",
     tier: "OPTIONAL",
-    difficulty: 1,
-    tags: ["BLIGHT", "CLEANUP"],
-    text: "Optional: Remove 1 blight counter.",
-    check: { kind: "REMOVE_BLIGHT", params: { n: 1 } },
-    reward: { type: "ASSET", id: "PARK" },
+    difficulty: 2,
+    tags: ["BLIGHT", "ECONOMY"],
+    text: "Cleanup Funding: Win at least 2 tricks in ♦.",
+    check: { kind: "AT_LEAST_TRICKS_IN_SUIT", params: { suit: "D", n: 2 } },
+    reward: { type: "BLIGHT", remove: 1 },
+  },
+  {
+    id: "B_E2_CLUBS_CREW",
+    tier: "OPTIONAL",
+    difficulty: 2,
+    tags: ["BLIGHT", "INFRASTRUCTURE"],
+    text: "Repair Crews Deployed: Win at least 2 tricks in ♣.",
+    check: { kind: "AT_LEAST_TRICKS_IN_SUIT", params: { suit: "C", n: 2 } },
+    reward: { type: "BLIGHT", remove: 1 },
+  },
+  {
+    id: "B_M3_CIVIC_ORDER",
+    tier: "OPTIONAL",
+    difficulty: 3,
+    tags: ["BLIGHT", "CIVIC"],
+    text: "Civic Response: {ROLE:ANY} must win the last trick.",
+    check: { kind: "ROLE_WINS_TRICK_INDEX", params: { role: "ANY", trickIndex: "LAST" } },
+    reward: { type: "BLIGHT", remove: 1 },
+  },
+  {
+    id: "B_H4_TARGETED_SWEEP",
+    tier: "OPTIONAL",
+    difficulty: 4,
+    tags: ["BLIGHT", "HARD"],
+    text: "Targeted Sweep: Win exactly 1 trick in ♥ and exactly 1 trick in ♦.",
+    check: {
+      kind: "MULTI_EXACT_TRICKS",
+      params: { req: [{ suit: "H", n: 1 }, { suit: "D", n: 1 }] },
+    },
+    reward: { type: "BLIGHT", remove: 2 },
   },
 ];
 
@@ -72,7 +84,7 @@ export const HIGHWAY_UNLOCK_MISSIONS = [
   },
 ];
 
-export const ALL_MISSIONS = [...MISSIONS_V1, ...BLIGHT_MISSIONS, ...HIGHWAY_UNLOCK_MISSIONS];
+export const ALL_MISSIONS = [...MISSIONS_V1, ...BLIGHT_MISSIONS];
 
 export function getBlightCount(state) {
   if (!state) return 0;
@@ -97,16 +109,6 @@ export function generateMissions(seed, round, players, opts = {}) {
   const optionalCount = opts.optionalCount ?? 2;
   const state = opts.state || null;
 
-  const highwaysUnlocked = state?.city?.highwaysUnlocked;
-  const shouldForceHighway = !highwaysUnlocked && round >= 2;
-
-  if (shouldForceHighway) {
-    const chosen = pickRandom(rng, HIGHWAY_UNLOCK_MISSIONS.filter((m) => !recent.includes(m.id)) || HIGHWAY_UNLOCK_MISSIONS, 1)[0];
-    const primaryMission = instantiateMission(chosen, bindRoles(chosen, players, rng));
-    const optionalMissions = pickMissions(rng, ALL_MISSIONS.filter((m) => m.tier === "OPTIONAL" && !recent.includes(m.id)), Math.max(1, difficultyTarget - 1), optionalCount, players);
-    return { round, primary: primaryMission, optional: optionalMissions };
-  }
-
   const drafted = draftMissions({
     rng,
     difficultyTarget,
@@ -121,15 +123,17 @@ export function generateMissions(seed, round, players, opts = {}) {
 }
 
 function draftMissions({ rng, difficultyTarget, players, primaryCount, optionalCount, recent, state }) {
-  const primaries = ALL_MISSIONS.filter((m) => m.tier === "PRIMARY" && !recent.includes(m.id));
-  const optionals = ALL_MISSIONS.filter((m) => m.tier === "OPTIONAL" && !recent.includes(m.id));
+  const blightCount = getBlightCount(state);
+  const basePool = ALL_MISSIONS.filter((m) => !recent.includes(m.id));
+  const pool = blightCount > 0 ? basePool : basePool.filter((m) => !m.tags?.includes("BLIGHT"));
+  const primaries = pool.filter((m) => m.tier === "PRIMARY");
+  const optionals = pool.filter((m) => m.tier === "OPTIONAL");
   const blightPrimaries = primaries.filter((m) => m.tags?.includes("BLIGHT"));
   const blightOptionals = optionals.filter((m) => m.tags?.includes("BLIGHT"));
 
   const chosenPrimary = pickMissions(rng, primaries, difficultyTarget, primaryCount, players);
   const chosenOptional = pickMissions(rng, optionals, Math.max(1, difficultyTarget - 1), optionalCount, players);
 
-  const blightCount = getBlightCount(state);
   if (blightCount > 0) {
     const offerHasBlight =
       chosenPrimary.some((m) => m.tags?.includes("BLIGHT")) || chosenOptional.some((m) => m.tags?.includes("BLIGHT"));
@@ -137,20 +141,6 @@ function draftMissions({ rng, difficultyTarget, players, primaryCount, optionalC
       if (blightOptionals.length && chosenOptional.length) {
         const template = pickRandom(rng, blightOptionals, 1)[0];
         chosenOptional[0] = instantiateMission(template, bindRoles(template, players, rng));
-      } else if (blightPrimaries.length) {
-        const template = pickRandom(rng, blightPrimaries, 1)[0];
-        chosenPrimary[0] = instantiateMission(template, bindRoles(template, players, rng));
-      }
-    }
-
-    if (blightCount >= 2 && chosenOptional.length >= 2) {
-      const cleanupCount = chosenOptional.filter((m) => m.tags?.includes("BLIGHT")).length;
-      if (cleanupCount < 2) {
-        const pool = blightOptionals.filter((m) => !chosenOptional.some((x) => x.id === m.id));
-        if (pool.length) {
-          const template = pickRandom(rng, pool, 1)[0];
-          chosenOptional[1] = instantiateMission(template, bindRoles(template, players, rng));
-        }
       }
     }
   }

@@ -23,7 +23,7 @@
     <section class="hero frame board-frame" id="frame-board" data-panel="board">
       <div class="section-heading board-heading">
         <div>
-          <h2>Royal City</h2>
+          <h2>🧱 Royal City</h2>
           <div class="section-subline">Civic planning board</div>
         </div>
       </div>
@@ -35,21 +35,26 @@
         </div>
         <div class="board-stage__aside">
           <div class="board-aside">
-            <div class="board-aside__title">Round focus</div>
+            <div class="board-aside__title">🎯 Round focus</div>
             <p class="board-aside__body" id="board-focus-text">Align initiatives, publish census, then grow.</p>
-            <div class="board-aside__actions">
-              <button id="missions-forward" class="btn primary small" aria-label="Forward to Census Intake">Next</button>
-            </div>
           </div>
         </div>
       </div>
       <div id="build-panel" class="build-panel">
         <div class="build-panel__header">
           <div>
-            <div class="build-panel__title">Build Placement</div>
+            <div class="build-panel__title">🧱 Build Placement</div>
             <div class="build-panel__sub">Click a cell to place. Remaining capacity follows tricks won.</div>
           </div>
-          <button id="build-clear" class="btn ghost small" type="button">Clear round placements</button>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button id="build-clear" class="btn ghost small" type="button">Clear round placements</button>
+            <button id="build-confirm" class="btn primary small" type="button">Confirm placements</button>
+          </div>
+        </div>
+        <div class="build-assets">
+          <div class="build-assets__title">🏗️ Initiative assets</div>
+          <div id="build-assets-available" class="build-assets__available"></div>
+          <div id="build-asset-placements" class="build-placements"></div>
         </div>
         <div id="build-capacity" class="build-capacity"></div>
         <div id="build-placements" class="build-placements"></div>
@@ -58,92 +63,39 @@
     </section>
 
     <section class="frame" id="frame-input" data-panel="round-input">
-      <h2>Census Intake</h2>
+      <h2>📋 Census Intake</h2>
       <form id="round-form">
         <div class="inputs-grid">
           <label>Tricks in Clubs <span class="sector sector--inf" data-sector="INF" data-suit="♣">Infrastructure</span>
-            <select id="clubs">
-              <option value="0" selected>0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-            </select>
+            <div class="trick-input">
+              <button type="button" class="trick-step" data-target="clubs" data-step="-1" aria-label="Decrease clubs">−</button>
+              <input id="clubs" data-suit="clubs" class="trick-number" type="number" min="0" max="13" step="1" value="0" inputmode="numeric">
+              <button type="button" class="trick-step" data-target="clubs" data-step="1" aria-label="Increase clubs">+</button>
+            </div>
           </label>
           <label>Tricks in Diamonds <span class="sector sector--eco" data-sector="ECO" data-suit="♦">Economy</span>
-            <select id="diamonds">
-              <option value="0" selected>0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-            </select>
+            <div class="trick-input">
+              <button type="button" class="trick-step" data-target="diamonds" data-step="-1" aria-label="Decrease diamonds">−</button>
+              <input id="diamonds" data-suit="diamonds" class="trick-number" type="number" min="0" max="13" step="1" value="0" inputmode="numeric">
+              <button type="button" class="trick-step" data-target="diamonds" data-step="1" aria-label="Increase diamonds">+</button>
+            </div>
           </label>
           <label>Tricks in Hearts <span class="sector sector--res" data-sector="RES" data-suit="♥">Residential</span>
-            <select id="hearts">
-              <option value="0" selected>0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-            </select>
+            <div class="trick-input">
+              <button type="button" class="trick-step" data-target="hearts" data-step="-1" aria-label="Decrease hearts">−</button>
+              <input id="hearts" data-suit="hearts" class="trick-number" type="number" min="0" max="13" step="1" value="0" inputmode="numeric">
+              <button type="button" class="trick-step" data-target="hearts" data-step="1" aria-label="Increase hearts">+</button>
+            </div>
           </label>
           <label>Tricks in Spades <span class="sector sector--gov" data-sector="GOV" data-suit="♠">Civic</span>
-            <select id="spades">
-              <option value="0" selected>0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-            </select>
+            <div class="trick-input">
+              <button type="button" class="trick-step" data-target="spades" data-step="-1" aria-label="Decrease spades">−</button>
+              <input id="spades" data-suit="spades" class="trick-number" type="number" min="0" max="13" step="1" value="0" inputmode="numeric">
+              <button type="button" class="trick-step" data-target="spades" data-step="1" aria-label="Increase spades">+</button>
+            </div>
           </label>
         </div>
         <div id="remaining" class="pill" style="width: fit-content; margin: 4px 0;">Remaining: 13</div>
-        <label>Planning Focus (optional)
-          <select id="planning-focus">
-            <option value="AUTO" selected>Auto</option>
-            <option value="RES">Residential (♥)</option>
-            <option value="COM">Commerce (♦)</option>
-            <option value="INF">Infrastructure (♣)</option>
-            <option value="CIV">Civic (♠)</option>
-          </select>
-        </label>
         <button type="submit">Publish Ledger</button>
       </form>
       <div id="round-info" style="margin-top: 10px; color: var(--muted);"></div>
@@ -151,7 +103,10 @@
 
     <section class="frame" id="frame-missions" data-panel="missions">
       <div class="section-heading">
-        <h2>Initiatives</h2>
+        <h2>🧩 Initiatives</h2>
+        <div class="phase-actions">
+          <button id="missions-forward" class="btn primary small" aria-label="Continue to Census Intake">Next</button>
+        </div>
       </div>
       <div class="phase-callout" id="mission-round-callout">
         <span class="pill warn" id="mission-round-label">Start of round</span>
@@ -159,25 +114,15 @@
           Deal a fresh hand to kick off the round before moving to Census.
         </div>
       </div>
-      <div class="mission-context" id="mission-context-line">Round 1: Establish early infrastructure and avoid blight.</div>
-      <div id="road-status-indicator" class="pill" style="margin-bottom:8px; display:none;">Highway Network: Pending authorization</div>
-      <div class="mission-special" id="mission-road-expansion-block" style="display:none;">
-        <div class="mission-stamp">Special</div>
-        <label class="mission-toggle" style="gap:8px;">
-          <input type="checkbox" id="mission-road-expansion">
-          <span class="toggle-box" aria-hidden="true"></span>
-          <div class="mission-main">
-            <div class="mission-title">Road Expansion</div>
-            <div class="mission-text">Approve expansion permits. After completion, you may place tiles anywhere.</div>
-          </div>
-        </label>
-      </div>
+      <div class="mission-context" id="mission-context-line">🧩 Round 1: Establish early infrastructure and avoid blight.</div>
+      <div id="road-status-indicator" class="pill" style="margin-bottom:8px; display:none;">🛣️ Highway Network: Pending authorization</div>
+      <div class="mission-special" id="mission-road-expansion-block" style="display:none;"></div>
       <div id="missions-list" class="missions-list">Missions will generate each round.</div>
     </section>
 
     <section class="frame" id="frame-metrics" data-panel="stats">
       <div class="section-heading">
-        <h2>Civic Metrics</h2>
+        <h2>📊 Civic Metrics</h2>
         <div class="phase-actions">
           <button id="stats-undo" class="btn ghost small" aria-label="Undo Publish">Undo</button>
           <button id="stats-forward" class="btn primary small" aria-label="End Round">End Round</button>
@@ -186,7 +131,7 @@
       <div id="stats" class="stat-strip"></div>
       <div id="council-reco" class="reco-panel is-hidden">
         <div class="reco-heading">
-          <div class="reco-title" id="reco-title">Council Recommendation</div>
+          <div class="reco-title" id="reco-title">📌 Council Recommendation</div>
           <div class="reco-sub" id="reco-sub">After resolution</div>
         </div>
         <div class="reco-body" id="reco-body">Awaiting resolution…</div>
@@ -198,7 +143,7 @@
     </section>
 
     <section class="frame" id="frame-status" data-panel="status">
-      <h2>City Status</h2>
+      <h2>🏙️ City Status</h2>
       <div id="city-status"></div>
       <div id="city-status-debug" style="margin-top:8px; font-size:12px; color:var(--muted); display:none;"></div>
       <div id="city-status-debug-toggle" style="margin-top:6px; font-size:12px; color:var(--accent); cursor:pointer; display:none;">Details</div>
@@ -206,7 +151,7 @@
 
     <section class="frame" id="frame-report" data-panel="report">
       <div class="section-heading">
-        <h2>Planning Memo</h2>
+        <h2>📜 Planning Memo</h2>
         <div class="phase-actions">
           <button id="report-undo" class="btn ghost small" aria-label="Undo Publish">Undo</button>
           <button id="report-forward" class="nav-btn" aria-label="Next Round">→</button>
@@ -222,7 +167,7 @@
     <div class="dev-modal hidden" id="dev-modal">
       <div class="dev-modal__inner">
         <div class="dev-modal__header">
-          <h2>Dev Tools</h2>
+          <h2>🛠️ Dev Tools</h2>
           <button id="dev-modal-close" class="btn ghost small" aria-label="Close Dev Tools">Close</button>
         </div>
         <div class="dev-modal__body">
@@ -239,12 +184,56 @@
                 Highways unlocked (playtest)
               </label>
               <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
-                Council strictness
-                <input type="range" id="dev-council-strictness" min="0.6" max="1.4" step="0.05" value="1" style="accent-color:#9fc3ff;">
-                <span id="dev-council-strictness-value" style="font-size:12px; color:var(--faint);">1.00</span>
+                Base growth multiplier
+                <input type="range" id="dev-growth-multiplier" min="0.5" max="1.5" step="0.05" value="1" style="accent-color:#9fc3ff;">
+                <span id="dev-growth-multiplier-value" style="font-size:12px; color:var(--faint);">1.00</span>
+              </label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
+                Blight decay rate
+                <input type="range" id="dev-blight-decay" min="0" max="0.1" step="0.01" value="0.05" style="accent-color:#9fc3ff;">
+                <span id="dev-blight-decay-value" style="font-size:12px; color:var(--faint);">0.05</span>
+              </label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
+                Max tile level
+                <input type="range" id="dev-max-tile-level" min="2" max="8" step="1" value="6" style="accent-color:#9fc3ff;">
+                <span id="dev-max-tile-level-value" style="font-size:12px; color:var(--faint);">6</span>
+              </label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
+                Upgrade cost scaling
+                <input type="range" id="dev-upgrade-scaling" min="0" max="2" step="0.25" value="0" style="accent-color:#9fc3ff;">
+                <span id="dev-upgrade-scaling-value" style="font-size:12px; color:var(--faint);">0.00</span>
+              </label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
+                Road adjacency bonus
+                <input type="range" id="dev-road-bonus" min="0" max="0.3" step="0.05" value="0" style="accent-color:#9fc3ff;">
+                <span id="dev-road-bonus-value" style="font-size:12px; color:var(--faint);">0.00</span>
+              </label>
+              <label style="display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--muted);">
+                Census multiplier
+                <input type="range" id="dev-census-multiplier" min="0.8" max="1.2" step="0.05" value="1" style="accent-color:#9fc3ff;">
+                <span id="dev-census-multiplier-value" style="font-size:12px; color:var(--faint);">1.00</span>
               </label>
               <button id="dev-copy-settings" type="button">Copy Dev Settings JSON</button>
             </div>
+            <div style="display:grid; gap:4px; margin-bottom:12px;">
+              <div style="font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">Dev Toggles (First 6)</div>
+              <div style="font-size:13px; color:var(--text); line-height:1.4;">
+                1. Base Growth Multiplier<br>
+                2. Blight Decay Rate<br>
+                3. Max Tile Level<br>
+                4. Upgrade Cost Scaling<br>
+                5. Road Adjacency Bonus<br>
+                6. Census Multiplier
+              </div>
+            </div>
+            <section id="devtools" style="display:none; margin:8px 0 12px;">
+              <div style="font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Auto Run</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" id="dev-autorun-1">Auto Run (1 campaign)</button>
+                <button type="button" id="dev-stop">Stop</button>
+              </div>
+              <div id="dev-out" style="margin-top:10px; color: var(--muted); font-size: 13px;"></div>
+            </section>
             <div id="dev-info" style="margin-top: 12px; color: var(--muted); font-size: 13px;"></div>
             <pre id="golden-output" style="margin-top:10px;"></pre>
           </div>
@@ -252,8 +241,42 @@
       </div>
     </div>
 
+    <div class="final-modal hidden" id="final-summary-modal" aria-modal="true" role="dialog">
+      <div class="final-modal__inner">
+        <div class="final-modal__header">
+          <div class="final-modal__title" id="final-summary-title">A City’s Legacy</div>
+          <div class="final-modal__sub" id="final-summary-sub">Final census resolved</div>
+          <button class="final-modal__close" id="final-summary-close" aria-label="Close summary">×</button>
+        </div>
+        <div class="final-modal__body">
+          <p class="final-modal__snapshot" id="final-summary-snapshot">A campaign summary will appear here.</p>
+          <div class="final-modal__census">
+            <div class="final-modal__census-label">Final Population</div>
+            <div class="final-modal__census-value" id="final-summary-census">0</div>
+            <div class="final-modal__census-sub" id="final-summary-census-sub">Estimated census at campaign close</div>
+            <div class="final-modal__census-rare" id="final-summary-census-rare" style="display:none;">Among the largest cities on record.</div>
+          </div>
+          <div class="final-modal__section">
+            <div class="final-modal__section-title">Sector Breakdown</div>
+            <div class="final-modal__sectors" id="final-summary-sectors"></div>
+          </div>
+          <div class="final-modal__section">
+            <div class="final-modal__section-title">Key Decisions & Turning Points</div>
+            <ul class="final-modal__turning" id="final-summary-turning"></ul>
+          </div>
+        </div>
+        <div class="final-modal__footer">
+          <div class="final-modal__badge" id="final-summary-badge">Balanced Capital</div>
+          <div class="final-modal__actions">
+            <button class="btn ghost" id="final-summary-view">View Campaign Stats</button>
+            <button class="btn primary" id="final-summary-new">Start New City</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <section class="frame" id="frame-players" data-panel="players">
-      <h2>Players & Roles</h2>
+      <h2>👥 Players & Roles</h2>
       <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
         <label style="margin:0; flex-direction: row; align-items: center; gap: 8px;">
           Player count
@@ -285,6 +308,15 @@
         <button class="menu-link" data-peek="report">Planning Memo</button>
         <button class="menu-link" data-peek="history">History</button>
         <button class="menu-link" data-peek="dev">Dev Tools</button>
+        <details class="menu-link" style="border:none; background:transparent; padding:0; color:var(--text);">
+          <summary style="cursor:pointer; padding:10px 12px; border:1px solid rgba(255,255,255,0.12); border-radius:12px; background:rgba(255,255,255,0.04);">Planning Principles</summary>
+          <div style="padding:10px 12px; border:1px solid rgba(255,255,255,0.08); border-radius:12px; background:rgba(255,255,255,0.03); display:grid; gap:6px; margin-top:6px;">
+            <div><strong>Residential</strong><div style="color:var(--muted); font-size:12px;">Wants access to jobs and services.</div></div>
+            <div><strong>Commerce</strong><div style="color:var(--muted); font-size:12px;">Supports population only if housing exists.</div></div>
+            <div><strong>Infrastructure</strong><div style="color:var(--muted); font-size:12px;">Improves efficiency, not population directly.</div></div>
+            <div><strong>Civic</strong><div style="color:var(--muted); font-size:12px;">Enables stability and higher density later.</div></div>
+          </div>
+        </details>
         <button id="menu-return" class="btn small ghost">Return to Phase View</button>
       </div>
     </div>

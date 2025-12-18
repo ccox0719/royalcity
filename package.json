@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "sim": "node scripts/simulate.js",
-    "batch": "node scripts/batch.js"
+    "batch": "node scripts/batch.js",
+    "autorun-report": "node scripts/autorun-report.js"
   },
   "devDependencies": {
     "vite": "^5.3.4"

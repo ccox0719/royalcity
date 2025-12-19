@@ -5,6 +5,9 @@ import { MAX_BLIGHT } from "./constants.js";
 import { recordRoundTelemetry, recordRewardEarned } from "./telemetry.js";
 import { BALANCE, clamp01 } from "./balance.js";
 
+const isDevMode =
+  typeof process !== "undefined" && Boolean(process?.env) && process.env.NODE_ENV !== "production";
+
 export function resolveRound(state, input) {
   // Growth Contract:
   // Growth is determined by potential residents, job capacity, and services capacity.
@@ -181,7 +184,7 @@ export function resolveRound(state, input) {
   let policyGrowthDelta = Math.floor(populationUnitsGain * policyGrowthMult) - populationUnitsGain;
   const policyFlat = Math.min(8, activePolicies * 1); // +1 flat per policy, capped
   policyGrowthDelta += policyFlat;
-  if (process.env.NODE_ENV !== "production") {
+  if (isDevMode) {
     const maxDelta = Math.floor(populationUnitsGain * (BALANCE.policies.capGrowthBonus || 0.15)) + policyFlat;
     if (policyGrowthDelta > maxDelta + 1) {
       console.warn("[BalanceGuard] policyGrowthDelta high", { policyGrowthDelta, maxDelta, activePolicies });
@@ -567,7 +570,7 @@ function computeEndgameBonus(state, baseCensus, rng) {
   const finalCensus = baseCensus + endgameBonus;
   state.stats = state.stats || {};
   state.stats.census = finalCensus;
-  if (process.env.NODE_ENV !== "production") {
+  if (isDevMode) {
     if (endgameBonus < endgameMin || endgameBonus > endgameMax) {
       console.warn("[BalanceGuard] endgameBonus out of clamp", { endgameBonus, endgameMin, endgameMax });
     }

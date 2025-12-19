@@ -69,6 +69,8 @@ const finalSummaryCensusRare = document.getElementById("final-summary-census-rar
 const finalSummarySectors = document.getElementById("final-summary-sectors");
 const finalSummaryTurning = document.getElementById("final-summary-turning");
 const finalSummaryBadge = document.getElementById("final-summary-badge");
+const finalCityGrade = document.getElementById("final-city-grade");
+const finalCityGradeWhy = document.getElementById("final-city-grade-why");
 const finalSummaryView = document.getElementById("final-summary-view");
 const finalSummaryNew = document.getElementById("final-summary-new");
 const finalSummaryClose = document.getElementById("final-summary-close");
@@ -580,14 +582,34 @@ function openFinalSummary(report) {
   if (!finalSummaryModal || finalSummaryShown) return;
   const summary = summarizeCampaignSummary(state, report);
   const census = report?.statsAfter?.census ?? 0;
+  const finalGrade = report?.finalGrade || report?.meta?.cityGrade || null;
+  const finalGradeClass =
+    finalGrade?.grade === "S" || finalGrade?.grade === "A"
+      ? "ok"
+      : finalGrade?.grade === "D" || finalGrade?.grade === "F"
+        ? "bad"
+        : "";
 
   finalSummaryTitle.textContent = summary.title;
-  finalSummarySub.textContent = "Final census resolved";
+  finalSummarySub.textContent = finalGrade ? `Final census resolved — Grade ${finalGrade.grade}` : "Final census resolved";
   finalSummarySnapshot.textContent = summary.snapshot;
   finalSummaryCensus.textContent = census.toLocaleString();
   finalSummaryCensusSub.textContent = "Estimated census at campaign close";
   if (finalSummaryCensusRare) {
     finalSummaryCensusRare.style.display = census >= 1_000_000 ? "block" : "none";
+  }
+  if (finalCityGrade) {
+    finalCityGrade.textContent = finalGrade
+      ? `${finalGrade.grade} — ${finalGrade.title}`
+      : "Final City Grade";
+    finalCityGrade.classList.remove("ok", "warn", "bad");
+    if (finalGradeClass) finalCityGrade.classList.add(finalGradeClass);
+  }
+  if (finalCityGradeWhy) {
+    finalCityGradeWhy.textContent = finalGrade?.summary || "Strengths and weaknesses will summarize here.";
+  }
+  if (finalSummaryBadge) {
+    finalSummaryBadge.textContent = finalGrade?.grade ? `${finalGrade.grade} · ${summary.badge}` : summary.badge;
   }
   if (finalSummarySectors) {
     finalSummarySectors.innerHTML = summary.sectors

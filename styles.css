@@ -32,6 +32,7 @@
   --ok: #59b36a;
   --warn: #d7b24a;
   --bad: #d0665f;
+  --accent: #6fb6ff;
 
   /* Shadows */
   --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
@@ -576,6 +577,35 @@ section:nth-of-type(2) {
   gap: 6px;
 }
 
+.final-modal__grade {
+  margin: 12px 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.final-modal__grade--headline {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 80%);
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  align-items: center;
+  text-align: center;
+}
+
+.final-modal__grade-badge {
+  text-transform: none;
+  letter-spacing: 0.08em;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.final-modal__grade-copy {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 .final-modal__footer {
   display: flex;
   flex-wrap: wrap;
@@ -831,6 +861,12 @@ section:nth-of-type(2) {
 .pill.bad,
 .badge.bad {
   color: var(--bad);
+}
+
+.badge.accent {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .pill.small {
@@ -2281,7 +2317,40 @@ pre {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--muted);
+  margin: 0;
+}
+
+.statsTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-bottom: 10px;
+}
+
+.statsGrowthBadge {
+  gap: 6px;
+  padding: 5px 9px;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.statsGrowthBadge.warn {
+  background: rgba(255, 183, 82, 0.12);
+  border-color: rgba(255, 183, 82, 0.3);
+}
+
+.statsGrowthBadge.bad {
+  background: rgba(255, 116, 102, 0.12);
+  border-color: rgba(255, 116, 102, 0.3);
+}
+
+.statsGrowthLabel {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .statRow {

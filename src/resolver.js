@@ -314,75 +314,97 @@ export function resolveRound(state, input) {
     ],
   };
 
+  const growthMomentum = computeGrowthMomentum(nextState.history, report);
+  if (growthMomentum) {
+    report.meta = { ...(report.meta || {}), growthMomentum };
+  }
+
   nextState.history = [...state.history, report];
   // Clear current missions so the next round regenerates.
   nextState.currentMissions = null;
 
   if (state.round === state.rounds) {
-  const endgame = computeEndgameBonus(nextState, census, rng);
-  if (telemetry) telemetry.endgame = endgame;
-  report.meta = { ...(report.meta || {}), prestigeScore: endgame.prestigeScore, prestigeTier: endgame.prestigeTier, prestigeMult: endgame.prestigeMult, boomMult: endgame.boomMult, endgameBase: endgame.endgameBase, endgameBonus: endgame.endgameBonus, blightPenalty: endgame.blightPenalty };
-  report.statsAfter = { ...(report.statsAfter || {}), census: endgame.finalCensus };
-  report.notes.push(
-    `Prestige: ${endgame.prestigeTier} — Finale bonus +${endgame.endgameBonus.toLocaleString?.() || endgame.endgameBonus}${endgame.boomMult > 1 ? " (Boom!)" : ""}`,
-    endgame.policyNote,
-  );
+    const endgame = computeEndgameBonus(nextState, census, rng);
+    const cityGrade = computeFinalCityGrade(nextState, report, endgame);
+    if (telemetry) telemetry.endgame = endgame;
+    report.finalGrade = cityGrade;
+    report.meta = {
+      ...(report.meta || {}),
+      prestigeScore: endgame.prestigeScore,
+      prestigeTier: endgame.prestigeTier,
+      prestigeMult: endgame.prestigeMult,
+      boomMult: endgame.boomMult,
+      endgameBase: endgame.endgameBase,
+      endgameBonus: endgame.endgameBonus,
+      blightPenalty: endgame.blightPenalty,
+      cityGrade,
+    };
+    report.statsAfter = { ...(report.statsAfter || {}), census: endgame.finalCensus };
+    report.notes.push(
+      `Prestige: ${endgame.prestigeTier} — Finale bonus +${endgame.endgameBonus.toLocaleString?.() || endgame.endgameBonus}${endgame.boomMult > 1 ? " (Boom!)" : ""}`,
+      endgame.policyNote,
+    );
 
-  // Human-friendly recap and suggestion
-  const prestigeLabel =
-    endgame.prestigeScore < 40
-      ? "Struggling"
-      : endgame.prestigeScore < 60
-        ? "Stable"
-        : endgame.prestigeScore < 80
-          ? "Respected"
-          : "Legendary";
+    // Human-friendly recap and suggestion
+    const prestigeLabel =
+      endgame.prestigeScore < 40
+        ? "Struggling"
+        : endgame.prestigeScore < 60
+          ? "Stable"
+          : endgame.prestigeScore < 80
+            ? "Respected"
+            : "Legendary";
 
-  const limiterLabel = report.gating?.limitingFactor;
-  const problems =
-    limiterLabel === "Services"
-      ? "Needs services (Clinics/Parks)."
-      : limiterLabel === "Jobs"
-        ? "Needs jobs (Markets/commerce)."
-        : limiterLabel === "Potential"
-          ? "No room to grow (space/roads)."
-          : !primaryMissionSuccess
-            ? "Missed mission rewards."
-            : "None this round.";
-
-  const blightAfter = report.statsAfter?.blight ?? blight;
-  const suggestion =
-    blightAfter > 0
-      ? "Clear blight (take the blight-removal mission)."
-      : limiterLabel === "Services"
-        ? "Win INF/CIV tricks to earn Clinics/Parks."
+    const limiterLabel = report.gating?.limitingFactor;
+    const problems =
+      limiterLabel === "Services"
+        ? "Needs services (Clinics/Parks)."
         : limiterLabel === "Jobs"
-          ? "Win COM tricks to earn Markets (jobs)."
+          ? "Needs jobs (Markets/commerce)."
           : limiterLabel === "Potential"
-            ? "Prioritize Road Expansion / placement to unlock space."
+            ? "No room to grow (space/roads)."
             : !primaryMissionSuccess
-              ? "Play safer: secure the Primary mission first."
-              : "Chase optional missions for assets and stacking opportunities.";
+              ? "Missed mission rewards."
+              : "None this round.";
 
-  const roundGain = report.changes?.populationUnits || 0;
-  const smartGain = report.changes?.adjacencyAttraction || 0;
-  const policyGain = policyGrowthDelta || 0;
-  const blightDragPct = Math.round((endgame.blightPenalty || 0) * 100);
-  report.notes = [
-    `Your city grew by +${roundGain} population.`,
-    `District growth: +${roundGain}`,
-    `Smart placement: +${smartGain}`,
-    `City policy effects: +${policyGain}`,
-    ...(problems !== "None this round." ? [`Problems holding you back: ${problems}`] : []),
-    `Next round focus: ${suggestion}`,
-    `Finale payoff: +${endgame.endgameBonus.toLocaleString?.() || endgame.endgameBonus} (Prestige: ${prestigeLabel}, Boom: x${endgame.boomMult}, Blight drag: ${blightDragPct}%)`,
-    ...(endgame.prestigeScore < 60
-      ? ["Complete more primary missions and build cohesive districts."]
-      : []),
-    ...(blightDragPct > 0 ? ["Clear blight to protect your finale payoff."] : []),
-    ...(endgame.boomMult === 1 ? ["Higher prestige unlocks a boom chance in the finale."] : []),
-  ];
-}
+    const blightAfter = report.statsAfter?.blight ?? blight;
+    const suggestion =
+      blightAfter > 0
+        ? "Clear blight (take the blight-removal mission)."
+        : limiterLabel === "Services"
+          ? "Win INF/CIV tricks to earn Clinics/Parks."
+          : limiterLabel === "Jobs"
+            ? "Win COM tricks to earn Markets (jobs)."
+            : limiterLabel === "Potential"
+              ? "Prioritize Road Expansion / placement to unlock space."
+              : !primaryMissionSuccess
+                ? "Play safer: secure the Primary mission first."
+                : "Chase optional missions for assets and stacking opportunities.";
+
+    const roundGain = report.changes?.populationUnits || 0;
+    const smartGain = report.changes?.adjacencyAttraction || 0;
+    const policyGain = policyGrowthDelta || 0;
+    const blightDragPct = Math.round((endgame.blightPenalty || 0) * 100);
+    const gradeLine = cityGrade ? `Final City Grade: ${cityGrade.grade} — ${cityGrade.title}` : "";
+    const gradeWhy = cityGrade?.summary || "";
+
+    report.notes = [
+      `Your city grew by +${roundGain} population.`,
+      `District growth: +${roundGain}`,
+      `Smart placement: +${smartGain}`,
+      `City policy effects: +${policyGain}`,
+      ...(gradeLine ? [gradeLine] : []),
+      ...(gradeWhy ? [gradeWhy] : []),
+      ...(problems !== "None this round." ? [`Problems holding you back: ${problems}`] : []),
+      `Next round focus: ${suggestion}`,
+      `Finale payoff: +${endgame.endgameBonus.toLocaleString?.() || endgame.endgameBonus} (Prestige: ${prestigeLabel}, Boom: x${endgame.boomMult}, Blight drag: ${blightDragPct}%)`,
+      ...(endgame.prestigeScore < 60
+        ? ["Complete more primary missions and build cohesive districts."]
+        : []),
+      ...(blightDragPct > 0 ? ["Clear blight to protect your finale payoff."] : []),
+      ...(endgame.boomMult === 1 ? ["Higher prestige unlocks a boom chance in the finale."] : []),
+    ];
+  }
 
   if (telemetry) {
     const totalAssets = countAssets(nextState.board);
@@ -1291,4 +1313,124 @@ function maxLevelForRound(round) {
   if (round <= 3) return 2;
   if (round <= 6) return 3;
   return 6;
+}
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function computeGrowthMomentum(history = [], currentReport = null) {
+  const window = [...(history || [])].slice(-2);
+  if (currentReport) window.push(currentReport);
+  if (!window.length) return null;
+
+  const gains = window.map((h) => Number(h?.changes?.populationUnits || 0));
+  const avgGain = gains.reduce((a, b) => a + b, 0) / gains.length;
+  const variance = gains.reduce((a, g) => a + Math.pow(g - avgGain, 2), 0) / (gains.length || 1);
+  const volatility = Math.sqrt(variance);
+  const blightPressure = window.reduce((sum, h) => sum + Math.max(0, h?.statsAfter?.blight || 0), 0);
+  const missionFails = window.filter((h) => !h?.mission?.primarySuccess).length;
+  const serviceBreaks = window.reduce((sum, h) => {
+    const limiter = h?.gating?.limitingFactor;
+    if (limiter === "Jobs" || limiter === "Services") return sum + 1;
+    return sum;
+  }, 0);
+
+  const growthIndex = clamp(avgGain - blightPressure * 2 - missionFails * 1.5 - serviceBreaks - volatility * 0.5, -10, 20);
+  const grade = growthIndex >= 10 ? "A" : growthIndex >= 5 ? "B" : growthIndex >= 1 ? "C" : growthIndex >= -3 ? "D" : "F";
+  const labelMap = { A: "Booming", B: "Thriving", C: "Stable", D: "Stalled", F: "Declining" };
+  const messageMap = {
+    A: "Strong, sustained growth over recent rounds.",
+    B: "Steady gains with momentum to build on.",
+    C: "Holding steady; unblock the next catalyst.",
+    D: "Growth has stalled; clear the blockers.",
+    F: "Declining; address blight and missed missions.",
+  };
+
+  return {
+    grade,
+    label: labelMap[grade],
+    message: messageMap[grade],
+    window: window.length,
+    avgGain,
+    volatility,
+    index: growthIndex,
+  };
+}
+
+function normalizeCensusScore(census) {
+  const capped = clamp01((Number(census) || 0) / 600000);
+  return Math.round(capped * 100);
+}
+
+function computeFinalCityGrade(state, report, endgame) {
+  const history = [...(state.history || [])];
+  if (!history.includes(report)) history.push(report);
+  const rounds = Math.max(1, state.rounds || history.length || 1);
+  const finalCensus = endgame?.finalCensus ?? report?.statsAfter?.census ?? 0;
+  const finalCensusScore = normalizeCensusScore(finalCensus);
+  const prestigeScore = clamp(endgame?.prestigeScore || 0, 0, 100);
+  const missionSuccessRate = history.length
+    ? history.filter((h) => h?.mission?.primarySuccess).length / rounds
+    : 1;
+  const blightLevel = report?.statsAfter?.blight ?? state.city?.blight ?? 0;
+  const blightControl = Math.round(clamp01(1 - blightLevel / Math.max(1, MAX_BLIGHT)) * 100);
+  const policyCount = Math.min(BALANCE.policies.maxActive || 1, state?.bonuses?.activePolicies?.length || 0);
+  const policyContribution = Math.round(clamp01(policyCount / Math.max(1, BALANCE.policies.maxActive || 1)) * 100);
+  const servicesStability = Math.round((deriveServicesHealth(history) || 0) * 100);
+
+  const cityScore = clamp(
+    finalCensusScore * 0.25 +
+      prestigeScore * 0.2 +
+      missionSuccessRate * 100 * 0.15 +
+      blightControl * 0.15 +
+      policyContribution * 0.15 +
+      servicesStability * 0.1,
+    0,
+    100,
+  );
+
+  const grade = cityScore >= 90 ? "S" : cityScore >= 75 ? "A" : cityScore >= 60 ? "B" : cityScore >= 45 ? "C" : cityScore >= 30 ? "D" : "F";
+  const titleMap = {
+    S: "Legendary City",
+    A: "Respected City",
+    B: "Growing City",
+    C: "Modest City",
+    D: "Struggling City",
+    F: "Faltering City",
+  };
+
+  const strengths = [];
+  const weaknesses = [];
+  if (missionSuccessRate >= 0.7) strengths.push("Mission reliability");
+  else weaknesses.push("Missed missions");
+  if (prestigeScore >= 70) strengths.push("High prestige");
+  else if (prestigeScore < 40) weaknesses.push("Thin prestige");
+  if (servicesStability >= 60) strengths.push("Stable services");
+  else weaknesses.push("Services under strain");
+  if (blightControl >= 70) strengths.push("Blight contained");
+  else if (blightLevel > 0) weaknesses.push("Late blight drag");
+  if (policyContribution >= 60) strengths.push("Policy momentum");
+  if (missionSuccessRate < 0.5 && weaknesses.length < 3) weaknesses.push("Inconsistent execution");
+
+  const summaryParts = [];
+  if (strengths.length) summaryParts.push(`Strengths: ${strengths.slice(0, 2).join(", ")}`);
+  if (weaknesses.length) summaryParts.push(`Weaknesses: ${weaknesses.slice(0, 2).join(", ")}`);
+
+  return {
+    grade,
+    title: titleMap[grade] || "",
+    cityScore: Math.round(cityScore),
+    summary: summaryParts.join(". "),
+    strengths,
+    weaknesses,
+    inputs: {
+      finalCensusScore,
+      prestigeScore,
+      missionSuccessRate,
+      blightControl,
+      policyContribution,
+      servicesStability,
+    },
+  };
 }

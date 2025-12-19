@@ -1,0 +1,16 @@
+  const finalGrade = report?.finalGrade || report?.meta?.cityGrade || null;
+  const finalGradeClass =
+    finalGrade?.grade === "S" || finalGrade?.grade === "A"
+      ? "ok"
+      : finalGrade?.grade === "D" || finalGrade?.grade === "F"
+        ? "bad"
+        : "";
+
+  finalSummaryTitle.textContent = summary.title;
+  finalSummarySub.textContent = "Final census resolved";
+  finalSummarySnapshot.textContent = summary.snapshot;
+  finalSummaryCensus.textContent = census.toLocaleString();
+  finalSummaryCensusSub.textContent = "Estimated census at campaign close";
+  if (finalSummaryCensusRare) {
+    finalSummaryCensusRare.style.display = census >= 1_000_000 ? "block" : "none";
+  }

@@ -548,10 +548,30 @@ export function renderStats(element, state, options = {}) {
   const census = s.census || s.populationUnits;
   const report = options.report || state.history?.[state.history.length - 1] || null;
   const { deltas, highlights } = deriveStatSignals(state, report);
+  const growth = report?.meta?.growthMomentum || null;
+  const growthClass =
+    growth?.grade === "A" || growth?.grade === "B"
+      ? "ok"
+      : growth?.grade === "C"
+        ? ""
+        : growth?.grade === "D"
+          ? "warn"
+          : growth?.grade === "F"
+            ? "bad"
+            : "";
+  const growthBadge = growth
+    ? `<div class="badge statsGrowthBadge ${growthClass}" title="Growth Rate: ${growth.grade} — ${growth.label}${growth.message ? ` — ${growth.message}` : ""}">
+        <span class="statsGrowthLabel">Growth Rate</span>
+        <strong>${growth.grade} · ${growth.label}</strong>
+      </div>`
+    : "";
 
   element.innerHTML = `
     <div class="statsPanel">
-      <div class="statsTitle">City Stats</div>
+      <div class="statsTitleRow">
+        <div class="statsTitle">City Stats</div>
+        ${growthBadge}
+      </div>
       ${CIVIC_META.map((meta) => {
         const value = meta.key === "census" ? census : s[meta.key] || 0;
         const pctTarget = pct(Number(value), meta.max);
@@ -751,6 +771,13 @@ export function renderCityStatus(element, status) {
     return;
   }
   const isFinal = status.round >= status.rounds;
+  const growthBadge =
+    status.growthGrade && status.growthLabel
+      ? `<div class="badge statsGrowthBadge" style="margin-left:auto;">
+          <span class="statsGrowthLabel">Growth Rate</span>
+          <strong>${status.growthGrade} · ${status.growthLabel}</strong>
+        </div>`
+      : "";
   const mkRow = (label, value) => `
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
       <span>${label}</span>
@@ -763,6 +790,7 @@ export function renderCityStatus(element, status) {
         <div style="font-size:12px; color:var(--muted); letter-spacing:0.08em;">CITY STATUS</div>
         <div style="font-size:12px; color:var(--muted);">Round ${status.round} of ${status.rounds}</div>
       </div>
+      ${growthBadge}
     </div>
 
     <div style="margin-bottom:10px;">
@@ -984,6 +1012,8 @@ export function computeCityStatus(state, lastReport) {
     blight: lastReport.statsAfter?.blight ?? 0,
     roadsExpanded: lastReport.meta?.roadsExpanded || state.city?.roadsExpanded || state.city?.highwaysUnlocked || false,
     activePolicies: state?.bonuses?.activePolicies?.map((p) => p.name) || [],
+    growthGrade: lastReport?.meta?.growthMomentum?.grade || null,
+    growthLabel: lastReport?.meta?.growthMomentum?.label || null,
     debug: {
       residentsPotential: g.potentialResidents,
       jobsCapacity: g.jobsCapacity,

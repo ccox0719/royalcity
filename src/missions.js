@@ -145,7 +145,16 @@ function draftMissions({ rng, difficultyTarget, players, primaryCount, optionalC
     }
   }
 
-  return { primary: chosenPrimary[0], optional: chosenOptional };
+  const resolved = resolveMissionConflicts({
+    primary: chosenPrimary[0],
+    optionals: chosenOptional,
+    optionalPool: optionals,
+    rng,
+    difficultyTarget,
+    players,
+  });
+
+  return { primary: resolved.primary, optional: resolved.optionals };
 }
 
 function pickMissions(rng, pool, difficultyTarget, count, players) {
@@ -197,6 +206,118 @@ function instantiateMission(template, bindings) {
     roleBindings: bindings,
     outcome: "unknown",
   };
+}
+
+function collectMissionConstraints(mission) {
+  const constraints = { suits: [], ranksRequired: [], ranksForbidden: [] };
+  const walk = (check) => {
+    if (!check) return;
+    switch (check.kind) {
+      case "EXACT_TRICKS_IN_SUIT":
+        constraints.suits.push({ suit: check.params?.suit, exact: check.params?.n });
+        break;
+      case "AT_LEAST_TRICKS_IN_SUIT":
+      case "ROLE_WINS_AT_LEAST_TRICKS_IN_SUIT":
+        constraints.suits.push({ suit: check.params?.suit, min: check.params?.n });
+        break;
+      case "MULTI_EXACT_TRICKS":
+        (check.params?.req || []).forEach((req) => constraints.suits.push({ suit: req.suit, exact: req.n }));
+        break;
+      case "ANY_TRICK_WON_WITH_RANK":
+      case "TRICK_WON_WITH_RANK":
+      case "ROLE_WINS_ANY_TRICK_WITH_RANK":
+        constraints.ranksRequired.push(check.params?.rank);
+        break;
+      case "NO_TRICKS_WON_WITH_RANK":
+        constraints.ranksForbidden.push(check.params?.rank);
+        break;
+      case "ALL_OF":
+        (check.checks || []).forEach((c) => walk(c));
+        break;
+      default:
+        break;
+    }
+  };
+  walk(mission?.check);
+  return constraints;
+}
+
+function missionsConflict(a, b) {
+  if (!a || !b) return false;
+  const ca = collectMissionConstraints(a);
+  const cb = collectMissionConstraints(b);
+
+  const suitConflict = ca.suits.some((sa) =>
+    cb.suits.some((sb) => {
+      if (!sa.suit || !sb.suit) return false;
+      if (String(sa.suit).toUpperCase() !== String(sb.suit).toUpperCase()) return false;
+      if (Number.isFinite(sa.exact) && Number.isFinite(sb.exact) && sa.exact !== sb.exact) return true;
+      if (Number.isFinite(sa.exact) && Number.isFinite(sb.min) && sa.exact < sb.min) return true;
+      if (Number.isFinite(sa.min) && Number.isFinite(sb.exact) && sb.exact < sa.min) return true;
+      return false;
+    }),
+  );
+
+  const rankConflict =
+    ca.ranksRequired.some((r) => cb.ranksForbidden.includes(r)) ||
+    cb.ranksRequired.some((r) => ca.ranksForbidden.includes(r));
+
+  return suitConflict || rankConflict;
+}
+
+function findCompatibleMission(rng, pool, usedIds, compareAgainst, difficultyTarget, players) {
+  const candidates = pool.filter((m) => !usedIds.has(m.id));
+  if (!candidates.length) return null;
+  const scored = candidates
+    .map((m) => ({
+      mission: m,
+      score: -Math.abs((m.difficulty || 1) - difficultyTarget) + rng() * 0.1,
+    }))
+    .sort((a, b) => b.score - a.score);
+  for (const entry of scored) {
+    const instantiated = instantiateMission(entry.mission, bindRoles(entry.mission, players, rng));
+    const hasConflict = compareAgainst.some((existing) => missionsConflict(existing, instantiated));
+    if (!hasConflict) return instantiated;
+  }
+  return null;
+}
+
+function resolveMissionConflicts({ primary, optionals, optionalPool, rng, difficultyTarget, players }) {
+  const safePrimary = primary || null;
+  const resolvedOptionals = [];
+  const usedIds = new Set([safePrimary?.id].filter(Boolean));
+
+  optionals.forEach((opt) => {
+    if (!opt) return;
+    let candidate = opt;
+    let attempts = 0;
+    while (
+      (safePrimary && missionsConflict(safePrimary, candidate)) ||
+      resolvedOptionals.some((existing) => missionsConflict(existing, candidate))
+    ) {
+      usedIds.add(candidate.id);
+      const replacement = findCompatibleMission(
+        rng,
+        optionalPool,
+        usedIds,
+        [safePrimary, ...resolvedOptionals].filter(Boolean),
+        Math.max(1, difficultyTarget - 1),
+        players,
+      );
+      attempts += 1;
+      if (!replacement || attempts > optionalPool.length) {
+        candidate = null;
+        break;
+      }
+      candidate = replacement;
+    }
+    if (candidate) {
+      usedIds.add(candidate.id);
+      resolvedOptionals.push(candidate);
+    }
+  });
+
+  return { primary: safePrimary, optionals: resolvedOptionals };
 }
 
 function resolveReward(rewardRef) {

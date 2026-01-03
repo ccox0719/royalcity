@@ -45,6 +45,7 @@ const missionRoundBody = document.getElementById("mission-round-body");
 const missionContextLine = document.getElementById("mission-context-line");
 const missionRoadExpansionBlock = document.getElementById("mission-road-expansion-block");
 const roadStatusIndicator = document.getElementById("road-status-indicator");
+const citySnapshotEl = document.getElementById("city-snapshot");
 const boardFocusText = document.getElementById("board-focus-text");
 const cityStatusEl = document.getElementById("city-status");
 const cityStatusDebugEl = document.getElementById("city-status-debug");
@@ -157,6 +158,207 @@ const SECTOR_META = [
   { code: "RES", label: "Residential", className: "sector sector--res", suit: "♥" },
   { code: "CIV", label: "Civic", className: "sector sector--gov", suit: "♠" },
 ];
+
+// City snapshot + mission tag helpers (used by missions UI)
+const TILE_KEY_BY_CODE = { INF: "inf", COM: "com", RES: "res", CIV: "civ" };
+
+function sectorMetaBySuitLetter(letter) {
+  const suit = String(letter || "").toUpperCase();
+  if (suit === "C") return SECTOR_META.find((s) => s.code === "INF");
+  if (suit === "D") return SECTOR_META.find((s) => s.code === "COM");
+  if (suit === "H") return SECTOR_META.find((s) => s.code === "RES");
+  if (suit === "S") return SECTOR_META.find((s) => s.code === "CIV");
+  return null;
+}
+
+function describeArcPath(cx, cy, r, startAngle, endAngle) {
+  const start = ((startAngle % 360) * Math.PI) / 180;
+  const end = ((endAngle % 360) * Math.PI) / 180;
+  const startX = cx + r * Math.cos(start);
+  const startY = cy + r * Math.sin(start);
+  const endX = cx + r * Math.cos(end);
+  const endY = cy + r * Math.sin(end);
+  const largeArc = endAngle - startAngle <= 180 ? "0" : "1";
+  return `M ${startX} ${startY} A ${r} ${r} 0 ${largeArc} 1 ${endX} ${endY}`;
+}
+
+function missionCheckDescriptors(check, acc = []) {
+  if (!check) return acc;
+  switch (check.kind) {
+    case "EXACT_TRICKS_IN_SUIT":
+      acc.push({ type: "suit", suit: check.params?.suit, text: `Exact ${check.params?.n ?? ""}` });
+      break;
+    case "AT_LEAST_TRICKS_IN_SUIT":
+      acc.push({ type: "suit", suit: check.params?.suit, text: `${check.params?.n ?? ""}+` });
+      break;
+    case "ROLE_WINS_AT_LEAST_TRICKS_IN_SUIT":
+      acc.push({ type: "suit", suit: check.params?.suit, text: `${check.params?.n ?? ""}+ (role)` });
+      break;
+    case "MULTI_EXACT_TRICKS":
+      (check.params?.req || []).forEach((req) => acc.push({ type: "suit", suit: req.suit, text: `Exact ${req.n}` }));
+      break;
+    case "ROLE_WINS_TRICK_INDEX":
+      acc.push({
+        type: "meta",
+        text: check.params?.trickIndex === "LAST" ? "Last trick" : `Trick #${check.params?.trickIndex ?? "?"}`,
+      });
+      break;
+    case "ROLE_WINS_ANY_TRICK_WITH_RANK":
+    case "ANY_TRICK_WON_WITH_RANK":
+    case "TRICK_WON_WITH_RANK":
+      acc.push({ type: "rank", rank: check.params?.rank, forbid: false, text: `Win with ${check.params?.rank}` });
+      break;
+    case "NO_TRICKS_WON_WITH_RANK":
+      acc.push({ type: "rank", rank: check.params?.rank, forbid: true, text: `No ${check.params?.rank}s` });
+      break;
+    case "ALL_OF":
+      (check.checks || []).forEach((c) => missionCheckDescriptors(c, acc));
+      break;
+    default:
+      break;
+  }
+  return acc;
+}
+
+function missionShortText(mission) {
+  const descriptors = missionCheckDescriptors(mission?.check || []);
+  if (descriptors.length) {
+    const unique = [];
+    descriptors.forEach((d) => {
+      const exists = unique.some((u) => u.text === d.text && u.type === d.type && u.suit === d.suit && u.rank === d.rank);
+      if (!exists) unique.push(d);
+    });
+    return unique
+      .slice(0, 3)
+      .map((d) => {
+        if (d.type === "suit") {
+          const meta = sectorMetaBySuitLetter(d.suit);
+          return `${d.text} ${meta?.suit || d.suit || ""}`.trim();
+        }
+        return d.text;
+      })
+      .join(" • ");
+  }
+  return (mission?.text || "").replace(/\.$/, "");
+}
+
+function tagChip(label, className = "") {
+  return `<span class="tag-chip ${className}">${label}</span>`;
+}
+
+function missionTagPills(mission) {
+  const desc = missionCheckDescriptors(mission?.check || []);
+  const chips = desc.map((d) => {
+    if (d.type === "suit") {
+      const meta = sectorMetaBySuitLetter(d.suit);
+      const token = meta?.className?.includes("sector--") ? meta.className.split("sector--")[1] : meta?.code?.toLowerCase() || "suit";
+      const glyph = meta?.suit || d.suit || "?";
+      return `<span class="tag-chip tag-chip--suit tag-chip--${token}"><span class="tag-chip__icon">${glyph}</span><span>${d.text}</span></span>`;
+    }
+    if (d.type === "rank") {
+      return tagChip(`${d.forbid ? "No" : ""} ${d.rank}s`, d.forbid ? "tag-chip--warn" : "tag-chip--meta");
+    }
+    return tagChip(d.text, "tag-chip--meta");
+  });
+
+  if (!chips.length && Array.isArray(mission?.tags)) {
+    mission.tags.slice(0, 3).forEach((t) => chips.push(tagChip(t, "tag-chip--meta")));
+  }
+
+  return chips.join("");
+}
+
+function renderCitySnapshotPanel(container) {
+  if (!container) return;
+  const status = computeCityStatus(state, lastReport);
+  if (!status) {
+    container.textContent = "No city data yet.";
+    return;
+  }
+
+  const tiles = status.tiles || {};
+  const slices = SECTOR_META.map((meta) => {
+    const key = TILE_KEY_BY_CODE[meta.code];
+    const entry = key ? tiles[key] : null;
+    const value = Number(entry?.levels ?? entry?.tiles ?? 0);
+    return {
+      code: meta.code,
+      token: meta.className?.includes("sector--") ? meta.className.split("sector--")[1] : meta.code.toLowerCase(),
+      label: meta.label,
+      suit: meta.suit,
+      value,
+      safeValue: value <= 0 ? 0.75 : value,
+    };
+  });
+
+  const totalSafe = slices.reduce((sum, s) => sum + s.safeValue, 0) || 1;
+  const weakest = slices.reduce((min, s) => (s.value < min.value ? s : min), slices[0]);
+  const strongest = slices.reduce((max, s) => (s.value > max.value ? s : max), slices[0]);
+
+  let angle = -90;
+  const arcs = slices.map((slice) => {
+    const share = slice.safeValue / totalSafe;
+    const sweep = share * 360;
+    const path = describeArcPath(70, 70, 46, angle, angle + sweep);
+    angle += sweep;
+    return { ...slice, share, path };
+  });
+
+  const balanceHint = (() => {
+    const spread = strongest.value - weakest.value;
+    if (!status.population) return "Scouting";
+    if (spread <= 1) return "Tight balance";
+    if (spread <= 3) return "Slight lean";
+    return "Skewed";
+  })();
+
+  const arcPaths = arcs
+    .map(
+      (arc) =>
+        `<path class="snapshot-slice snapshot-slice--${arc.token}${arc.value === weakest.value ? " is-weak" : ""}" d="${arc.path}" aria-label="${arc.label} slice" />`,
+    )
+    .join("");
+
+  const legend = arcs
+    .map((arc) => {
+      const pct = Math.round(arc.share * 100);
+      return `
+        <div class="city-snapshot__legend-row${arc.value === weakest.value ? " is-weak" : ""}">
+          <span class="legend-swatch legend-swatch--${arc.token}"></span>
+          <span class="legend-label">${arc.label} <span class="legend-suit">${arc.suit}</span></span>
+          <span class="legend-value">${pct}%</span>
+          <span class="legend-meta">lvl ${Math.round(arc.value)}</span>
+        </div>`;
+    })
+    .join("");
+
+  container.innerHTML = `
+    <div class="city-snapshot__header">
+      <div>
+        <div class="city-snapshot__eyebrow">City Snapshot</div>
+        <div class="city-snapshot__sub">Round ${status.round} outlook</div>
+      </div>
+      <div class="city-snapshot__badge">${balanceHint}</div>
+    </div>
+    <div class="city-snapshot__body">
+      <div class="city-snapshot__chart" role="img" aria-label="City sector balance donut">
+        <svg viewBox="0 0 140 140" aria-hidden="true">
+          ${arcPaths}
+          <circle cx="70" cy="70" r="28" class="snapshot-hole" />
+        </svg>
+        <div class="city-snapshot__center">
+          <div class="center-label">Lowest</div>
+          <div class="center-value">${weakest.label}</div>
+          <div class="center-sub">${weakest.value ? `lvl ${Math.round(weakest.value)}` : "no builds"}</div>
+        </div>
+      </div>
+      <div class="city-snapshot__legend">
+        ${legend}
+        <div class="city-snapshot__extrema">Lowest: ${weakest.label} • Highest: ${strongest.label}</div>
+      </div>
+    </div>
+  `;
+}
 
 const ASSET_META = {
   PARK: { label: "Park", hint: "+Residents when next to RES (max +3)" },
@@ -1388,6 +1590,7 @@ function renderMissionsPanel() {
   const contextLine = missionContext(state.round);
   if (missionContextLine) missionContextLine.textContent = `Round ${state.round}: ${contextLine}`;
   if (boardFocusText) boardFocusText.textContent = contextLine;
+  renderCitySnapshotPanel(citySnapshotEl);
   const showRoadExpansion = state.round >= 2 && !state.city?.roadsExpanded;
   if (missionRoadExpansionBlock) {
     missionRoadExpansionBlock.style.display = showRoadExpansion ? "block" : "none";
@@ -1472,10 +1675,15 @@ function renderMissionsPanel() {
               </label>
               <div class="mission-main">
                 <div class="mission-title">Directive</div>
-                <div class="mission-text">${formatSectorText(primary.text)}</div>
+                <div class="mission-brief">${formatSectorText(missionShortText(primary))}</div>
+                <div class="mission-tags">${missionTagPills(primary)}</div>
                 <div class="mission-reward"><span class="pill small">${rewardLabel(primary.reward)}</span><span>Reward</span></div>
-                <div class="mission-reward-detail">${rewardDetail(primary.reward)}</div>
-                <div class="mission-failure">Primary failure halves growth, adds blight, and blocks all rewards.</div>
+                <details class="mission-detail">
+                  <summary>Full brief</summary>
+                  <div class="mission-text">${formatSectorText(primary.text)}</div>
+                  <div class="mission-reward-detail">${rewardDetail(primary.reward)}</div>
+                  <div class="mission-failure">Primary failure halves growth, adds blight, and blocks all rewards.</div>
+                </details>
               </div>
             </div>
       </div>`
@@ -1494,9 +1702,14 @@ function renderMissionsPanel() {
               </label>
               <div class="mission-main">
                 <div class="mission-title">Optional ${idx + 1}</div>
-                <div class="mission-text">${formatSectorText(m.text)}</div>
+                <div class="mission-brief">${formatSectorText(missionShortText(m))}</div>
+                <div class="mission-tags">${missionTagPills(m)}</div>
                 <div class="mission-reward"><span class="pill small">${rewardLabel(m.reward)}</span><span>Reward</span></div>
-                <div class="mission-reward-detail">${rewardDetail(m.reward)}</div>
+                <details class="mission-detail">
+                  <summary>Full brief</summary>
+                  <div class="mission-text">${formatSectorText(m.text)}</div>
+                  <div class="mission-reward-detail">${rewardDetail(m.reward)}</div>
+                </details>
               </div>
             </div>
           </div>`,

@@ -23,6 +23,10 @@ let lastReport = null;
 let lastPublishSnapshot = null;
 const devMode = new URLSearchParams(window.location.search).get("dev") === "1";
 
+// Lightweight debug hook to inspect runtime state from DevTools.
+// Usage: const { state, lastReport, ui } = window.__rcDebug();
+window.__rcDebug = () => ({ state, lastReport, ui });
+
 const boardEl = document.getElementById("board");
 const reportEl = document.getElementById("report-output");
 const statsEl = document.getElementById("stats");

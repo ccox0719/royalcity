@@ -270,21 +270,29 @@ function missionTagPills(mission) {
 
 function renderCitySnapshotPanel(container) {
   if (!container) return;
-  const status = computeCityStatus(state, lastReport);
+  const latestReport = lastReport || state.history?.[state.history.length - 1] || null;
+  const status = computeCityStatus(state, latestReport);
   if (!status) {
     container.textContent = "No city data yet.";
     return;
   }
 
   const tiles = status.tiles || {};
+  const developed = latestReport?.developedSummary || {};
+  const developedMap = {
+    INF: developed.infrastructure,
+    COM: developed.commerce,
+    RES: developed.residential,
+    CIV: developed.civic,
+  };
   const slices = SECTOR_META.map((meta) => {
     const key = TILE_KEY_BY_CODE[meta.code];
     const entry = key ? tiles[key] : null;
-    const value = Number(entry?.levels ?? entry?.tiles ?? 0);
+    const value = Number(entry?.levels ?? entry?.tiles ?? developedMap[meta.code] ?? 0);
     return {
       code: meta.code,
       token: meta.className?.includes("sector--") ? meta.className.split("sector--")[1] : meta.code.toLowerCase(),
-      label: meta.label,
+      label: meta.code, // abbreviate sector labels on the chart
       suit: meta.suit,
       value,
       safeValue: value <= 0 ? 0.75 : value,

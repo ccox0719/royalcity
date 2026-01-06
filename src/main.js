@@ -283,23 +283,31 @@ function renderCitySnapshotPanel(container) {
 
   const tiles = status.tiles || {};
   const developed = latestReport?.developedSummary || {};
+  const sectorPoints = latestReport?.sectorPoints || {};
   const developedMap = {
     INF: developed.infrastructure,
     COM: developed.commerce,
     RES: developed.residential,
     CIV: developed.civic,
   };
+  const sectorPointsMap = {
+    INF: Number(sectorPoints.infrastructure) || 0,
+    COM: Number(sectorPoints.commerce) || 0,
+    RES: Number(sectorPoints.residential) || 0,
+    CIV: Number(sectorPoints.civic) || 0,
+  };
   const slices = SECTOR_META.map((meta) => {
     const key = TILE_KEY_BY_CODE[meta.code];
     const entry = key ? tiles[key] : null;
-    const value = Number(entry?.levels ?? entry?.tiles ?? developedMap[meta.code] ?? 0);
+    const value = Number(entry?.levels ?? entry?.tiles ?? developedMap[meta.code] ?? sectorPointsMap[meta.code] ?? 0);
     return {
       code: meta.code,
       token: meta.className?.includes("sector--") ? meta.className.split("sector--")[1] : meta.code.toLowerCase(),
       label: meta.code, // abbreviate sector labels on the chart
       suit: meta.suit,
       value,
-      safeValue: value <= 0 ? 0.75 : value,
+      // safe fallback so round 1 reflects trick distribution even if no builds/tiles yet
+      safeValue: value > 0 ? value : Math.max(0.5, sectorPointsMap[meta.code] || 0.5),
     };
   });
 
